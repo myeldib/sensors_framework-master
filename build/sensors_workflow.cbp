@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="sensors_workflow"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\local\;CMake Files\..\..\..\..\usr\local\share\;CMake Files\..\..\..\..\usr\local\share\OpenCV\;CMake Files\components\;CMake Files\components\aruba\;CMake Files\components\aruba\tests\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mainComponent">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/libmainComponent.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 mainComponent"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="mainComponent/fast">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/libmainComponent.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 mainComponent/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sensors_workflow">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/sensors_workflow" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 sensors_workflow"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sensors_workflow/fast">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/sensors_workflow" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 sensors_workflow/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/libtests.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/inc"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 tests"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests/fast">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/libtests.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/inc"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 tests/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="runTests">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/runTests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/inc"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 runTests"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="runTests/fast">
+				<Option output="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/runTests" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/meldib/work_space/sensors_workflow/build/components/aruba/tests"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/include/opencv"/>
+					<Add directory="/usr/lib/x86_64-linux-gnu"/>
+					<Add directory="/usr/include/python2.7"/>
+					<Add directory="/home/meldib/.local/lib/python2.7/site-packages/numpy/core/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/tests/inc"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include"/>
+					<Add directory="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/c++/7"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/7"/>
+					<Add directory="/usr/include/c++/7/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 runTests/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/ActivityDiscovery.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/ClusterPatterns.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/Common.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/ConfusionMatrix.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/DayContainer.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/EMD.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/FeatureContainer.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/GenerateMeasures.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/HeatMap.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/Home.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/InferentialDiscovery.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/Recognition.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/Sensor.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/SensorFeature.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/include/SensorReader.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/ActivityDiscovery.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/ClusterPatterns.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/Common.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/ConfusionMatrix.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/EMD.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/GenerateMeasures.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/HeatMap.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/Home.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/InferentialDiscovery.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/Recognition.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/SensorFeature.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/SensorReader.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/main.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/between-day-clustering.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/cluster-recognition.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/constants.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/feature-container.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/feature-processor.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/feature-reader.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/feature-writer.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/file-separator.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/heatmap.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/hierarchal-agglomerative-clustering.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/hist-cluster.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/home.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/logger.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/patterns-statistics.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/preprocessing-stage.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/sensor.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/similarity-measure.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/time-window-approach.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/utilities.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/within-day-clustering.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/between-day-clustering.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/cluster-recognition.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/feature-container.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/feature-processor.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/feature-reader.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/feature-writer.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/file-separator.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/heatmap.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/hist-cluster.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/home.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/main.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/patterns-statistics.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/preprocessing-stage.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/similarity-measure.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/time-window-approach.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/utilities.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/within-day-clustering.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/inc/test-constants.h">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/BetweenDayClusteringTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/FeatureProcessorTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/FeatureReaderTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/FileSeparatorTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/HierarchalAgglomerativeClusteringTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/HistClusterTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/HomeTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/PreprocessingStageTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SimilarityMeasureTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/TimeWindowApproachTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/main.cpp">
+			<Option target="tests"/>
+			<Option target="runTests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/cmake/FindNumPy.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/cmake/FindOpenCV.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/../../../../usr/local/share/OpenCV/OpenCVConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/../../../../usr/local/share/OpenCV/OpenCVModules-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/../../../../usr/local/share/OpenCV/OpenCVModules.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\local\share\OpenCV\"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\components\aruba\tests\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

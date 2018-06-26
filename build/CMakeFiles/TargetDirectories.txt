@@ -1,0 +1,8 @@
+/home/meldib/work_space/sensors_workflow/build/CMakeFiles/rebuild_cache.dir
+/home/meldib/work_space/sensors_workflow/build/CMakeFiles/edit_cache.dir
+/home/meldib/work_space/sensors_workflow/build/CMakeFiles/mainComponent.dir
+/home/meldib/work_space/sensors_workflow/build/CMakeFiles/sensors_workflow.dir
+/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/edit_cache.dir
+/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir
+/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/rebuild_cache.dir
+/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/runTests.dir
