@@ -231,6 +231,8 @@ numeric
 -
 math.h
 -
+similarity-measure.h
+-
 feature-container.h
 -
 feature-processor.h
@@ -304,6 +306,8 @@ constants.h
 
 ../components/aruba/impl/include/hierarchal-agglomerative-clustering.h
 logger.h
+-
+similarity-measure.h
 -
 home.h
 -
@@ -440,6 +444,8 @@ opencv/cxcore.h
 opencv2/imgproc/imgproc.hpp
 ../components/aruba/impl/include/opencv2/imgproc/imgproc.hpp
 logger.h
+-
+home.h
 -
 constants.h
 -

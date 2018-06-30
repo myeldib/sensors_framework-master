@@ -56,6 +56,7 @@ components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusterin
  ../components/aruba/impl/include/home.h
  ../components/aruba/impl/include/logger.h
  ../components/aruba/impl/include/sensor.h
+ ../components/aruba/impl/include/similarity-measure.h
  ../components/aruba/impl/include/utilities.h
  ../components/aruba/tests/inc/test-constants.h
  /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/HierarchalAgglomerativeClusteringTester.cpp

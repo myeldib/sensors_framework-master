@@ -303,6 +303,7 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o: ../components/aruba/impl/include/similarity-measure.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/cluster-recognition.cpp.o: ../components/aruba/impl/src/cluster-recognition.cpp
 
@@ -363,6 +364,7 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp.o: ../components/aruba/impl/include/similarity-measure.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp.o: ../components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp
 
@@ -423,8 +425,11 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/preprocessing-stage.cpp.o
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/preprocessing-stage.cpp.o: ../components/aruba/impl/src/preprocessing-stage.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/constants.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/logger.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/sensor.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/similarity-measure.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/src/similarity-measure.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/time-window-approach.cpp.o: ../components/aruba/impl/include/constants.h

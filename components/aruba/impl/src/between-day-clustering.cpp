@@ -64,7 +64,7 @@ void BetweenDayClustering::init(string reader_folder_path,string feature_writer_
     }
 
     featureProcessor = new FeatureProcessor(home);
-    similarityMeasure = new SimilarityMeasure();
+    similarityMeasure = new SimilarityMeasure(home_setup_file,time_window_config);
 
 
     //similarity threshold for emd in miliseconds

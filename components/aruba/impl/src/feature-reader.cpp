@@ -250,7 +250,7 @@ void FeatureReader::readSequencePatternsFile_(string file_path,FeatureContainer*
     for(int i = 0 ;i <fileContents.size();i++)
     {
         vector<string> lineContent =fileContents[i];
-        sequence_patterns.push_back(atoi(lineContent[0].c_str()));
+        sequence_patterns.push_back(atof(lineContent[0].c_str()));
     }
 
     fc->setSequencePatterns(sequence_patterns);
@@ -302,7 +302,7 @@ void FeatureReader::readSensorDurationsFile_(string file_path,FeatureContainer* 
 
         for(int j = 0; j<lineContent.size(); j++)
         {
-            sensor_durations_per_window.push_back(atoi(lineContent[j].c_str()));
+            sensor_durations_per_window.push_back(atof(lineContent[j].c_str()));
         }
 
         sensor_durations_per_day.push_back(sensor_durations_per_window);
@@ -310,6 +310,7 @@ void FeatureReader::readSensorDurationsFile_(string file_path,FeatureContainer* 
     }
 
     fc->setSensorDurations(sensor_durations_per_day);
+
 }
 
 /**

@@ -44,7 +44,7 @@ TEST(SimilarityMeasure, createSimilarityMeasureObject)
 
     ASSERT_TRUE(featureContainer);
 
-    SimilarityMeasure* similarityMeasure = new SimilarityMeasure();
+    SimilarityMeasure* similarityMeasure = new SimilarityMeasure(TestConstants::HOME_SETUP_FILE,TestConstants::TIME_WINDOW_CONFIG);
 
     ASSERT_TRUE(similarityMeasure);
 
@@ -76,7 +76,7 @@ TEST(SimilarityMeasure, compute1DEMD)
 
     vector<vector<float> > sensor_durations =featureContainer->getSensorDurations();
 
-    SimilarityMeasure* similarityMeasure = new SimilarityMeasure();
+    SimilarityMeasure* similarityMeasure = new SimilarityMeasure(TestConstants::HOME_SETUP_FILE,TestConstants::TIME_WINDOW_CONFIG);
 
     ASSERT_TRUE(similarityMeasure);
 

@@ -372,6 +372,7 @@ void FeatureProcessor::computeActiveSensors(FeatureContainer *featureContainer)
 
   vector<vector<int> > active_sensors_per_pattern;
 
+
   for(int i =0; i <avg_sensor_durations_per_pattern.size(); i++)
     {
       vector<float> avg_sensor_durations = avg_sensor_durations_per_pattern[i];
@@ -684,91 +685,4 @@ void FeatureProcessor::updateGuestPatterns_(FeatureContainer *fc,
         }
     }
 
-}
-
-/**
- * @brief FeatureProcessor::computeDurationSimilarity
- * @param avg_sensor_durations1
- * @param avg_sensor_durations2
- * @param result
- */
-void FeatureProcessor::computeDurationSimilarity(const vector<float> &avg_sensor_durations1, const vector<float> &avg_sensor_durations2, float &result)
-{
-  COUT<<"computeDurationSimilarity"<<endl;
-  //logging::INFO("computeDurationSimilarity_");
-
-  vector<float> duration_similarity;
-  for(int i =0; i<avg_sensor_durations1.size();i++)
-    {
-      float max=0.0;
-      if(avg_sensor_durations1[i]>avg_sensor_durations2[i])
-        {
-          max = avg_sensor_durations1[i];
-        }
-      else
-        {
-          max= avg_sensor_durations2[i];
-        }
-
-      if(avg_sensor_durations1[i] !=0 || avg_sensor_durations2[i]!=0)
-        {
-          //            logging::INFO(std::to_string(avg_sensor_durations1[i])+
-          //                          "\t"+
-          //                          std::to_string(avg_sensor_durations2[i])+
-          //                          "\t"+
-          //                          std::to_string(max));
-          float sim=1-abs(avg_sensor_durations1[i] - avg_sensor_durations2[i])/max;
-          duration_similarity.push_back(sim);
-        }
-    }
-
-
-  auto maxSimilarityValue = std::max_element(std::begin(duration_similarity), std::end(duration_similarity));
-  int maxSimilarityIndex=std::distance(std::begin(duration_similarity), maxSimilarityValue);
-
-
-  result = duration_similarity[maxSimilarityIndex];
-
-  //logging::INFO("dur_sim:"+std::to_string(result));
-
-}
-
-/**
- * @brief FeatureProcessor::computeTimeSimilarity
- * @param time_index1
- * @param time_index2
- * @param result
- */
-void FeatureProcessor::computeTimeSimilarity(int time_index1, int time_index2, float &result)
-{
-  //logging::INFO("computeTimeSimilarity");
-
-  float radian1=(((1.0*time_index1/(1.0*24))*360*1.0)*M_PI)/(1.0*180);
-  float radian2=(((1.0*time_index2/(1.0*24))*360*1.0)*M_PI)/(1.0*180);
-
-  result=1-(abs(radian2-radian1)/(2*M_PI));
-
-  //logging::INFO("time_sim:"+std::to_string(result));
-}
-
-/**
- * @brief FeatureProcessor::computeJaccardSimilarity
- * @param xvec
- * @param yvec
- * @param result
- */
-void FeatureProcessor::computeJaccardSimilarity(const vector<int> &xvec, const vector<int> &yvec, float &result)
-{
-  //logging::INFO("computeJaccardSimilarity");
-
-  vector<int> intersection_sensors,union_sensors;
-
-  std::set_intersection (xvec.begin(), xvec.end(), yvec.begin(), yvec.end(), back_inserter(intersection_sensors));
-  std::set_union(xvec.begin(), xvec.end(), yvec.begin(), yvec.end(), back_inserter(union_sensors));
-
-  //logging::INFO(std::to_string(intersection_sensors.size())+"\t"+std::to_string(union_sensors.size()));
-
-  result=(1.0*intersection_sensors.size())/(1.0*union_sensors.size());
-
-  //logging::INFO("jaccard_sim:"+std::to_string(result));
 }

@@ -15,9 +15,6 @@ public:
     void computePatternsLength(FeatureContainer* featureContainer);
     void sortPatternsUsingSimilarityScores(FeatureContainer* featureContainer);
     void mergePatterns(int day_index, int new_initial_pattern_index, FeatureContainer* merged_fc, FeatureContainer* fc);
-    void computeDurationSimilarity(const vector<float> &avg_sensor_durations1, const vector<float> &avg_sensor_durations2, float &result);
-    void computeTimeSimilarity(int time_index1, int time_index2, float &result);
-    void computeJaccardSimilarity(const vector<int> &xvec, const vector<int> &yvec, float &result);
 private:
     void computeAverageSimilarityScorePerPattern_(vector<vector<float> >& similarity_score_per_pattern, vector<float>& avg_similarity_score_per_pattern);
     void sortPatterns_(vector<vector<int> >& patterns_to_merge, vector<int>& discovered_patterns, vector<float>& avg_similarity_score);

@@ -55,12 +55,13 @@ void ClusterRecognition::init_(string hierarchal_clustering_path,string cluster_
 
   featureReader_ = new FeatureReader(this->home_);
   featureProcessor_ = new FeatureProcessor(this->home_);
+  similarityMeasure_ = new SimilarityMeasure(home_setup_file,time_window_config);
 
   //after processing all days using between day clustering,
   //the results are expected to be in a single feature container
   clustered_sensor_data = featureReader_->readFeatures(hierarchal_clustering_path,Constants::between_day_cluster)[0];
 
-  within_day_cluster_path.append("_").append(std::to_string(home_->getShortDurationLambda())).append("_").append(std::to_string(home_->getLongDurationLambda()));
+  within_day_cluster_path.append("_").append(std::to_string(home_->getShortDurationLambda())).append("_").append(std::to_string(home_->getLongDurationLambda())).append("/");
   within_day_cluster_path_=within_day_cluster_path;
 
   sensor_data = featureReader_->readFeatures(within_day_cluster_path,Constants::within_day_cluster);
@@ -98,6 +99,11 @@ ClusterRecognition::~ClusterRecognition()
   if(featureReader_)
     {
       delete featureReader_;
+    }
+
+  if(similarityMeasure_)
+    {
+      delete similarityMeasure_;
     }
 
   //  if(featureWriter_)
@@ -212,6 +218,8 @@ void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContain
  */
 void ClusterRecognition::prepareTrainingData_(string test_day, FeatureContainer *clustered_sensor_data, FeatureContainer *train_sensor_data)
 {
+  logging::INFO("prepareTrainingData_");
+
   vector<string> clustered_day_names = clustered_sensor_data->getDayNamePerPattern();
   vector<int> clustered_sequence_patterns = clustered_sensor_data->getSequencePatterns();
   vector<int> clustered_discovered_patterns = clustered_sensor_data->getDiscoveredPatterns();
@@ -226,18 +234,28 @@ void ClusterRecognition::prepareTrainingData_(string test_day, FeatureContainer 
   vector<float> train_time_index;
   vector<string> train_days_names;
   vector<string> train_activity_labels;
+  vector<int> train_discovered_patterns;
 
-  for(int i =0;i<clustered_day_names.size();i++)
+  cout<<test_day<<endl;
+
+  for(int i =0;i<clustered_sequence_patterns.size();i++)
     {
       if(clustered_day_names[i]!=test_day)
         {
+
           train_sequence_patterns.push_back(clustered_sequence_patterns[i]);
           train_sensor_durations.push_back(clustered_sensor_duration[i]);
           train_time_index.push_back(clustered_time_index[i]);
           train_days_names.push_back(clustered_day_names[i]);
           train_activity_labels.push_back(clustered_activity_labels[i]);
+          //include all sequence patterns in discovered patterns
+          train_discovered_patterns.push_back(clustered_sequence_patterns[i]);
         }
     }
+
+  //remove duplicates from discovered patterns
+  set<int> train_discovered_patterns_set( train_discovered_patterns.begin(), train_discovered_patterns.end() );
+  train_discovered_patterns.assign( train_discovered_patterns_set.begin(), train_discovered_patterns_set.end() );
 
 
   train_sensor_data->setSequencePatterns(train_sequence_patterns);
@@ -245,11 +263,52 @@ void ClusterRecognition::prepareTrainingData_(string test_day, FeatureContainer 
   train_sensor_data->setTimeIndexPerPattern(train_time_index);
   train_sensor_data->setDayNamePerPattern(train_days_names);
   train_sensor_data->setActivityLabel(train_activity_labels);
-  train_sensor_data->setDiscoveredPatterns(clustered_discovered_patterns);
+  train_sensor_data->setDiscoveredPatterns(train_discovered_patterns);
 
   computeFeatures_(train_sensor_data);
+
 }
 
+/**
+ * @brief ClusterRecognition::printDurationTwoPatterns
+ * @param sensor_durations1
+ * @param sensor_durations2
+ */
+void ClusterRecognition::printDurationTwoPatterns(vector<float> sensor_durations1, vector<float> sensor_durations2)
+{
+  for(int i =0; i<sensor_durations1.size();i++)
+    {
+      stringstream message;
+      message<<sensor_durations1[i]<<":"<<sensor_durations2[i]<<endl;
+
+      logging::INFO(message.str());
+    }
+}
+
+/**
+ * @brief ClusterRecognition::checkPredictedActivityLabel_
+ * @param predicted_activity
+ * @param activity_per_pattern
+ */
+void ClusterRecognition::checkPredictedActivityLabel_(int &predicted_activity,string actual_activity_label, vector<int> activity_per_pattern)
+{
+  if(actual_activity_label=="-")   actual_activity_label="";
+
+  int other_activity_class_index =home_->getActivityLabelStringIntMap().at("");
+  int actual_activity_index = home_->getActivityLabelStringIntMap().at(actual_activity_label);
+
+  if(predicted_activity ==other_activity_class_index && actual_activity_index!=other_activity_class_index)
+    {
+      //we do not want to select other activity class if it is the max
+      activity_per_pattern[other_activity_class_index] =0;
+
+      //find max similarity value
+      auto max_activity_value = std::max_element(std::begin(activity_per_pattern), std::end(activity_per_pattern));
+      int max_activity_index=std::distance(std::begin(activity_per_pattern), max_activity_value);
+
+      predicted_activity = max_activity_index;
+    }
+}
 /**
  * @brief ClusterRecognition::recognize_
  * @param test_sensor_data
@@ -276,18 +335,22 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
   vector<vector<float> > train_sensor_avg_duration = train_sensor_data->getAverageSensorDurationsPerPattern();
   vector<vector<int> > train_active_sensors = train_sensor_data->getActiveSensorsPerPattern();
   vector<int> train_time_index = train_sensor_data->getMostAssignedTimeIndexPerPatternInHourIndex();
+  vector<vector<int> > train_activity_label_per_pattern=train_sensor_data->getActivityLabelsPerPattern();
 
 
 
   for(int i =0; i<test_sensor_duration.size(); i++)
     {
+
       vector<float> sim_results;
 
       actual_activity_labels.push_back(test_activity_label[i]);
 
       vector<float> sensor_duration1 = test_sensor_duration[i];
       vector<int> active_sensors1 = test_active_sensors[i];
-      int time_index1=(int)test_time_index[i];
+      float time_index1=test_time_index[i];
+
+
 
       for(int j =0;j<train_sensor_avg_duration.size();j++)
         {
@@ -300,9 +363,9 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
           float time_sim= 0.0;
           float total_sim= 0.0;
 
-          featureProcessor_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
-          featureProcessor_->computeTimeSimilarity(time_index1,time_index2,time_sim);
-          featureProcessor_->computeDurationSimilarity(sensor_duration1,sensor_duration2,duration_sim);
+          similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
+          similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
+          similarityMeasure_->computeDurationSimilarity(sensor_duration1,sensor_duration2,duration_sim);
 
           total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
 
@@ -313,13 +376,28 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
       auto max_host_similarity_value = std::max_element(std::begin(sim_results), std::end(sim_results));
       int max_similarity_index=std::distance(std::begin(sim_results), max_host_similarity_value);
 
-      int predicted_sequence_pattern = train_sequence_patterns[max_similarity_index];
+      vector<float> sensor_duration2 = train_sensor_avg_duration[max_similarity_index];
+      printDurationTwoPatterns(sensor_duration1,sensor_duration2);
 
-      int predicted_discovered_pattern_index = distance(train_discovered_patterns.begin(), find(train_discovered_patterns.begin(), train_discovered_patterns.end(), predicted_sequence_pattern));
+      int predicted_sequence_pattern = train_discovered_patterns[max_similarity_index];
 
-      int predicted_activity_label =train_most_select_activity_label[predicted_discovered_pattern_index];
 
-      predicted_activity_labels.push_back(home_->getActivityLabelIntStringMap().at(predicted_activity_label));
+      int predicted_activity_label =train_most_select_activity_label[max_similarity_index];
+
+      checkPredictedActivityLabel_(predicted_activity_label,test_activity_label[i],train_activity_label_per_pattern[max_similarity_index]);
+
+      stringstream message;
+      message<<i<<" max_similarity_index:"<<max_similarity_index<<
+               "\t sim_results:"<<sim_results[max_similarity_index]<<
+               "\t predicted_sequence_pattern:"<<predicted_sequence_pattern<<
+               "\t p_activity_label:"<<home_->getActivityLabelIntStringMap().at(predicted_activity_label)<<
+               "\t a_activity_label:"<<test_activity_label[i]<<endl;
+
+      logging::INFO(message.str());
+
+
+      //      predicted_activity_labels.push_back(home_->getActivityLabelIntStringMap().at(predicted_activity_label));
+
       predicted_discovered_patterns.push_back(predicted_sequence_pattern);
 
     }
@@ -331,7 +409,7 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
  * @param sensor_data
  * @param clustered_sensor_data
  */
-void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensors_data, FeatureContainer *clustered_sensor_data)
+void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *>& sensors_data, FeatureContainer *clustered_sensor_data)
 {
   logging::INFO("leaveOneDayOutStrategy_");
 
@@ -342,15 +420,16 @@ void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sens
   for(int i=0; i<sensors_data.size();i++)
     {
       FeatureContainer* test_sensor_data =sensors_data[i];
+
       //compute active sensor using duration not avg duration
       test_sensor_data->setAverageSensorDurationsPerPattern(test_sensor_data->getSensorDurations());
       featureProcessor_->computeActiveSensors(test_sensor_data);
 
 
-      FeatureContainer* train_sensor_data;
+      FeatureContainer* train_sensor_data = new FeatureContainer();
       prepareTrainingData_(test_sensor_data->getDayNamePerPattern()[0],clustered_sensor_data,train_sensor_data);
 
-      //recognize_(test_sensor_data,train_sensor_data,actual_activity_label,predicted_activity_label,predicted_discovered_patterns);
+      recognize_(test_sensor_data,train_sensor_data,actual_activity_label,predicted_activity_label,predicted_discovered_patterns);
 
 
       delete train_sensor_data;

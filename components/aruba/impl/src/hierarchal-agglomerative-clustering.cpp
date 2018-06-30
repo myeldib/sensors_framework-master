@@ -67,6 +67,8 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
   featureReader_ = new FeatureReader(this->home_);
   featureProcessor_ = new FeatureProcessor(this->home_);
 
+  similarityMeasure_ = new SimilarityMeasure(home_setup_file,time_window_config);
+
   //after processing all days using between day clustering,
   //the results are expected to be in a single feature container
   mergedSubFeatureContainers_ = featureReader_->readFeatures(feature_reader_path,Constants::between_day_cluster)[0];
@@ -97,6 +99,11 @@ HierarchalAgglomerativeClustering::~HierarchalAgglomerativeClustering()
   if(featureWriter_)
     {
       delete featureWriter_;
+    }
+
+  if(similarityMeasure_)
+    {
+      delete similarityMeasure_;
     }
 }
 
@@ -498,9 +505,9 @@ void HierarchalAgglomerativeClustering::computeProximityMatrix_(FeatureContainer
           //give it the lowest similarity, since we are not interested in it
           if(i!=j)
             {
-              featureProcessor_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
-              featureProcessor_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
-              featureProcessor_->computeTimeSimilarity(time_index1,time_index2,time_sim);
+              similarityMeasure_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
+              similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
+              similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
 
               total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
             }
@@ -587,9 +594,9 @@ void HierarchalAgglomerativeClustering::updateProximityMatrixWithHostPattern_(in
           int time_index2 = most_time_index_per_pattern[i];
 
 
-          featureProcessor_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
-          featureProcessor_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
-          featureProcessor_->computeTimeSimilarity(time_index1,time_index2,time_sim);
+          similarityMeasure_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
+          similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
+          similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
 
           total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
 
@@ -619,9 +626,9 @@ void HierarchalAgglomerativeClustering::updateProximityMatrixWithHostPattern_(in
           vector<int> active_sensors2 = active_sensors_per_pattern[i];
           int time_index2 = most_time_index_per_pattern[i];
 
-          featureProcessor_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
-          featureProcessor_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
-          featureProcessor_->computeTimeSimilarity(time_index1,time_index2,time_sim);
+          similarityMeasure_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
+          similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
+          similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
 
           total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
 

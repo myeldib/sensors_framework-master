@@ -1,6 +1,7 @@
 #ifndef HIERARCHALAGGLOMERATIVECLUSTERING_H
 #define HIERARCHALAGGLOMERATIVECLUSTERING_H
 #include<logger.h>
+#include<similarity-measure.h>
 #include <home.h>
 #include <numeric>
 #include <math.h>
@@ -43,6 +44,7 @@ private:
     FeatureProcessor* featureProcessor_;
     FeatureReader* featureReader_;
     FeatureWriter* featureWriter_;
+    SimilarityMeasure* similarityMeasure_;
     boost::thread_group g;
     Home* home_;
 

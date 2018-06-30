@@ -55,6 +55,7 @@ components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusterin
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/home.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/logger.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/sensor.h
+components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/similarity-measure.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/utilities.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/tests/src/HierarchalAgglomerativeClusteringTester.cpp
