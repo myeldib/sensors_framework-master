@@ -32,7 +32,7 @@ FeatureContainer::~FeatureContainer()
  */
 void FeatureContainer::setActivityLabel(vector<string> activity_labels)
 {
-    this->activity_labels = activity_labels;
+  this->activity_labels = activity_labels;
 }
 /**
  * @brief FeatureContainer::setSequencePatterns
@@ -40,7 +40,7 @@ void FeatureContainer::setActivityLabel(vector<string> activity_labels)
  */
 void FeatureContainer::setSequencePatterns(vector<int> sequence_patterns)
 {
-    this->sequence_patterns = sequence_patterns;
+  this->sequence_patterns = sequence_patterns;
 }
 
 /**
@@ -49,7 +49,7 @@ void FeatureContainer::setSequencePatterns(vector<int> sequence_patterns)
  */
 void FeatureContainer::setDiscoveredPatterns(vector<int> discovered_patterns)
 {
-    this->discovered_patterns = discovered_patterns;
+  this->discovered_patterns = discovered_patterns;
 }
 
 /**
@@ -58,7 +58,7 @@ void FeatureContainer::setDiscoveredPatterns(vector<int> discovered_patterns)
  */
 void FeatureContainer::setSensorDurations(vector<vector<float> > sensor_durations)
 {
-    this->sensor_durations = sensor_durations;
+  this->sensor_durations = sensor_durations;
 }
 
 /**
@@ -67,7 +67,7 @@ void FeatureContainer::setSensorDurations(vector<vector<float> > sensor_duration
  */
 vector<int> FeatureContainer::getDiscoveredPatterns()
 {
-    return discovered_patterns;
+  return discovered_patterns;
 }
 
 /**
@@ -76,7 +76,7 @@ vector<int> FeatureContainer::getDiscoveredPatterns()
  */
 vector<int> FeatureContainer::getSequencePatterns()
 {
-    return sequence_patterns;
+  return sequence_patterns;
 }
 
 /**
@@ -85,7 +85,7 @@ vector<int> FeatureContainer::getSequencePatterns()
  */
 vector<vector<float> > FeatureContainer::getSensorDurations()
 {
-    return sensor_durations;
+  return sensor_durations;
 }
 
 /**
@@ -94,7 +94,7 @@ vector<vector<float> > FeatureContainer::getSensorDurations()
  */
 vector<string> FeatureContainer::getActivityLabel()
 {
-    return activity_labels;
+  return activity_labels;
 }
 
 /**
@@ -103,7 +103,7 @@ vector<string> FeatureContainer::getActivityLabel()
  */
 void FeatureContainer::setAverageSensorDurationsPerPattern(vector<vector<float> > average_sensor_duration_per_pattern)
 {
-    this->average_sensor_duration_per_pattern = average_sensor_duration_per_pattern;
+  this->average_sensor_duration_per_pattern = average_sensor_duration_per_pattern;
 }
 
 /**
@@ -112,7 +112,7 @@ void FeatureContainer::setAverageSensorDurationsPerPattern(vector<vector<float> 
  */
 vector<vector<float> > FeatureContainer::getAverageSensorDurationsPerPattern()
 {
-    return average_sensor_duration_per_pattern;
+  return average_sensor_duration_per_pattern;
 }
 
 /**
@@ -121,7 +121,7 @@ vector<vector<float> > FeatureContainer::getAverageSensorDurationsPerPattern()
  */
 void FeatureContainer::setActivityLabelsPerPattern(vector<vector<int> > activity_labels_per_pattern)
 {
-    this->activity_labels_per_pattern = activity_labels_per_pattern;
+  this->activity_labels_per_pattern = activity_labels_per_pattern;
 }
 
 /**
@@ -130,7 +130,7 @@ void FeatureContainer::setActivityLabelsPerPattern(vector<vector<int> > activity
  */
 vector<vector<int> > FeatureContainer::getActivityLabelsPerPattern()
 {
-    return activity_labels_per_pattern;
+  return activity_labels_per_pattern;
 }
 
 /**
@@ -139,7 +139,7 @@ vector<vector<int> > FeatureContainer::getActivityLabelsPerPattern()
  */
 void FeatureContainer::setMostCommonActivityLabelPerPattern(vector<int> most_common_activity_label_per_pattern)
 {
-    this->most_common_activity_label_per_pattern = most_common_activity_label_per_pattern;
+  this->most_common_activity_label_per_pattern = most_common_activity_label_per_pattern;
 }
 
 /**
@@ -148,7 +148,7 @@ void FeatureContainer::setMostCommonActivityLabelPerPattern(vector<int> most_com
  */
 vector<int> FeatureContainer::getMostCommonActivityLabelPerPattern()
 {
-    return most_common_activity_label_per_pattern;
+  return most_common_activity_label_per_pattern;
 }
 
 /**
@@ -157,7 +157,7 @@ vector<int> FeatureContainer::getMostCommonActivityLabelPerPattern()
  */
 void FeatureContainer::setMostAssginedTimeIndexPerPatternInHourIndex(vector<int> time_index_per_pattern)
 {
-    this->most_assigned_time_index_per_pattern = time_index_per_pattern;
+  this->most_assigned_time_index_per_pattern = time_index_per_pattern;
 }
 
 /**
@@ -166,7 +166,7 @@ void FeatureContainer::setMostAssginedTimeIndexPerPatternInHourIndex(vector<int>
  */
 vector<int> FeatureContainer::getMostAssignedTimeIndexPerPatternInHourIndex()
 {
-    return most_assigned_time_index_per_pattern;
+  return most_assigned_time_index_per_pattern;
 }
 
 /**
@@ -175,7 +175,7 @@ vector<int> FeatureContainer::getMostAssignedTimeIndexPerPatternInHourIndex()
  */
 void FeatureContainer::setTimeIndexPerPattern(vector<float> time_index_per_pattern)
 {
-    this->time_index_per_pattern = time_index_per_pattern;
+  this->time_index_per_pattern = time_index_per_pattern;
 }
 
 /**
@@ -184,7 +184,7 @@ void FeatureContainer::setTimeIndexPerPattern(vector<float> time_index_per_patte
  */
 vector<float> FeatureContainer::getTimeIndexPerPattern()
 {
-    return time_index_per_pattern;
+  return time_index_per_pattern;
 }
 
 /**
@@ -193,7 +193,7 @@ vector<float> FeatureContainer::getTimeIndexPerPattern()
  */
 void FeatureContainer::setDayNamePerPattern(vector<string> day_name_per_pattern)
 {
-    this->day_name_per_pattern = day_name_per_pattern;
+  this->day_name_per_pattern = day_name_per_pattern;
 }
 
 /**
@@ -202,7 +202,7 @@ void FeatureContainer::setDayNamePerPattern(vector<string> day_name_per_pattern)
  */
 vector<string> FeatureContainer::getDayNamePerPattern()
 {
-    return day_name_per_pattern;
+  return day_name_per_pattern;
 }
 
 /**
@@ -211,7 +211,7 @@ vector<string> FeatureContainer::getDayNamePerPattern()
  */
 void FeatureContainer::setPatternsToMerge(vector<vector<int> > patterns_to_merge)
 {
-    this->patterns_to_merge = patterns_to_merge;
+  this->patterns_to_merge = patterns_to_merge;
 }
 
 /**
@@ -220,7 +220,7 @@ void FeatureContainer::setPatternsToMerge(vector<vector<int> > patterns_to_merge
  */
 vector<vector<int> > FeatureContainer::getPatternsToMerge()
 {
-    return patterns_to_merge;
+  return patterns_to_merge;
 }
 
 /**
@@ -229,7 +229,7 @@ vector<vector<int> > FeatureContainer::getPatternsToMerge()
  */
 void FeatureContainer::setSimilarityScorePerPattern(vector<vector<float> > similarity_score_per_pattern)
 {
-    this->similarity_score_per_pattern = similarity_score_per_pattern;
+  this->similarity_score_per_pattern = similarity_score_per_pattern;
 }
 
 /**
@@ -238,7 +238,7 @@ void FeatureContainer::setSimilarityScorePerPattern(vector<vector<float> > simil
  */
 vector<vector<float> > FeatureContainer::getSimilarityScorePerPattern()
 {
-    return similarity_score_per_pattern;
+  return similarity_score_per_pattern;
 }
 
 /**
@@ -247,7 +247,7 @@ vector<vector<float> > FeatureContainer::getSimilarityScorePerPattern()
  */
 void FeatureContainer::setSortedPatternsToMerge(vector<vector<int> > sorted_patterns_to_merge)
 {
-    this->sorted_patterns_to_merge = sorted_patterns_to_merge;
+  this->sorted_patterns_to_merge = sorted_patterns_to_merge;
 }
 
 /**
@@ -256,7 +256,7 @@ void FeatureContainer::setSortedPatternsToMerge(vector<vector<int> > sorted_patt
  */
 void FeatureContainer::setSortedDiscoveredPatterns(vector<int> sorted_discovered_patterns)
 {
-    this->sorted_discovered_patterns = sorted_discovered_patterns;
+  this->sorted_discovered_patterns = sorted_discovered_patterns;
 }
 
 /**
@@ -265,7 +265,7 @@ void FeatureContainer::setSortedDiscoveredPatterns(vector<int> sorted_discovered
  */
 vector<vector<int> > FeatureContainer::getSortedPatternsToMerge()
 {
-    return sorted_patterns_to_merge;
+  return sorted_patterns_to_merge;
 }
 
 /**
@@ -274,7 +274,7 @@ vector<vector<int> > FeatureContainer::getSortedPatternsToMerge()
  */
 vector<int> FeatureContainer::getSortedDiscoveredPatterns()
 {
-    return sorted_discovered_patterns;
+  return sorted_discovered_patterns;
 }
 
 /**
@@ -283,7 +283,7 @@ vector<int> FeatureContainer::getSortedDiscoveredPatterns()
  */
 void FeatureContainer::setActiveSensorsPerPattern(vector<vector<int> > active_sensors_per_pattern)
 {
-    this->active_sensors_per_pattern = active_sensors_per_pattern;
+  this->active_sensors_per_pattern = active_sensors_per_pattern;
 }
 
 /**
@@ -292,7 +292,7 @@ void FeatureContainer::setActiveSensorsPerPattern(vector<vector<int> > active_se
  */
 vector<vector<int> > FeatureContainer::getActiveSensorsPerPattern()
 {
-    return active_sensors_per_pattern;
+  return active_sensors_per_pattern;
 }
 
 /**
@@ -301,7 +301,7 @@ vector<vector<int> > FeatureContainer::getActiveSensorsPerPattern()
  */
 void FeatureContainer::setPatternsLength(vector<int> patterns_length)
 {
-    this->patterns_length = patterns_length;
+  this->patterns_length = patterns_length;
 }
 
 /**
@@ -310,5 +310,78 @@ void FeatureContainer::setPatternsLength(vector<int> patterns_length)
  */
 vector<int> FeatureContainer::getPatternsLength()
 {
-    return patterns_length;
+  return patterns_length;
+}
+
+/**
+ * @brief FeatureContainer::setActualActivityLabels
+ * @param actual_activity_labels
+ * @return
+ */
+void FeatureContainer::setActualActivityLabels(vector<int> actual_activity_labels)
+{
+  this->actual_activity_labels = actual_activity_labels;
+}
+
+/**
+ * @brief FeatureContainer::getActualActivityLabels
+ * @return
+ */
+vector<int> FeatureContainer::getActualActivityLabels()
+{
+  return actual_activity_labels;
+}
+
+/**
+ * @brief FeatureContainer::setPredictedActivityLabels
+ * @param predicted_activity_labels
+ */
+void FeatureContainer::setPredictedActivityLabels(vector<int> predicted_activity_labels)
+{
+  this->predicted_activity_labels = predicted_activity_labels;
+}
+
+/**
+ * @brief FeatureContainer::getPredictedActivityLabels
+ * @return
+ */
+vector<int> FeatureContainer::getPredictedActivityLabels()
+{
+  return predicted_activity_labels;
+}
+
+/**
+ * @brief FeatureContainer::setPredictedDiscoveredPatterns
+ * @param predicted_discovered_patterns
+ */
+void FeatureContainer::setPredictedDiscoveredPatterns(vector<int> predicted_discovered_patterns)
+{
+  this->predicted_discovered_patterns = predicted_activity_labels;
+}
+
+/**
+ * @brief FeatureContainer::getPredictedDiscoveredPatterns
+ * @return
+ */
+vector<int> FeatureContainer::getPredictedDiscoveredPatterns()
+{
+  return predicted_discovered_patterns;
+}
+
+/**
+ * @brief FeatureContainer::setAccuracyResultsMessage
+ * @param accuracy_results_message
+ */
+void FeatureContainer::setAccuracyResultsMessage(string accuracy_results_message)
+{
+  this->accuracy_results_message = accuracy_results_message;
+}
+
+/**
+ * @brief FeatureContainer::getAccuracyResultsMessage
+ * @return
+ */
+string FeatureContainer::getAccuracyResultsMessage()
+{
+  return accuracy_results_message;
 }

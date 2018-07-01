@@ -36,27 +36,26 @@ void ClusterRecognition::init_(string hierarchal_clustering_path,string cluster_
   home_ = new Home(home_setup_file,time_window_config);
   home_->readHomeSetup();
 
-  cluster_rec_path_=cluster_rec_path;
-
   string tmp_ext=std::to_string(home_->getHierarchalClusteringThreshold());
   std::replace(tmp_ext.begin(), tmp_ext.end(), '.', '_');
 
-  hierarchal_clustering_path=hierarchal_clustering_path+
-      "_"+
-      tmp_ext+
-      "/";
 
-  //  featureWriter_ = new FeatureWriter(this->cluster_rec_path_,tmp_ext,success);
+  cluster_rec_path_=cluster_rec_path;
+  featureWriter_ = new FeatureWriter(this->cluster_rec_path_,tmp_ext,success);
 
-  //  if(!success)
-  //    {
-  //      return;
-  //    }
+  if(!success)
+    {
+      return;
+    }
 
   featureReader_ = new FeatureReader(this->home_);
   featureProcessor_ = new FeatureProcessor(this->home_);
   similarityMeasure_ = new SimilarityMeasure(home_setup_file,time_window_config);
 
+  hierarchal_clustering_path=hierarchal_clustering_path+
+      "_"+
+      tmp_ext+
+      "/";
   //after processing all days using between day clustering,
   //the results are expected to be in a single feature container
   clustered_sensor_data = featureReader_->readFeatures(hierarchal_clustering_path,Constants::between_day_cluster)[0];
@@ -106,10 +105,10 @@ ClusterRecognition::~ClusterRecognition()
       delete similarityMeasure_;
     }
 
-  //  if(featureWriter_)
-  //    {
-  //      delete featureWriter_;
-  //    }
+  if(featureWriter_)
+    {
+      delete featureWriter_;
+    }
 
 }
 
@@ -122,6 +121,8 @@ void ClusterRecognition::run()
 
   //  computeClustersPurity_(clustered_sensor_data);
   leaveOneDayOutStrategy_(sensor_data,clustered_sensor_data);
+  evaluate_(clustered_sensor_data);
+  writePredictions_(clustered_sensor_data);
 }
 
 /**
@@ -274,7 +275,7 @@ void ClusterRecognition::prepareTrainingData_(string test_day, FeatureContainer 
  * @param sensor_durations1
  * @param sensor_durations2
  */
-void ClusterRecognition::printDurationTwoPatterns(vector<float> sensor_durations1, vector<float> sensor_durations2)
+void ClusterRecognition::printDurationTwoPatterns_(vector<float> sensor_durations1, vector<float> sensor_durations2)
 {
   for(int i =0; i<sensor_durations1.size();i++)
     {
@@ -290,7 +291,7 @@ void ClusterRecognition::printDurationTwoPatterns(vector<float> sensor_durations
  * @param predicted_activity
  * @param activity_per_pattern
  */
-void ClusterRecognition::checkPredictedActivityLabel_(int &predicted_activity,string actual_activity_label, vector<int> activity_per_pattern)
+void ClusterRecognition::checkPredictedActivityLabel_(int &predicted_activity,string& actual_activity_label, vector<int> activity_per_pattern)
 {
   if(actual_activity_label=="-")   actual_activity_label="";
 
@@ -309,6 +310,24 @@ void ClusterRecognition::checkPredictedActivityLabel_(int &predicted_activity,st
       predicted_activity = max_activity_index;
     }
 }
+
+/**
+ * @brief ClusterRecognition::evaluate_
+ * @param fc
+ */
+void ClusterRecognition::evaluate_(FeatureContainer *fc)
+{
+  vector<int> targets = fc->getActualActivityLabels();
+  vector<int> outputs = fc->getPredictedActivityLabels();
+
+  Confusion confusion =  Confusion(targets, outputs);
+
+  Evaluation evaluation = Evaluation(confusion);
+
+  fc->setAccuracyResultsMessage(evaluation.getAccuracyResults());
+
+
+}
 /**
  * @brief ClusterRecognition::recognize_
  * @param test_sensor_data
@@ -318,11 +337,12 @@ void ClusterRecognition::checkPredictedActivityLabel_(int &predicted_activity,st
  */
 void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
                                     FeatureContainer *train_sensor_data,
-                                    vector<string> &actual_activity_labels,
-                                    vector<string> &predicted_activity_labels,
+                                    vector<int> &actual_activity_labels,
+                                    vector<int> &predicted_activity_labels,
                                     vector<int>& predicted_discovered_patterns)
 {
 
+  logging::INFO("recognize_");
 
   vector<vector<float> > test_sensor_duration=test_sensor_data->getSensorDurations();
   vector<vector<int> > test_active_sensors = test_sensor_data->getActiveSensorsPerPattern();
@@ -331,26 +351,20 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
 
   vector<int> train_discovered_patterns = train_sensor_data->getDiscoveredPatterns();
   vector<int> train_most_select_activity_label = train_sensor_data->getMostCommonActivityLabelPerPattern();
-  vector<int> train_sequence_patterns = train_sensor_data->getSequencePatterns();
   vector<vector<float> > train_sensor_avg_duration = train_sensor_data->getAverageSensorDurationsPerPattern();
   vector<vector<int> > train_active_sensors = train_sensor_data->getActiveSensorsPerPattern();
   vector<int> train_time_index = train_sensor_data->getMostAssignedTimeIndexPerPatternInHourIndex();
   vector<vector<int> > train_activity_label_per_pattern=train_sensor_data->getActivityLabelsPerPattern();
-
-
 
   for(int i =0; i<test_sensor_duration.size(); i++)
     {
 
       vector<float> sim_results;
 
-      actual_activity_labels.push_back(test_activity_label[i]);
 
       vector<float> sensor_duration1 = test_sensor_duration[i];
       vector<int> active_sensors1 = test_active_sensors[i];
       float time_index1=test_time_index[i];
-
-
 
       for(int j =0;j<train_sensor_avg_duration.size();j++)
         {
@@ -376,34 +390,47 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
       auto max_host_similarity_value = std::max_element(std::begin(sim_results), std::end(sim_results));
       int max_similarity_index=std::distance(std::begin(sim_results), max_host_similarity_value);
 
-      vector<float> sensor_duration2 = train_sensor_avg_duration[max_similarity_index];
-      printDurationTwoPatterns(sensor_duration1,sensor_duration2);
-
       int predicted_sequence_pattern = train_discovered_patterns[max_similarity_index];
+      int predicted_activity_label_index =train_most_select_activity_label[max_similarity_index];
 
+      checkPredictedActivityLabel_(predicted_activity_label_index,test_activity_label[i],train_activity_label_per_pattern[max_similarity_index]);
 
-      int predicted_activity_label =train_most_select_activity_label[max_similarity_index];
-
-      checkPredictedActivityLabel_(predicted_activity_label,test_activity_label[i],train_activity_label_per_pattern[max_similarity_index]);
+      //      vector<float> sensor_duration2 = train_sensor_avg_duration[max_similarity_index];
+      //      printDurationTwoPatterns_(sensor_duration1,sensor_duration2);
 
       stringstream message;
       message<<i<<" max_similarity_index:"<<max_similarity_index<<
                "\t sim_results:"<<sim_results[max_similarity_index]<<
                "\t predicted_sequence_pattern:"<<predicted_sequence_pattern<<
-               "\t p_activity_label:"<<home_->getActivityLabelIntStringMap().at(predicted_activity_label)<<
+               "\t p_activity_label:"<<home_->getActivityLabelIntStringMap().at(predicted_activity_label_index)<<
                "\t a_activity_label:"<<test_activity_label[i]<<endl;
 
       logging::INFO(message.str());
 
 
-      //      predicted_activity_labels.push_back(home_->getActivityLabelIntStringMap().at(predicted_activity_label));
+      int actual_activity_label_index = home_->getActivityLabelStringIntMap().at(test_activity_label[i]);
 
-      predicted_discovered_patterns.push_back(predicted_sequence_pattern);
+      if(includeOtherActivityClass_(actual_activity_label_index) && includeOtherActivityClass_(predicted_activity_label_index))
+        {
+          actual_activity_labels.push_back(actual_activity_label_index);
+          predicted_activity_labels.push_back(predicted_activity_label_index);
+          predicted_discovered_patterns.push_back(predicted_sequence_pattern);
+        }
 
     }
-
-
 }
+
+/**
+ * @brief ClusterRecognition::writePredictions_
+ * @param clustered_sensor_data
+ */
+void ClusterRecognition::writePredictions_(FeatureContainer *clustered_sensor_data)
+{
+
+  logging::INFO("writePredictions_");
+  featureWriter_->writeFeatures(clustered_sensor_data,Constants::Cluster_Type::cluster_recognition);
+}
+
 /**
  * @brief ClusterRecognition::leaveOneDayOutStrategy_
  * @param sensor_data
@@ -413,8 +440,8 @@ void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *>& sen
 {
   logging::INFO("leaveOneDayOutStrategy_");
 
-  vector<string> predicted_activity_label;
-  vector<string> actual_activity_label;
+  vector<int> predicted_activity_label;
+  vector<int> actual_activity_label;
   vector<int> predicted_discovered_patterns;
 
   for(int i=0; i<sensors_data.size();i++)
@@ -435,6 +462,10 @@ void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *>& sen
       delete train_sensor_data;
 
     }
+
+  clustered_sensor_data->setPredictedActivityLabels(predicted_activity_label);
+  clustered_sensor_data->setActualActivityLabels(actual_activity_label);
+  clustered_sensor_data->setPredictedDiscoveredPatterns(predicted_discovered_patterns);
 
 }
 /**

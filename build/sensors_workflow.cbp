@@ -406,7 +406,15 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/confusion.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/constants.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/evaluation.h">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>

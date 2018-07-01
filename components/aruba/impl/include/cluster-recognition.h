@@ -10,6 +10,8 @@
 #include <feature-reader.h>
 #include <feature-writer.h>
 #include <utilities.h>
+#include <confusion.h>
+#include<evaluation.h>
 
 class ClusterRecognition{
 public:
@@ -28,11 +30,13 @@ private:
     void prepareTrainingData_(string test_day, FeatureContainer* clustered_sensor_data, FeatureContainer* train_sensor_data);
     void recognize_(FeatureContainer* test_sensor_data,
                     FeatureContainer* train_sensor_data,
-                    vector<string>& actual_activity_labels,
-                    vector<string>& predicted_activity_labels,
+                    vector<int>& actual_activity_labels,
+                    vector<int>& predicted_activity_labels,
                     vector<int>& predicted_discovered_patterns);
-    void printDurationTwoPatterns(vector<float> sensor_durations1, vector<float> sensor_durations2);
-    void checkPredictedActivityLabel_(int& predicted_activity,string actual_activity_label,vector<int> activity_per_pattern);
+    void printDurationTwoPatterns_(vector<float> sensor_durations1, vector<float> sensor_durations2);
+    void checkPredictedActivityLabel_(int& predicted_activity,string& actual_activity_label,vector<int> activity_per_pattern);
+    void writePredictions_(FeatureContainer *clustered_sensor_data);
+    void evaluate_(FeatureContainer* fc);
 private:
     string cluster_rec_path_;
     string within_day_cluster_path_;

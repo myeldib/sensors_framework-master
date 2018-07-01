@@ -1997,7 +1997,9 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/between-day-clustering
  /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/cluster-recognition.cpp.o
  ../components/aruba/impl/include/cluster-recognition.h
+ ../components/aruba/impl/include/confusion.h
  ../components/aruba/impl/include/constants.h
+ ../components/aruba/impl/include/evaluation.h
  ../components/aruba/impl/include/feature-container.h
  ../components/aruba/impl/include/feature-processor.h
  ../components/aruba/impl/include/feature-reader.h
@@ -3278,7 +3280,9 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/home.cpp.o
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/main.cpp.o
  ../components/aruba/impl/include/between-day-clustering.h
  ../components/aruba/impl/include/cluster-recognition.h
+ ../components/aruba/impl/include/confusion.h
  ../components/aruba/impl/include/constants.h
+ ../components/aruba/impl/include/evaluation.h
  ../components/aruba/impl/include/feature-container.h
  ../components/aruba/impl/include/feature-processor.h
  ../components/aruba/impl/include/feature-reader.h

@@ -6,7 +6,7 @@ using namespace std;
 
 namespace Constants {
 
-enum  Cluster_Type { within_day_cluster,between_day_cluster, hierarchal_cluster};
+enum  Cluster_Type { within_day_cluster,between_day_cluster, hierarchal_cluster,cluster_recognition};
 static const double ONE_SECOND_IN_MELI=1000.0;
 static const int FULL_DAY_IN_HOURS=24;
 static const int FULL_HOUR_IN_SECONDS=3600;

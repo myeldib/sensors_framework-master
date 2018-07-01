@@ -100,7 +100,8 @@ SET(HEADERS
     components/aruba/impl/include/feature-writer.h
     components/aruba/impl/include/patterns-statistics.h
     components/aruba/impl/include/cluster-recognition.h
-
+    components/aruba/impl/include/confusion.h
+    components/aruba/impl/include/evaluation.h
 
 
     components/aruba/deprecated/include/SensorReader.h
