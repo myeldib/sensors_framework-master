@@ -363,7 +363,7 @@ void FeatureProcessor::removeDuplicatePatternsToMerge_(vector<vector<int> > &pat
  * @brief FeatureProcessor::computeActiveSensors
  * @param featureContainer
  */
-void FeatureProcessor::computeActiveSensors(FeatureContainer *featureContainer)
+void FeatureProcessor::computeActiveSensors(FeatureContainer *featureContainer,bool include_non_active_sensors)
 {
   COUT<<"computeActiveSensors"<<endl;
   logging::INFO("computeActiveSensors");
@@ -387,6 +387,15 @@ void FeatureProcessor::computeActiveSensors(FeatureContainer *featureContainer)
           if(avg_sensor_durations[j]>0)
             {
               active_sensors.push_back(j);
+            }
+          else
+            {
+              if(include_non_active_sensors)
+                {
+                  //model recognition requires to have equla size active sensor length (features)
+                  //we set here non active sensor with -1 to indicate that these sensors are off
+                  active_sensors.push_back(-1);
+                }
             }
         }
 

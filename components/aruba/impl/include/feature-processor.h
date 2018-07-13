@@ -10,7 +10,7 @@ public:
     ~FeatureProcessor();
     void computeAverageSensorDurationPerPattern(FeatureContainer* featureContainer);
     void computeMostCommonActivityLabelPerPattern(FeatureContainer* featureContainer);
-    void computeActiveSensors(FeatureContainer* featureContainer);
+    void computeActiveSensors(FeatureContainer* featureContainer,bool include_non_active_sensors);
     void computeMostAssignedTimeIndex(FeatureContainer* featureContainer);
     void computePatternsLength(FeatureContainer* featureContainer);
     void sortPatternsUsingSimilarityScores(FeatureContainer* featureContainer);

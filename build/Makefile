@@ -915,6 +915,36 @@ components/aruba/impl/src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/main.cpp.s
 .PHONY : components/aruba/impl/src/main.cpp.s
 
+components/aruba/impl/src/model-recognition.o: components/aruba/impl/src/model-recognition.cpp.o
+
+.PHONY : components/aruba/impl/src/model-recognition.o
+
+# target to build an object file
+components/aruba/impl/src/model-recognition.cpp.o:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/model-recognition.cpp.o
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/model-recognition.cpp.o
+.PHONY : components/aruba/impl/src/model-recognition.cpp.o
+
+components/aruba/impl/src/model-recognition.i: components/aruba/impl/src/model-recognition.cpp.i
+
+.PHONY : components/aruba/impl/src/model-recognition.i
+
+# target to preprocess a source file
+components/aruba/impl/src/model-recognition.cpp.i:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/model-recognition.cpp.i
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/model-recognition.cpp.i
+.PHONY : components/aruba/impl/src/model-recognition.cpp.i
+
+components/aruba/impl/src/model-recognition.s: components/aruba/impl/src/model-recognition.cpp.s
+
+.PHONY : components/aruba/impl/src/model-recognition.s
+
+# target to generate assembly for a file
+components/aruba/impl/src/model-recognition.cpp.s:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/model-recognition.cpp.s
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/model-recognition.cpp.s
+.PHONY : components/aruba/impl/src/model-recognition.cpp.s
+
 components/aruba/impl/src/patterns-statistics.o: components/aruba/impl/src/patterns-statistics.cpp.o
 
 .PHONY : components/aruba/impl/src/patterns-statistics.o
@@ -974,6 +1004,36 @@ components/aruba/impl/src/preprocessing-stage.cpp.s:
 	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/preprocessing-stage.cpp.s
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/preprocessing-stage.cpp.s
 .PHONY : components/aruba/impl/src/preprocessing-stage.cpp.s
+
+components/aruba/impl/src/python-runner.o: components/aruba/impl/src/python-runner.cpp.o
+
+.PHONY : components/aruba/impl/src/python-runner.o
+
+# target to build an object file
+components/aruba/impl/src/python-runner.cpp.o:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.o
+.PHONY : components/aruba/impl/src/python-runner.cpp.o
+
+components/aruba/impl/src/python-runner.i: components/aruba/impl/src/python-runner.cpp.i
+
+.PHONY : components/aruba/impl/src/python-runner.i
+
+# target to preprocess a source file
+components/aruba/impl/src/python-runner.cpp.i:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.i
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.i
+.PHONY : components/aruba/impl/src/python-runner.cpp.i
+
+components/aruba/impl/src/python-runner.s: components/aruba/impl/src/python-runner.cpp.s
+
+.PHONY : components/aruba/impl/src/python-runner.s
+
+# target to generate assembly for a file
+components/aruba/impl/src/python-runner.cpp.s:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.s
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.s
+.PHONY : components/aruba/impl/src/python-runner.cpp.s
 
 components/aruba/impl/src/similarity-measure.o: components/aruba/impl/src/similarity-measure.cpp.o
 
@@ -1182,12 +1242,18 @@ help:
 	@echo "... components/aruba/impl/src/main.o"
 	@echo "... components/aruba/impl/src/main.i"
 	@echo "... components/aruba/impl/src/main.s"
+	@echo "... components/aruba/impl/src/model-recognition.o"
+	@echo "... components/aruba/impl/src/model-recognition.i"
+	@echo "... components/aruba/impl/src/model-recognition.s"
 	@echo "... components/aruba/impl/src/patterns-statistics.o"
 	@echo "... components/aruba/impl/src/patterns-statistics.i"
 	@echo "... components/aruba/impl/src/patterns-statistics.s"
 	@echo "... components/aruba/impl/src/preprocessing-stage.o"
 	@echo "... components/aruba/impl/src/preprocessing-stage.i"
 	@echo "... components/aruba/impl/src/preprocessing-stage.s"
+	@echo "... components/aruba/impl/src/python-runner.o"
+	@echo "... components/aruba/impl/src/python-runner.i"
+	@echo "... components/aruba/impl/src/python-runner.s"
 	@echo "... components/aruba/impl/src/similarity-measure.o"
 	@echo "... components/aruba/impl/src/similarity-measure.i"
 	@echo "... components/aruba/impl/src/similarity-measure.s"

@@ -102,6 +102,8 @@ SET(HEADERS
     components/aruba/impl/include/cluster-recognition.h
     components/aruba/impl/include/confusion.h
     components/aruba/impl/include/evaluation.h
+    components/aruba/impl/include/model-recognition.h
+    components/aruba/impl/include/python-runner.h
 
 
     components/aruba/deprecated/include/SensorReader.h
@@ -139,8 +141,11 @@ SET(SOURCES components/aruba/impl/src/main.cpp
             components/aruba/impl/src/similarity-measure.cpp
             components/aruba/impl/src/hierarchal-agglomerative-clustering.cpp
             components/aruba/impl/src/feature-writer.cpp
-             components/aruba/impl/src/patterns-statistics.cpp
-             components/aruba/impl/src/cluster-recognition.cpp
+            components/aruba/impl/src/patterns-statistics.cpp
+            components/aruba/impl/src/cluster-recognition.cpp
+            components/aruba/impl/src/model-recognition.cpp
+            components/aruba/impl/src/python-runner.cpp
+
 
 
             components/aruba/deprecated/src/SensorReader.cpp

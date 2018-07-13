@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o"
   "CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o"
   "CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/cluster-recognition.cpp.o"
+  "CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/model-recognition.cpp.o"
+  "CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.o"
   "CMakeFiles/sensors_workflow.dir/components/aruba/deprecated/src/SensorReader.cpp.o"
   "CMakeFiles/sensors_workflow.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o"
   "CMakeFiles/sensors_workflow.dir/components/aruba/deprecated/src/Home.cpp.o"

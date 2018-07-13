@@ -3,12 +3,15 @@
 #include<feature-container.h>
 #include<constants.h>
 #include<utilities.h>
+#include<home.h>
+#include <iostream>
+#include <string>
 #include<logger.h>
 
 class FeatureWriter
 {
 public:
-  FeatureWriter(string folder_path, string extension, bool& success);
+  FeatureWriter(string folder_path, string extension, Home* home,bool& success);
   ~FeatureWriter();
   void writeFeatures(FeatureContainer* featureContainer,Constants::Cluster_Type type);
   void writePatternsStatistics(vector<int> num_of_discovered_patterns, vector<int> num_of_pruned_patterns, vector<int> num_of_discovered_activities);
@@ -26,8 +29,12 @@ private:
   void writePredictedActivityLabels_(FeatureContainer* fc);
   void writePredictedDiscoveredPatterns_(FeatureContainer* fc);
   void writeRecognitionAccuracy_(FeatureContainer* fc);
+  void writeModelRecognitionTestData_(FeatureContainer* fc);
+  void writeModelRecognitionTrainData_(FeatureContainer* fc);
+  void writeModelRecognition_(FeatureContainer* fc);
 private:
   string folder_path;
+  Home* home_;
 };
 
 #endif // FEATUREWRITER_H

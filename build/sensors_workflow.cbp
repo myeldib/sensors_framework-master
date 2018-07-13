@@ -458,11 +458,19 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/model-recognition.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/patterns-statistics.h">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/preprocessing-stage.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/python-runner.h">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
@@ -534,11 +542,19 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/model-recognition.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/patterns-statistics.cpp">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/preprocessing-stage.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/python-runner.cpp">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>

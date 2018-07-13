@@ -57,7 +57,7 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
 
   string tmp_ext=std::to_string(home_->getHierarchalClusteringThreshold());
   std::replace(tmp_ext.begin(), tmp_ext.end(), '.', '_');
-  featureWriter_ = new FeatureWriter(this->hierarchal_clustering_path_,tmp_ext,success);
+  featureWriter_ = new FeatureWriter(this->hierarchal_clustering_path_,tmp_ext,home_,success);
 
   if(!success)
     {
@@ -170,7 +170,7 @@ void HierarchalAgglomerativeClustering::computeFeatures_(FeatureContainer* featu
 
   featureProcessor_->computeAverageSensorDurationPerPattern(featureContainer);
   featureProcessor_->computeMostCommonActivityLabelPerPattern(featureContainer);
-  featureProcessor_->computeActiveSensors(featureContainer);
+  featureProcessor_->computeActiveSensors(featureContainer,false);
   featureProcessor_->computeMostAssignedTimeIndex(featureContainer);
   //featureProcessor_->computePatternsLength(featureContainer);
 }

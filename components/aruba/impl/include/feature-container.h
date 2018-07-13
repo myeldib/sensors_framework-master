@@ -53,6 +53,10 @@ public:
   string getAccuracyResultsMessage();
   void setAccuracyResultsMessage(string accuracy_results_message);
 
+  //Threading information
+  void setThreadID(int thread_id);
+  int getThreadID();
+
   ~FeatureContainer();
 private:
   //read features
@@ -85,6 +89,7 @@ private:
   vector<int> predicted_discovered_patterns;
   //holder for cluster recognition results;
   string accuracy_results_message;
+  int thread_id;
 };
 
 #endif // FEATURECONTAINER_H

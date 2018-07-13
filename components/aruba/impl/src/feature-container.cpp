@@ -385,3 +385,20 @@ string FeatureContainer::getAccuracyResultsMessage()
 {
   return accuracy_results_message;
 }
+
+/**
+ * @brief FeatureContainer::setThreadID
+ * @param thread_id
+ */
+void FeatureContainer::setThreadID(int thread_id)
+{
+  this->thread_id = thread_id;
+}
+
+/**
+ * @brief FeatureContainer::getThreadID
+ */
+int FeatureContainer::getThreadID()
+{
+  return thread_id;
+}

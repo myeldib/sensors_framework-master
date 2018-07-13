@@ -5,10 +5,9 @@
  * @param FeatureContainer
  * @param file_name
  */
-FeatureWriter::FeatureWriter(string folder_path,string extension,bool& success)
+FeatureWriter::FeatureWriter(string folder_path,string extension,Home* home,bool& success)
 {
   logging::INFO("FeatureWriter");
-
 
   if(folder_path !="")
     {
@@ -29,6 +28,8 @@ FeatureWriter::FeatureWriter(string folder_path,string extension,bool& success)
           return;
         }
     }
+
+  this->home_=home;
 }
 
 /**
@@ -112,9 +113,110 @@ void FeatureWriter::writeFeatures(FeatureContainer* featureContainer, Constants:
     {
       writeClusterRecognition_(featureContainer);
     }
+  else if( type == Constants::Cluster_Type::model_recognition)
+    {
+
+    }
+  else if( type == Constants::Cluster_Type::build_train_model_recognition)
+    {
+      writeModelRecognitionTrainData_(featureContainer);
+    }
+  else if(type ==  Constants::Cluster_Type::build_test_model_recognition)
+    {
+      writeModelRecognitionTestData_(featureContainer);
+    }
 
 }
 
+/**
+ * @brief FeatureWriter::writeModelRecognitionTestData_
+ * @param fc
+ */
+void FeatureWriter::writeModelRecognitionTestData_(FeatureContainer *fc)
+{
+  logging::INFO("writeModelRecognitionTestData_");
+
+  string file_name = this->folder_path+"test_data_"+std::to_string(fc->getThreadID())+".txt";
+  fstream output_file(file_name.c_str(),std::fstream::out);
+
+  vector<vector<float> > sensor_durations = fc->getSensorDurations();
+  vector<float> time_index_per_pattern = fc->getTimeIndexPerPattern();
+  vector<vector<int> > most_active_sensors = fc->getActiveSensorsPerPattern();
+
+  for(int i = 0; i<sensor_durations.size();i++)
+    {
+      int time_index = time_index_per_pattern[i];
+      vector<int> active_sensors = most_active_sensors[i];
+      vector<float> sensor_duration = sensor_durations[i];
+
+      stringstream message;
+      message<<time_index<<"\t";
+
+      for(int j = 0; j<active_sensors.size();j++)
+        message<<active_sensors[j]<<"\t";
+
+      for(int j = 0; j<sensor_duration.size();j++)
+        message<<sensor_duration[j]<<"\t";
+
+      message<<endl;
+      output_file<<message.str();
+
+    }
+
+  output_file.close();
+}
+
+/**
+ * @brief FeatureWriter::writeModelRecognitionTrainData_
+ * @param fc
+ */
+void FeatureWriter::writeModelRecognitionTrainData_(FeatureContainer *fc)
+{
+  logging::INFO("writeModelRecognitionTrainData_");
+
+  string file_name = this->folder_path+"train_data_"+std::to_string(fc->getThreadID())+".txt";
+  fstream output_file(file_name.c_str(),std::fstream::out);
+
+  vector<vector<float> > avg_sensor_durations = fc->getAverageSensorDurationsPerPattern();
+  vector<int> time_index_per_pattern = fc->getMostAssignedTimeIndexPerPatternInHourIndex();
+  vector<vector<int> > most_active_sensors = fc->getActiveSensorsPerPattern();
+  vector<string> activity_labels = fc->getActivityLabel();
+
+
+  vector<int> sequence_patterns = fc->getSequencePatterns();
+  vector<int> discovered_patterns = fc->getDiscoveredPatterns();
+
+
+  for(int i = 0; i<sequence_patterns.size();i++)
+    {
+      stringstream message;
+
+      int discovered_patterns_index = find(discovered_patterns.begin(), discovered_patterns.end(), sequence_patterns[i]) - discovered_patterns.begin();
+
+      string activity_label = activity_labels[i];
+      vector<float> sensor_duration = avg_sensor_durations[discovered_patterns_index];
+      vector<int> active_sensors = most_active_sensors[discovered_patterns_index];
+      int time_index = time_index_per_pattern[discovered_patterns_index];
+
+      if(activity_label=="-")   activity_label="";
+
+      message<<home_->getActivityLabelStringIntMap().at(activity_label)<<"\t";
+      message<<time_index<<"\t";
+
+      for(int k = 0; k<active_sensors.size();k++)
+        message<<active_sensors[k]<<"\t";
+
+      for(int k = 0; k<sensor_duration.size();k++)
+        message<<sensor_duration[k]<<"\t";
+
+      message<<endl;
+      output_file<<message.str();
+
+    }
+
+  output_file.close();
+
+}
 /**
  * @brief FeatureWriter::writeClusterRecognition
  * @param fc

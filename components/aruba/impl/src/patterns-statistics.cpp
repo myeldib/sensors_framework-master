@@ -38,7 +38,7 @@ void PatternsStatistics::init(string feature_writer_path,Home* home,bool& succes
     this->feature_writer_path=feature_writer_path;
 
 
-    featureWriter = new FeatureWriter(feature_writer_path,std::to_string((int)this->home_->getEmdSimilarityThreshold()),success);
+    featureWriter = new FeatureWriter(feature_writer_path,std::to_string((int)this->home_->getEmdSimilarityThreshold()),home_,success);
     this->success=success;
 
     if(!this->success)

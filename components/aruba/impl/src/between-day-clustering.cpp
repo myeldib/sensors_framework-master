@@ -48,7 +48,7 @@ void BetweenDayClustering::init(string reader_folder_path,string feature_writer_
 
     this->feature_writer_path = feature_writer_path;
 
-    featureWriter = new FeatureWriter(feature_writer_path,std::to_string((int)home->getEmdSimilarityThreshold()),success);
+    featureWriter = new FeatureWriter(feature_writer_path,std::to_string((int)home->getEmdSimilarityThreshold()),home,success);
 
     if(!success)
     {
