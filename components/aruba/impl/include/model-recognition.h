@@ -12,6 +12,7 @@
 #include <utilities.h>
 #include <confusion.h>
 #include<evaluation.h>
+#include <python-runner.h>
 #include <boost/thread.hpp>
 
 class ModelRecognition{
@@ -52,9 +53,15 @@ private:
   FeatureProcessor* featureProcessor_;
   SimilarityMeasure* similarityMeasure_;
   FeatureReader* featureReader_;
+  vector<PythonRunner*> pythonRunnerContainer_;
+  PythonRunner* pythonRunner_;
   FeatureWriter* featureWriter_;
   Home* home_;
   int num_threads_;
+  string script_name_;
+  string function_name1_;
+  string function_name2_;
+  int function_num_param_;
 
 };
 #endif // CLUSTERRECOGNITION_H

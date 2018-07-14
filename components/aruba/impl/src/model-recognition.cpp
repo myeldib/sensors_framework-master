@@ -33,7 +33,7 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_re
 {
   logging::INFO("init_");
 
-  num_threads_=2;// boost::thread::hardware_concurrency();
+  num_threads_=1;// boost::thread::hardware_concurrency();
 
   home_ = new Home(home_setup_file,time_window_config);
   home_->readHomeSetup();
@@ -67,7 +67,13 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_re
       FeatureContainer* tmp = featureReader_->readFeatures(hierarchal_clustering_path,Constants::between_day_cluster)[0];
       tmp->setThreadID(i);
       copy_clustered_sensor_data.push_back(tmp);
+
+      PythonRunner* tmppythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
+      pythonRunnerContainer_.push_back(tmppythonRunner_);
     }
+
+  pythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
+  pythonRunner_->initPython();
 
   within_day_cluster_path.append("_").append(std::to_string(home_->getShortDurationLambda())).append("_").append(std::to_string(home_->getLongDurationLambda())).append("/");
   within_day_cluster_path_=within_day_cluster_path;
@@ -75,6 +81,10 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_re
   sensor_data = featureReader_->readFeatures(within_day_cluster_path,Constants::within_day_cluster);
   merged_sub_containers = new FeatureContainer();
 
+  script_name_="train_model";
+  function_name1_ ="train_and_predict";
+  function_name2_ ="compute_accuracy";
+  function_num_param_ = 2;
 
   logging::INFO("features_discovered_patterns:"+std::to_string(copy_clustered_sensor_data[0]->getDiscoveredPatterns().size()));
   logging::INFO("sensor_data_size:"+std::to_string(sensor_data.size()));
@@ -137,6 +147,19 @@ ModelRecognition::~ModelRecognition()
     {
       delete featureWriter_;
     }
+  for(int i=0; i<pythonRunnerContainer_.size();i++)
+    {
+      if(pythonRunnerContainer_[i])
+        {
+          delete pythonRunnerContainer_[i];
+        }
+    }
+
+  if(pythonRunner_)
+    {
+      pythonRunner_->finalizePython();
+      delete pythonRunner_;
+    }
 
 }
 
@@ -148,8 +171,8 @@ void ModelRecognition::run()
   logging::INFO("run");
 
   computeSubContainersClusters_(sensor_data,copy_clustered_sensor_data, merged_sub_containers,num_threads_);
-//  evaluate_(merged_sub_containers);
-//  writePredictions_(merged_sub_containers);
+  evaluate_(merged_sub_containers);
+  writePredictions_(merged_sub_containers);
 }
 
 /**
@@ -201,7 +224,7 @@ void ModelRecognition::mergeSubContainersToContainer_(vector<FeatureContainer *>
 
   vector<int> predicted_activity_labels;
   vector<int> actual_activity_labels;
-  vector<int> predicted_discovered_patterns;
+
 
   for(int i =0 ; i<copy_clustered_sensor_data.size();i++)
     {
@@ -209,22 +232,18 @@ void ModelRecognition::mergeSubContainersToContainer_(vector<FeatureContainer *>
 
       for(int j =0; j<fc->getPredictedActivityLabels().size();j++)
         {
-          stringstream message;
           predicted_activity_labels.push_back(fc->getPredictedActivityLabels()[j]);
           actual_activity_labels.push_back(fc->getActualActivityLabels()[j]);
-          predicted_discovered_patterns.push_back(fc->getPredictedDiscoveredPatterns()[j]);
 
         }
     }
 
   mergedSubFeatureContainer->setPredictedActivityLabels(predicted_activity_labels);
   mergedSubFeatureContainer->setActualActivityLabels(actual_activity_labels);
-  mergedSubFeatureContainer->setPredictedDiscoveredPatterns(predicted_discovered_patterns);
 
   stringstream message;
   message<<"predicted_activity_labels:"<<predicted_activity_labels.size()<<"\t"
-        <<"actual_activity_labels:"<<actual_activity_labels.size()<<"\t"
-       <<"predicted_discovered_patterns:"<<predicted_discovered_patterns.size()<<endl;
+        <<"actual_activity_labels:"<<actual_activity_labels.size()<<endl;
 
   logging::INFO(message.str());
 
@@ -426,13 +445,13 @@ void ModelRecognition::evaluate_(FeatureContainer *fc)
   logging::INFO("evaluate_");
   vector<int> targets = fc->getActualActivityLabels();
   vector<int> outputs = fc->getPredictedActivityLabels();
+  string accuracy_info;
 
-  Confusion confusion =  Confusion(targets, outputs);
+  cout<<targets.size()<<"\t"<<outputs.size()<<endl;
 
-  Evaluation evaluation = Evaluation(confusion);
+  pythonRunner_->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
 
-  fc->setAccuracyResultsMessage(evaluation.getAccuracyResults());
-
+  fc->setAccuracyResultsMessage(accuracy_info);
 
 }
 /**
@@ -549,8 +568,6 @@ void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensor
 
   vector<int> predicted_activity_label;
   vector<int> actual_activity_label;
-  vector<int> predicted_discovered_patterns;
-
 
   for(int i=0; i<sensors_data.size();i++)
     {
@@ -564,8 +581,13 @@ void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensor
       FeatureContainer* train_sensor_data = new FeatureContainer();
       prepareTrainingData_(test_sensor_data->getDayNamePerPattern()[0],clustered_sensor_data,train_sensor_data);
 
-      featureWriter_->writeFeatures(train_sensor_data,Constants::Cluster_Type::build_train_model_recognition);
-      featureWriter_->writeFeatures(test_sensor_data,Constants::Cluster_Type::build_test_model_recognition);
+      string tmp_script_name=script_name_;
+      string tmp_function_name1=function_name1_;
+      int tmp_function_num_param =function_num_param_;
+      pythonRunner_->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label);
+
+      //      featureWriter_->writeFeatures(train_sensor_data,Constants::Cluster_Type::build_train_model_recognition);
+      //      featureWriter_->writeFeatures(test_sensor_data,Constants::Cluster_Type::build_test_model_recognition);
 
       //recognize_(test_sensor_data,train_sensor_data,actual_activity_label,predicted_activity_label,predicted_discovered_patterns);
 
@@ -576,7 +598,6 @@ void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensor
 
   clustered_sensor_data->setPredictedActivityLabels(predicted_activity_label);
   clustered_sensor_data->setActualActivityLabels(actual_activity_label);
-  clustered_sensor_data->setPredictedDiscoveredPatterns(predicted_discovered_patterns);
 
 }
 /**

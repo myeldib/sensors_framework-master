@@ -115,7 +115,7 @@ void FeatureWriter::writeFeatures(FeatureContainer* featureContainer, Constants:
     }
   else if( type == Constants::Cluster_Type::model_recognition)
     {
-
+      writeModelRecognition_(featureContainer);
     }
   else if( type == Constants::Cluster_Type::build_train_model_recognition)
     {
@@ -128,6 +128,14 @@ void FeatureWriter::writeFeatures(FeatureContainer* featureContainer, Constants:
 
 }
 
+void FeatureWriter::writeModelRecognition_(FeatureContainer *fc)
+{
+  logging::INFO("writeModelRecognition_");
+
+  writeActualActivityLabels_(fc);
+  writePredictedActivityLabels_(fc);
+  writeRecognitionAccuracy_(fc);
+}
 /**
  * @brief FeatureWriter::writeModelRecognitionTestData_
  * @param fc

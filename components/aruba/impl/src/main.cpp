@@ -36,7 +36,7 @@ string logger_file = "../data_sets/aruba/log/log.txt";
 string cluster_rec_path = "../data_sets/aruba/cluster_recognition/";
 
 //recognition using a trained model
-string model_rec_path = "../data_sets/aruba/model_recognition";
+string model_rec_path = "../data_sets/aruba/model_recognition/";
 
 /**
  * @brief runWithinDayPattern
@@ -284,7 +284,7 @@ int main(int argc, char ** argv)
   //runBetweenDayPattern();
   //runHierachalCluster();
   //runClusterRecognition();
-  //runModelRecognition();
+  runModelRecognition();
 
 
   //string test="../result/2010-12-26/locations_duration.txt";
@@ -292,7 +292,7 @@ int main(int argc, char ** argv)
   //HeatMap* hp = new HeatMap(test,home);
   //hp->drawMostOccuppiedTimeIntervalHeatMap();
 
-  buildPythonExample();
+  //buildPythonExample();
 
 
 }
