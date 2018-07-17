@@ -1,8 +1,38 @@
 #!/usr/bin/python
+import threading
+import Queue
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
 import numpy as np
 import sklearn
+
+def train_and_predict_thread(train_data,test_data,result):
+    train_features = train_data[:,1:]
+    train_labels = train_data[:,0:1]
+    
+    test_features = test_data[:,1:]
+    test_labels = test_data[:,0:1]
+	
+    model = LogisticRegression()
+    
+    print "fitting mode..."
+    model.fit(train_features, train_labels.ravel())
+    
+    print "predictiing..."
+    predicted_labels = model.predict(test_features)
+    
+    result.put(predicted_labels)
+    
+    
+def train_and_predict0(train_data,test_data):
+    result_queue = Queue.Queue()
+    t = threading.Thread(target=train_and_predict_thread, args=(train_data, test_data, result_queue))
+    t.start()
+    t.join()
+    result = result_queue.get()
+    
+    return result.astype(np.ubyte, copy=False)
+
 
 def train_and_predict(train_data,test_data):
 	
@@ -22,7 +52,6 @@ def train_and_predict(train_data,test_data):
 	
     return predicted_labels.astype(np.ubyte, copy=False)
 
-
 def compute_accuracy(actual_labels,predicted_labels):
     
     accuracy_info = ""
@@ -37,3 +66,4 @@ def compute_accuracy(actual_labels,predicted_labels):
 
     
     return accuracy_info
+

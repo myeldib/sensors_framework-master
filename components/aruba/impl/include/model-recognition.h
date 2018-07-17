@@ -15,6 +15,42 @@
 #include <python-runner.h>
 #include <boost/thread.hpp>
 
+// initialize and clean up python
+struct initialize_python
+{
+  initialize_python()
+  {
+    logging::INFO("initialize_python");
+    Py_InitializeEx(1);
+    PyEval_InitThreads();
+  }
+
+  ~initialize_python()
+  {
+    logging::INFO("~initialize_python");
+    Py_Finalize();
+  }
+};
+
+class enable_threads
+{
+public:
+  enable_threads()
+  {
+     logging::INFO("enable_threads");
+    _state = PyEval_SaveThread();
+  }
+
+  ~enable_threads()
+  {
+    logging::INFO("~enable_threads");
+    PyEval_RestoreThread(_state);
+  }
+
+private:
+  PyThreadState* _state;
+};
+
 class ModelRecognition{
 public:
   ModelRecognition(string hierarchal_clustering_path,string cluster_rec_path,string within_day_cluster_path,string home_setup_file, string time_window_config,bool& success);
@@ -42,6 +78,7 @@ private:
   void divideContainer_(int thread_id, int from, int to,vector<FeatureContainer *> &sensor_data, vector<FeatureContainer*>& subFeatureContainer);
   void mergeSubContainersToContainer_(vector<FeatureContainer *>& copy_clustered_sensor_data, FeatureContainer *mergedSubFeatureContainer);
 private:
+  initialize_python init_python_;
   string cluster_rec_path_;
   string within_day_cluster_path_;
   //contains multiple copies of same data

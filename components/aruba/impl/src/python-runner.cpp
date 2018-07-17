@@ -54,7 +54,7 @@ void PythonRunner::initPython()
   char *tmpargv[] = {};
   int tmpargc = 0;
 
-  Py_Initialize();
+//  Py_Initialize();
   import_array();
 
   PySys_SetArgv(tmpargc, tmpargv);
@@ -76,6 +76,7 @@ void PythonRunner::initPython()
 void PythonRunner::finalizePython()
 {
   logging::INFO("finalizePython");
+
   Py_Finalize();
 }
 
@@ -180,6 +181,8 @@ void PythonRunner::predictUsingModel_(string script_name, string function_name, 
   logging::INFO("predict_activity_labels_size:"+std::to_string(predict_activity_labels.size()));
 }
 
+
+
 /**
  * @brief PythonRunner::useModel_
  * @param script_name
@@ -193,9 +196,12 @@ void PythonRunner::useModelFunction_(string script_name, string function_name, i
   logging::INFO("useModel_");
 
 
+
   PyObject *pName, *pModule, *pFunc;
   PyObject *pArgs, *pValue;
   cv::Mat result;
+
+  ensure_gil_state gil_scope;
 
   pName = PyString_FromString(script_name.c_str());
 
@@ -264,7 +270,6 @@ void PythonRunner::useModelFunction_(string script_name, string function_name, i
       fprintf(stderr, "{\"error\":\"Failed to load %s\"}\n", script_name.c_str());
       success = false;
     }
-
 }
 /**
  * @brief PythonRunner::prepareTestData_

@@ -7,6 +7,26 @@
 #include <opencv2/opencv.hpp>
 #include<logger.h>
 
+// acquire GIL
+class ensure_gil_state
+{
+public:
+    ensure_gil_state()
+    {
+       logging::INFO("ensure_gil_state");
+        _state = PyGILState_Ensure();
+    }
+
+    ~ensure_gil_state()
+    {
+      logging::INFO("~ensure_gil_state");
+        PyGILState_Release(_state);
+    }
+
+private:
+    PyGILState_STATE _state;
+};
+
 class PythonRunner{
 
 public:
@@ -74,4 +94,5 @@ private:
   Home* home_;
 
 };
+
 #endif // PYTHONRUNNER_H

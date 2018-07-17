@@ -31,6 +31,10 @@ ModelRecognition::ModelRecognition(string hierarchal_clustering_path,string clus
  */
 void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_rec_path, string within_day_cluster_path,string home_setup_file, string time_window_config, bool &success)
 {
+  Py_Initialize();
+  // initialize thread support
+  PyEval_InitThreads();
+
   logging::INFO("init_");
 
   num_threads_=1;// boost::thread::hardware_concurrency();
@@ -68,12 +72,14 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_re
       tmp->setThreadID(i);
       copy_clustered_sensor_data.push_back(tmp);
 
-      PythonRunner* tmppythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
-      pythonRunnerContainer_.push_back(tmppythonRunner_);
+//      PythonRunner* tmppythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
+//      pythonRunnerContainer_.push_back(tmppythonRunner_);
+//      pythonRunnerContainer_[i]->initPython();
     }
 
   pythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
   pythonRunner_->initPython();
+
 
   within_day_cluster_path.append("_").append(std::to_string(home_->getShortDurationLambda())).append("_").append(std::to_string(home_->getLongDurationLambda())).append("/");
   within_day_cluster_path_=within_day_cluster_path;
@@ -147,17 +153,16 @@ ModelRecognition::~ModelRecognition()
     {
       delete featureWriter_;
     }
-  for(int i=0; i<pythonRunnerContainer_.size();i++)
-    {
-      if(pythonRunnerContainer_[i])
-        {
-          delete pythonRunnerContainer_[i];
-        }
-    }
+//  for(int i=0; i<pythonRunnerContainer_.size();i++)
+//    {
+//      if(pythonRunnerContainer_[i])
+//        {
+//          delete pythonRunnerContainer_[i];
+//        }
+//    }
 
   if(pythonRunner_)
     {
-      pythonRunner_->finalizePython();
       delete pythonRunner_;
     }
 
@@ -206,6 +211,8 @@ void ModelRecognition::computeSubContainersClusters_(vector<FeatureContainer *> 
 
       thread_group_.add_thread(new boost::thread([testSubFeatureContainers,copy_clustered_sensor_data, this] { leaveOneDayOutStrategy_(testSubFeatureContainers,copy_clustered_sensor_data); }));
     }
+
+  enable_threads enable_threads_scope;
 
   thread_group_.join_all();
 
@@ -449,7 +456,8 @@ void ModelRecognition::evaluate_(FeatureContainer *fc)
 
   cout<<targets.size()<<"\t"<<outputs.size()<<endl;
 
-  pythonRunner_->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
+ // pythonRunnerContainer_[0]->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
+   pythonRunner_->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
 
   fc->setAccuracyResultsMessage(accuracy_info);
 
@@ -584,13 +592,8 @@ void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensor
       string tmp_script_name=script_name_;
       string tmp_function_name1=function_name1_;
       int tmp_function_num_param =function_num_param_;
+      //pythonRunnerContainer_[train_sensor_data->getThreadID()]->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label);
       pythonRunner_->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label);
-
-      //      featureWriter_->writeFeatures(train_sensor_data,Constants::Cluster_Type::build_train_model_recognition);
-      //      featureWriter_->writeFeatures(test_sensor_data,Constants::Cluster_Type::build_test_model_recognition);
-
-      //recognize_(test_sensor_data,train_sensor_data,actual_activity_label,predicted_activity_label,predicted_discovered_patterns);
-
 
       delete train_sensor_data;
 

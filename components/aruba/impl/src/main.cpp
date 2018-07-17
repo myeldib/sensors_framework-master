@@ -6,7 +6,7 @@
 #include<cluster-recognition.h>
 #include<model-recognition.h>
 #include<logger.h>
-
+#include <ctime>
 #include <Python.h>
 #include <numpy/arrayobject.h>
 #include <chrono>
@@ -279,6 +279,9 @@ void buildPythonExample()
 }
 int main(int argc, char ** argv)
 {
+  int start_s=clock();
+          // the code you wish to time goes here
+
   logging::configure({ {"type", "file"}, {"file_name", logger_file.c_str()} });
   //runWithinDayPattern();
   //runBetweenDayPattern();
@@ -286,6 +289,9 @@ int main(int argc, char ** argv)
   //runClusterRecognition();
   runModelRecognition();
 
+  int stop_s=clock();
+  cout<< fixed;
+  cout << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
 
   //string test="../result/2010-12-26/locations_duration.txt";
 

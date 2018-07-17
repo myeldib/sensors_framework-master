@@ -1,155 +1,152 @@
-2018/07/14 22:42:23.600141 [INFO] ModelRecognition
-2018/07/14 22:42:23.600223 [INFO] init_
-2018/07/14 22:42:23.600232 [INFO] Home
-2018/07/14 22:42:23.600237 [INFO] readHomeSetup
-2018/07/14 22:42:23.600395 [INFO] createDistinctLocationIndex
-2018/07/14 22:42:23.600416 [INFO] readConfig
-2018/07/14 22:42:23.600472 [INFO] checkTimeWindowParameters
-2018/07/14 22:42:23.600482 [INFO] FeatureWriter
-2018/07/14 22:42:23.600487 [INFO] ../data_sets/aruba/model_recognition/_0_950000/
-2018/07/14 22:42:23.600534 [INFO] FeatureReader
-2018/07/14 22:42:23.600558 [INFO] readHomeSetup
-2018/07/14 22:42:23.600563 [INFO] FeatureProcessor
-2018/07/14 22:42:23.600567 [INFO] readHomeSetup
-2018/07/14 22:42:23.600572 [INFO] SimilarityMeasure
-2018/07/14 22:42:23.600576 [INFO] Home
-2018/07/14 22:42:23.600581 [INFO] readHomeSetup
-2018/07/14 22:42:23.600728 [INFO] createDistinctLocationIndex
-2018/07/14 22:42:23.600750 [INFO] readConfig
-2018/07/14 22:42:23.600837 [INFO] checkTimeWindowParameters
-2018/07/14 22:42:23.600846 [INFO] readFeatures
-2018/07/14 22:42:23.600850 [INFO] readBetweenDayClusterFeatures_
-2018/07/14 22:42:23.600856 [INFO] ../data_sets/aruba/hierachal_cluste_result/_0_950000/
-2018/07/14 22:42:23.600860 [INFO] readActivityFile_
-2018/07/14 22:42:23.609454 [INFO] readDiscoveredPatternsFile_
-2018/07/14 22:42:23.610237 [INFO] readSensorDurationsFile_
-2018/07/14 22:42:23.681030 [INFO] readSequencePatternsFile_
-2018/07/14 22:42:23.688187 [INFO] readDayNames_
-2018/07/14 22:42:23.695513 [INFO] readTimeIndex_
-2018/07/14 22:42:23.702991 [INFO] PythonRunner
-2018/07/14 22:42:23.703011 [INFO] script_location:../data_sets/aruba/model_recognition/
-2018/07/14 22:42:23.703015 [INFO] init_
-2018/07/14 22:42:23.703020 [INFO] Home
-2018/07/14 22:42:23.703024 [INFO] readHomeSetup
-2018/07/14 22:42:23.703133 [INFO] createDistinctLocationIndex
-2018/07/14 22:42:23.703150 [INFO] readConfig
-2018/07/14 22:42:23.703199 [INFO] checkTimeWindowParameters
-2018/07/14 22:42:23.703207 [INFO] PythonRunner
-2018/07/14 22:42:23.703212 [INFO] script_location:../data_sets/aruba/model_recognition/
-2018/07/14 22:42:23.703215 [INFO] init_
-2018/07/14 22:42:23.703220 [INFO] Home
-2018/07/14 22:42:23.703223 [INFO] readHomeSetup
-2018/07/14 22:42:23.703369 [INFO] createDistinctLocationIndex
-2018/07/14 22:42:23.703388 [INFO] readConfig
-2018/07/14 22:42:23.703487 [INFO] checkTimeWindowParameters
-2018/07/14 22:42:23.703511 [INFO] initPython
-2018/07/14 22:42:23.766484 [INFO] readFeatures
-2018/07/14 22:42:23.766511 [INFO] readWithinDayClusterFeatures_
-2018/07/14 22:42:23.766545 [INFO] ../data_sets/aruba/within_day_cluster_result/_5_5/2010-12-29/
-2018/07/14 22:42:23.766552 [INFO] readActivityFile_
-2018/07/14 22:42:23.769337 [INFO] readDiscoveredPatternsFile_
-2018/07/14 22:42:23.769887 [INFO] readSensorDurationsFile_
-2018/07/14 22:42:23.799224 [INFO] readSequencePatternsFile_
-2018/07/14 22:42:23.802123 [INFO] AssignTimeIndexPerPattern_
-2018/07/14 22:42:23.802177 [INFO] assignDayName_
-2018/07/14 22:42:23.802376 [INFO] ../data_sets/aruba/within_day_cluster_result/_5_5/2011-02-01/
-2018/07/14 22:42:23.802383 [INFO] readActivityFile_
-2018/07/14 22:42:23.805898 [INFO] readDiscoveredPatternsFile_
-2018/07/14 22:42:23.806297 [INFO] readSensorDurationsFile_
-2018/07/14 22:42:23.827748 [INFO] readSequencePatternsFile_
-2018/07/14 22:42:23.829668 [INFO] AssignTimeIndexPerPattern_
-2018/07/14 22:42:23.829716 [INFO] assignDayName_
-2018/07/14 22:42:23.829857 [INFO] features_discovered_patterns:507
-2018/07/14 22:42:23.829862 [INFO] sensor_data_size:2
-2018/07/14 22:42:23.829867 [INFO] run
-2018/07/14 22:42:23.829871 [INFO] computeSubContainersClusters_
-2018/07/14 22:42:23.829876 [INFO] divideContainerToSubContainers_
-2018/07/14 22:42:23.829880 [INFO] computeNumElementsPerThread
-2018/07/14 22:42:23.829884 [INFO] num_elements:2
-2018/07/14 22:42:23.829888 [INFO] num_elements_per_thread:2.000000
-2018/07/14 22:42:23.829892 [INFO] sum_last_sub_element:2
-2018/07/14 22:42:23.829896 [INFO] from:0	to:2
-2018/07/14 22:42:23.829900 [INFO] divideContainer_
-2018/07/14 22:42:23.829987 [INFO] leaveOneDayOutStrategy_
-2018/07/14 22:42:23.830804 [INFO] computeActiveSensors
-2018/07/14 22:42:23.835970 [INFO] prepareTrainingData_
-2018/07/14 22:42:23.846616 [INFO] computeFeatures_
-2018/07/14 22:42:23.846645 [INFO] computeAverageSensorDurationPerPattern
-2018/07/14 22:42:23.866510 [INFO] computeMostCommonActivityLabelPerPattern
-2018/07/14 22:42:23.895763 [INFO] computeActiveSensors
-2018/07/14 22:42:23.897388 [INFO] computeMostAssignedTimeIndex
-2018/07/14 22:42:23.913602 [INFO] computePatternsLength
-2018/07/14 22:42:23.929330 [INFO] predictUsingModel
-2018/07/14 22:42:23.929345 [INFO] predictUsingModel_
-2018/07/14 22:42:23.929351 [INFO] script_name:train_model	function_name:train_and_predict	num_function_arg:2
-2018/07/14 22:42:23.929355 [INFO] prepareTrainData_
-2018/07/14 22:42:23.959271 [INFO] train_features_size:5760
-2018/07/14 22:42:23.959370 [INFO] prepareTestData_
-2018/07/14 22:42:23.971060 [INFO] test_features_size:1440
-2018/07/14 22:42:23.971211 [INFO] train_features_vec_rows:5760	train_features_vec_cols:72
-2018/07/14 22:42:23.971217 [INFO] test_features_vec_rows:1440	test_features_vec_cols:72
-2018/07/14 22:42:23.971221 [INFO] convert2DVectorToCvMat_
-2018/07/14 22:42:23.974706 [INFO] train_features_mat_rows:5760	train_features_mat_cols:72
-2018/07/14 22:42:23.974715 [INFO] convert2DVectorToCvMat_
-2018/07/14 22:42:23.975430 [INFO] test_features_mat_rows:1440	test_features_mat_cols:72
-2018/07/14 22:42:23.975436 [INFO] makeNumpyArray_
-2018/07/14 22:42:23.975442 [INFO] makeNumpyArray_
-2018/07/14 22:42:23.975457 [INFO] useModel_
-2018/07/14 22:42:26.993619 [INFO] predict_activity_labels_size:1440
-2018/07/14 22:42:26.995215 [INFO] computeActiveSensors
-2018/07/14 22:42:27.000103 [INFO] prepareTrainingData_
-2018/07/14 22:42:27.008515 [INFO] computeFeatures_
-2018/07/14 22:42:27.008540 [INFO] computeAverageSensorDurationPerPattern
-2018/07/14 22:42:27.027509 [INFO] computeMostCommonActivityLabelPerPattern
-2018/07/14 22:42:27.055571 [INFO] computeActiveSensors
-2018/07/14 22:42:27.057268 [INFO] computeMostAssignedTimeIndex
-2018/07/14 22:42:27.072789 [INFO] computePatternsLength
-2018/07/14 22:42:27.088814 [INFO] predictUsingModel
-2018/07/14 22:42:27.088827 [INFO] predictUsingModel_
-2018/07/14 22:42:27.088833 [INFO] script_name:train_model	function_name:train_and_predict	num_function_arg:2
-2018/07/14 22:42:27.088838 [INFO] prepareTrainData_
-2018/07/14 22:42:27.118302 [INFO] train_features_size:5760
-2018/07/14 22:42:27.118501 [INFO] prepareTestData_
-2018/07/14 22:42:27.130120 [INFO] test_features_size:1440
-2018/07/14 22:42:27.130281 [INFO] train_features_vec_rows:5760	train_features_vec_cols:72
-2018/07/14 22:42:27.130287 [INFO] test_features_vec_rows:1440	test_features_vec_cols:72
-2018/07/14 22:42:27.130291 [INFO] convert2DVectorToCvMat_
-2018/07/14 22:42:27.133494 [INFO] train_features_mat_rows:5760	train_features_mat_cols:72
-2018/07/14 22:42:27.133502 [INFO] convert2DVectorToCvMat_
-2018/07/14 22:42:27.134218 [INFO] test_features_mat_rows:1440	test_features_mat_cols:72
-2018/07/14 22:42:27.134223 [INFO] makeNumpyArray_
-2018/07/14 22:42:27.134229 [INFO] makeNumpyArray_
-2018/07/14 22:42:27.134240 [INFO] useModel_
-2018/07/14 22:42:30.001520 [INFO] predict_activity_labels_size:2880
-2018/07/14 22:42:30.002708 [INFO] mergeSubContainersToContainer_
-2018/07/14 22:42:30.005456 [INFO] predicted_activity_labels:2880	actual_activity_labels:2880
+2018/07/17 21:05:47.113520 [INFO] initialize_python
+2018/07/17 21:05:47.119763 [INFO] ModelRecognition
+2018/07/17 21:05:47.119784 [INFO] init_
+2018/07/17 21:05:47.119792 [INFO] Home
+2018/07/17 21:05:47.119796 [INFO] readHomeSetup
+2018/07/17 21:05:47.119922 [INFO] createDistinctLocationIndex
+2018/07/17 21:05:47.119941 [INFO] readConfig
+2018/07/17 21:05:47.119996 [INFO] checkTimeWindowParameters
+2018/07/17 21:05:47.120006 [INFO] FeatureWriter
+2018/07/17 21:05:47.120011 [INFO] ../data_sets/aruba/model_recognition/_0_950000/
+2018/07/17 21:05:47.120086 [INFO] FeatureReader
+2018/07/17 21:05:47.120093 [INFO] readHomeSetup
+2018/07/17 21:05:47.120115 [INFO] FeatureProcessor
+2018/07/17 21:05:47.120119 [INFO] readHomeSetup
+2018/07/17 21:05:47.120123 [INFO] SimilarityMeasure
+2018/07/17 21:05:47.120128 [INFO] Home
+2018/07/17 21:05:47.120132 [INFO] readHomeSetup
+2018/07/17 21:05:47.120293 [INFO] createDistinctLocationIndex
+2018/07/17 21:05:47.120309 [INFO] readConfig
+2018/07/17 21:05:47.120356 [INFO] checkTimeWindowParameters
+2018/07/17 21:05:47.120364 [INFO] readFeatures
+2018/07/17 21:05:47.120369 [INFO] readBetweenDayClusterFeatures_
+2018/07/17 21:05:47.120375 [INFO] ../data_sets/aruba/hierachal_cluste_result/_0_950000/
+2018/07/17 21:05:47.120379 [INFO] readActivityFile_
+2018/07/17 21:05:47.562185 [INFO] readDiscoveredPatternsFile_
+2018/07/17 21:05:47.573895 [INFO] readSensorDurationsFile_
+2018/07/17 21:05:51.710120 [INFO] readSequencePatternsFile_
+2018/07/17 21:05:52.119478 [INFO] readDayNames_
+2018/07/17 21:05:52.546839 [INFO] readTimeIndex_
+2018/07/17 21:05:52.970543 [INFO] PythonRunner
+2018/07/17 21:05:52.970570 [INFO] script_location:../data_sets/aruba/model_recognition/
+2018/07/17 21:05:52.970575 [INFO] init_
+2018/07/17 21:05:52.970580 [INFO] Home
+2018/07/17 21:05:52.970584 [INFO] readHomeSetup
+2018/07/17 21:05:52.970715 [INFO] createDistinctLocationIndex
+2018/07/17 21:05:52.970749 [INFO] readConfig
+2018/07/17 21:05:52.970798 [INFO] checkTimeWindowParameters
+2018/07/17 21:05:52.970804 [INFO] initPython
+2018/07/17 21:05:53.027045 [INFO] readFeatures
+2018/07/17 21:05:53.027073 [INFO] readWithinDayClusterFeatures_
+2018/07/17 21:05:53.027111 [INFO] ../data_sets/aruba/within_day_cluster_result/_5_5/2010-12-29/
+2018/07/17 21:05:53.027119 [INFO] readActivityFile_
+2018/07/17 21:05:53.030314 [INFO] readDiscoveredPatternsFile_
+2018/07/17 21:05:53.030945 [INFO] readSensorDurationsFile_
+2018/07/17 21:05:53.058530 [INFO] readSequencePatternsFile_
+2018/07/17 21:05:53.061482 [INFO] AssignTimeIndexPerPattern_
+2018/07/17 21:05:53.061534 [INFO] assignDayName_
+2018/07/17 21:05:53.061743 [INFO] ../data_sets/aruba/within_day_cluster_result/_5_5/2011-02-01/
+2018/07/17 21:05:53.061751 [INFO] readActivityFile_
+2018/07/17 21:05:53.064531 [INFO] readDiscoveredPatternsFile_
+2018/07/17 21:05:53.064930 [INFO] readSensorDurationsFile_
+2018/07/17 21:05:53.088566 [INFO] readSequencePatternsFile_
+2018/07/17 21:05:53.090527 [INFO] AssignTimeIndexPerPattern_
+2018/07/17 21:05:53.090596 [INFO] assignDayName_
+2018/07/17 21:05:53.090771 [INFO] features_discovered_patterns:7477
+2018/07/17 21:05:53.090779 [INFO] sensor_data_size:2
+2018/07/17 21:05:53.090785 [INFO] run
+2018/07/17 21:05:53.090789 [INFO] computeSubContainersClusters_
+2018/07/17 21:05:53.090795 [INFO] divideContainerToSubContainers_
+2018/07/17 21:05:53.090799 [INFO] computeNumElementsPerThread
+2018/07/17 21:05:53.090804 [INFO] num_elements:2
+2018/07/17 21:05:53.090809 [INFO] num_elements_per_thread:2.000000
+2018/07/17 21:05:53.090814 [INFO] sum_last_sub_element:2
+2018/07/17 21:05:53.090819 [INFO] from:0	to:2
+2018/07/17 21:05:53.090823 [INFO] divideContainer_
+2018/07/17 21:05:53.090874 [INFO] enable_threads
+2018/07/17 21:05:53.090923 [INFO] leaveOneDayOutStrategy_
+2018/07/17 21:05:53.091636 [INFO] computeActiveSensors
+2018/07/17 21:05:53.096938 [INFO] prepareTrainingData_
+2018/07/17 21:05:53.652555 [INFO] computeFeatures_
+2018/07/17 21:05:53.652578 [INFO] computeAverageSensorDurationPerPattern
+2018/07/17 21:06:06.250236 [INFO] computeMostCommonActivityLabelPerPattern
+2018/07/17 21:06:20.532898 [INFO] computeActiveSensors
+2018/07/17 21:06:20.564697 [INFO] computeMostAssignedTimeIndex
+2018/07/17 21:06:34.756736 [INFO] computePatternsLength
+2018/07/17 21:06:49.573428 [INFO] predictUsingModel
+2018/07/17 21:06:49.573456 [INFO] predictUsingModel_
+2018/07/17 21:06:49.573463 [INFO] script_name:train_model	function_name:train_and_predict	num_function_arg:2
+2018/07/17 21:06:49.573468 [INFO] prepareTrainData_
+2018/07/17 21:06:55.094643 [INFO] train_features_size:313920
+2018/07/17 21:06:55.097267 [INFO] prepareTestData_
+2018/07/17 21:06:55.109189 [INFO] test_features_size:1440
+2018/07/17 21:06:55.109351 [INFO] train_features_vec_rows:313920	train_features_vec_cols:72
+2018/07/17 21:06:55.109357 [INFO] test_features_vec_rows:1440	test_features_vec_cols:72
+2018/07/17 21:06:55.109362 [INFO] convert2DVectorToCvMat_
+2018/07/17 21:06:55.289970 [INFO] train_features_mat_rows:313920	train_features_mat_cols:72
+2018/07/17 21:06:55.289992 [INFO] convert2DVectorToCvMat_
+2018/07/17 21:06:55.290709 [INFO] test_features_mat_rows:1440	test_features_mat_cols:72
+2018/07/17 21:06:55.290715 [INFO] makeNumpyArray_
+2018/07/17 21:06:55.290722 [INFO] makeNumpyArray_
+2018/07/17 21:06:55.290741 [INFO] useModel_
+2018/07/17 21:06:55.290765 [INFO] ensure_gil_state
+2018/07/17 21:14:56.468422 [INFO] ~ensure_gil_state
+2018/07/17 21:14:56.468490 [INFO] predict_activity_labels_size:1440
+2018/07/17 21:14:56.522576 [INFO] computeActiveSensors
+2018/07/17 21:14:56.528868 [INFO] prepareTrainingData_
+2018/07/17 21:14:57.142393 [INFO] computeFeatures_
+2018/07/17 21:14:57.142426 [INFO] computeAverageSensorDurationPerPattern
+2018/07/17 21:15:11.111375 [INFO] computeMostCommonActivityLabelPerPattern
+2018/07/17 21:15:25.884772 [INFO] computeActiveSensors
+2018/07/17 21:15:25.916397 [INFO] computeMostAssignedTimeIndex
+2018/07/17 21:15:39.916940 [INFO] computePatternsLength
+2018/07/17 21:15:53.839779 [INFO] predictUsingModel
+2018/07/17 21:15:53.839810 [INFO] predictUsingModel_
+2018/07/17 21:15:53.839818 [INFO] script_name:train_model	function_name:train_and_predict	num_function_arg:2
+2018/07/17 21:15:53.839823 [INFO] prepareTrainData_
+2018/07/17 21:15:59.253679 [INFO] train_features_size:313920
+2018/07/17 21:15:59.256817 [INFO] prepareTestData_
+2018/07/17 21:15:59.272937 [INFO] test_features_size:1440
+2018/07/17 21:15:59.273235 [INFO] train_features_vec_rows:313920	train_features_vec_cols:72
+2018/07/17 21:15:59.273246 [INFO] test_features_vec_rows:1440	test_features_vec_cols:72
+2018/07/17 21:15:59.273252 [INFO] convert2DVectorToCvMat_
+2018/07/17 21:15:59.518286 [INFO] train_features_mat_rows:313920	train_features_mat_cols:72
+2018/07/17 21:15:59.518312 [INFO] convert2DVectorToCvMat_
+2018/07/17 21:15:59.519133 [INFO] test_features_mat_rows:1440	test_features_mat_cols:72
+2018/07/17 21:15:59.519143 [INFO] makeNumpyArray_
+2018/07/17 21:15:59.519152 [INFO] makeNumpyArray_
+2018/07/17 21:15:59.519165 [INFO] useModel_
+2018/07/17 21:15:59.519171 [INFO] ensure_gil_state
+2018/07/17 21:24:16.879468 [INFO] ~ensure_gil_state
+2018/07/17 21:24:16.879520 [INFO] predict_activity_labels_size:2880
+2018/07/17 21:24:16.922613 [INFO] mergeSubContainersToContainer_
+2018/07/17 21:24:16.925553 [INFO] predicted_activity_labels:2880	actual_activity_labels:2880
 
-2018/07/14 22:42:30.005471 [INFO] evaluate_
-2018/07/14 22:42:30.005507 [INFO] computeAccuracy
-2018/07/14 22:42:30.005512 [INFO] computeAccuracy_
-2018/07/14 22:42:30.005519 [INFO] actual_activity_labels_size:2880	predicted_activity_labels_size:2880
-2018/07/14 22:42:30.005523 [INFO] convert1DVectorToCvMat_
-2018/07/14 22:42:30.005551 [INFO] actual_labels_mat_rows:2880	actual_labels_mat_cols:1
-2018/07/14 22:42:30.005555 [INFO] convert1DVectorToCvMat_
-2018/07/14 22:42:30.005576 [INFO] predicted_labels_mat_rows:2880	predicted_labels_mat_cols:1
-2018/07/14 22:42:30.005581 [INFO] makeNumpyArray_
-2018/07/14 22:42:30.005588 [INFO] makeNumpyArray_
-2018/07/14 22:42:30.005592 [INFO] computeAccuracy_
-2018/07/14 22:42:30.009143 [INFO] writePredictions_
-2018/07/14 22:42:30.009170 [INFO] writeFeatures
-2018/07/14 22:42:30.009186 [INFO] writeModelRecognition_
-2018/07/14 22:42:30.009190 [INFO] writeActualActivityLabels_
-2018/07/14 22:42:30.013239 [INFO] writePredictedActivityLabels_
-2018/07/14 22:42:30.016837 [INFO] writeRecognitionAccuracy_
-2018/07/14 22:42:30.016866 [INFO] ~ModelRecognition
-2018/07/14 22:42:30.017743 [INFO] ~FeatureProcessor
-2018/07/14 22:42:30.017753 [INFO] ~Home
-2018/07/14 22:42:30.017764 [INFO] ~FeatureReader
-2018/07/14 22:42:30.017768 [INFO] ~SimilarityMeasure
-2018/07/14 22:42:30.017772 [INFO] ~Home
-2018/07/14 22:42:30.017780 [INFO] ~FeatureWriter
-2018/07/14 22:42:30.017784 [INFO] ~PythonRunner
-2018/07/14 22:42:30.017788 [INFO] ~Home
-2018/07/14 22:42:30.017797 [INFO] finalizePython
-2018/07/14 22:42:30.031936 [INFO] ~PythonRunner
-2018/07/14 22:42:30.031964 [INFO] ~Home
+2018/07/17 21:24:16.925563 [INFO] ~enable_threads
+2018/07/17 21:24:16.925570 [INFO] evaluate_
+2018/07/17 21:24:16.925581 [INFO] computeAccuracy
+2018/07/17 21:24:16.925605 [INFO] computeAccuracy_
+2018/07/17 21:24:16.925611 [INFO] actual_activity_labels_size:2880	predicted_activity_labels_size:2880
+2018/07/17 21:24:16.925616 [INFO] convert1DVectorToCvMat_
+2018/07/17 21:24:16.925640 [INFO] actual_labels_mat_rows:2880	actual_labels_mat_cols:1
+2018/07/17 21:24:16.925645 [INFO] convert1DVectorToCvMat_
+2018/07/17 21:24:16.925665 [INFO] predicted_labels_mat_rows:2880	predicted_labels_mat_cols:1
+2018/07/17 21:24:16.925670 [INFO] makeNumpyArray_
+2018/07/17 21:24:16.925677 [INFO] makeNumpyArray_
+2018/07/17 21:24:16.925682 [INFO] computeAccuracy_
+2018/07/17 21:24:16.928223 [INFO] writePredictions_
+2018/07/17 21:24:16.928240 [INFO] writeFeatures
+2018/07/17 21:24:16.928245 [INFO] writeModelRecognition_
+2018/07/17 21:24:16.928256 [INFO] writeActualActivityLabels_
+2018/07/17 21:24:16.931763 [INFO] writePredictedActivityLabels_
+2018/07/17 21:24:16.935080 [INFO] writeRecognitionAccuracy_
+2018/07/17 21:24:16.935105 [INFO] ~ModelRecognition
+2018/07/17 21:24:16.960965 [INFO] ~FeatureProcessor
+2018/07/17 21:24:16.960992 [INFO] ~Home
+2018/07/17 21:24:16.961005 [INFO] ~FeatureReader
+2018/07/17 21:24:16.961010 [INFO] ~SimilarityMeasure
+2018/07/17 21:24:16.961013 [INFO] ~Home
+2018/07/17 21:24:16.961022 [INFO] ~FeatureWriter
+2018/07/17 21:24:16.961026 [INFO] ~PythonRunner
+2018/07/17 21:24:16.961030 [INFO] ~Home
+2018/07/17 21:24:16.961042 [INFO] ~initialize_python
