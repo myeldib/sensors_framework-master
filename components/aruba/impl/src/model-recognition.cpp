@@ -31,9 +31,6 @@ ModelRecognition::ModelRecognition(string hierarchal_clustering_path,string clus
  */
 void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_rec_path, string within_day_cluster_path,string home_setup_file, string time_window_config, bool &success)
 {
-  Py_Initialize();
-  // initialize thread support
-  PyEval_InitThreads();
 
   logging::INFO("init_");
 
@@ -72,9 +69,9 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_re
       tmp->setThreadID(i);
       copy_clustered_sensor_data.push_back(tmp);
 
-//      PythonRunner* tmppythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
-//      pythonRunnerContainer_.push_back(tmppythonRunner_);
-//      pythonRunnerContainer_[i]->initPython();
+      //      PythonRunner* tmppythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
+      //      pythonRunnerContainer_.push_back(tmppythonRunner_);
+      //      pythonRunnerContainer_[i]->initPython();
     }
 
   pythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
@@ -153,13 +150,21 @@ ModelRecognition::~ModelRecognition()
     {
       delete featureWriter_;
     }
-//  for(int i=0; i<pythonRunnerContainer_.size();i++)
-//    {
-//      if(pythonRunnerContainer_[i])
-//        {
-//          delete pythonRunnerContainer_[i];
-//        }
-//    }
+  //  for(int i=0; i<pythonRunnerContainer_.size();i++)
+  //    {
+  //      if(pythonRunnerContainer_[i])
+  //        {
+  //          delete pythonRunnerContainer_[i];
+  //        }
+  //    }
+
+  for(int i =0; i<sub_interpreters_vec_.size();i++)
+    {
+      if(sub_interpreters_vec_[i])
+        {
+          delete sub_interpreters_vec_[i];
+        }
+    }
 
   if(pythonRunner_)
     {
@@ -204,12 +209,21 @@ void ModelRecognition::computeSubContainersClusters_(vector<FeatureContainer *> 
   divideContainerToSubContainers_(sensor_data,num_threads,subFeatureContainers);
 
   //threading to computeContainerClusters
+
+
+  for(int i =0; i<num_threads;i++)
+    {
+      sub_interpreter* s = new sub_interpreter();
+      sub_interpreters_vec_.push_back(s);
+    }
+
   for(int i =0;i<num_threads;i++)
     {
       vector<FeatureContainer*> testSubFeatureContainers = subFeatureContainers[i];
       FeatureContainer* copy_clustered_sensor_data= clustered_sensor_data[i];
+      PyInterpreterState* interp= sub_interpreters_vec_[i]->interp();
 
-      thread_group_.add_thread(new boost::thread([testSubFeatureContainers,copy_clustered_sensor_data, this] { leaveOneDayOutStrategy_(testSubFeatureContainers,copy_clustered_sensor_data); }));
+      thread_group_.add_thread(new boost::thread(&ModelRecognition::leaveOneDayOutStrategy_,this,testSubFeatureContainers,copy_clustered_sensor_data,interp));
     }
 
   enable_threads enable_threads_scope;
@@ -456,8 +470,8 @@ void ModelRecognition::evaluate_(FeatureContainer *fc)
 
   cout<<targets.size()<<"\t"<<outputs.size()<<endl;
 
- // pythonRunnerContainer_[0]->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
-   pythonRunner_->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
+  // pythonRunnerContainer_[0]->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
+  pythonRunner_->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
 
   fc->setAccuracyResultsMessage(accuracy_info);
 
@@ -570,7 +584,7 @@ void ModelRecognition::writePredictions_(FeatureContainer *clustered_sensor_data
  * @param sensor_data
  * @param clustered_sensor_data
  */
-void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensors_data, FeatureContainer *clustered_sensor_data)
+void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensors_data, FeatureContainer *clustered_sensor_data,PyInterpreterState* interp)
 {
   logging::INFO("leaveOneDayOutStrategy_");
 
@@ -593,7 +607,7 @@ void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensor
       string tmp_function_name1=function_name1_;
       int tmp_function_num_param =function_num_param_;
       //pythonRunnerContainer_[train_sensor_data->getThreadID()]->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label);
-      pythonRunner_->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label);
+      pythonRunner_->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label,interp);
 
       delete train_sensor_data;
 

@@ -4,6 +4,7 @@
 #include <home.h>
 #include <numeric>
 #include <math.h>
+#include<thread>
 #include<similarity-measure.h>
 #include <feature-container.h>
 #include <feature-processor.h>
@@ -62,7 +63,7 @@ private:
   void init_(string hierarchal_clustering_path,string cluster_rec_path,string with_day_cluster_path,string home_setup_file, string time_window_config,bool& success);
   bool includeOtherActivityClass_(int activity_index);
   void computeFeatures_(FeatureContainer* featureContainers);
-  void leaveOneDayOutStrategy_(vector<FeatureContainer*> sensor_data, FeatureContainer* copy_clustered_sensor_data);
+  void leaveOneDayOutStrategy_(vector<FeatureContainer*> sensor_data, FeatureContainer* copy_clustered_sensor_data,PyInterpreterState* interp);
   void prepareTrainingData_(string test_day, FeatureContainer* copy_clustered_sensor_data, FeatureContainer* train_sensor_data);
   void recognize_(FeatureContainer* test_sensor_data,
                   FeatureContainer* train_sensor_data,
@@ -99,6 +100,8 @@ private:
   string function_name1_;
   string function_name2_;
   int function_num_param_;
+
+  vector<sub_interpreter*> sub_interpreters_vec_;
 
 };
 #endif // CLUSTERRECOGNITION_H

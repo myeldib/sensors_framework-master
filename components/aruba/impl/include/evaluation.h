@@ -5,7 +5,6 @@
 #ifndef ACCURACY_EVALUATION_CPP_EVALUATION_HPP
 #define ACCURACY_EVALUATION_CPP_EVALUATION_HPP
 
-#include "confusion.h"
 class Evaluation{
 public:
   double  _avgAccuray;

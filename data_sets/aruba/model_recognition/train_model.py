@@ -24,7 +24,7 @@ def train_and_predict_thread(train_data,test_data,result):
     result.put(predicted_labels)
     
     
-def train_and_predict0(train_data,test_data):
+def train_and_predict(train_data,test_data):
     result_queue = Queue.Queue()
     t = threading.Thread(target=train_and_predict_thread, args=(train_data, test_data, result_queue))
     t.start()
@@ -34,7 +34,7 @@ def train_and_predict0(train_data,test_data):
     return result.astype(np.ubyte, copy=False)
 
 
-def train_and_predict(train_data,test_data):
+def train_and_predict0(train_data,test_data):
 	
     train_features = train_data[:,1:]
     train_labels = train_data[:,0:1]

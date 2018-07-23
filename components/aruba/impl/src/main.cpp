@@ -302,4 +302,39 @@ int main(int argc, char ** argv)
 
 
 }
+char program[] = "import sys; print \"ARGV: %s\"%hasattr(sys, \"argv\")";
+char main_program[] = "import sys; sys.argv=sys.argv if hasattr(sys, \"argv\") else [\"abc\"] ; print \"ARGV: %d\"%id(sys.argv)";
 
+// run in a new thread
+//void f(PyInterpreterState* interp)
+//{
+//    sub_interpreter::thread scope(interp);
+
+//    PyRun_SimpleString(program);
+//}
+
+//int main()
+//{
+//    initialize_python init;
+
+//    sub_interpreter s1;
+//    sub_interpreter s2;
+//    sub_interpreter s3;
+
+//    std::thread t1(f, s1.interp() );
+//    std::thread t2(f, s2.interp() );
+//    std::thread t3(f, s3.interp() );
+
+//    std::thread t4(f, s1.interp() );
+
+//    PyRun_SimpleString(main_program);
+
+//    enable_threads t;
+
+//    t1.join();
+//    t2.join();
+//    t3.join();
+//    t4.join();
+
+//    return 0;
+//}

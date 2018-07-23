@@ -54,7 +54,7 @@ void PythonRunner::initPython()
   char *tmpargv[] = {};
   int tmpargc = 0;
 
-//  Py_Initialize();
+  Py_Initialize();
   import_array();
 
   PySys_SetArgv(tmpargc, tmpargv);
@@ -104,7 +104,7 @@ void PythonRunner::makeNumpyArray_(size_t rows, size_t cols, const float *data,P
  * @param train_sensor_data
  * @param test_sensor_data
  */
-void PythonRunner::predictUsingModel(string script_name, string function_name,int num_function_arg, FeatureContainer *train_sensor_data, FeatureContainer *test_sensor_data,vector<int>& actual_activity_label,vector<int>& predicted_activity_labels)
+void PythonRunner::predictUsingModel(string script_name, string function_name,int num_function_arg, FeatureContainer *train_sensor_data, FeatureContainer *test_sensor_data,vector<int>& actual_activity_label,vector<int>& predicted_activity_labels, PyInterpreterState* interp)
 {
   logging::INFO("predictUsingModel");
 
@@ -115,7 +115,8 @@ void PythonRunner::predictUsingModel(string script_name, string function_name,in
                      train_sensor_data,
                      test_sensor_data,
                      actual_activity_label,
-                     predicted_activity_labels);
+                     predicted_activity_labels,
+                     interp);
 
 }
 
@@ -127,7 +128,7 @@ void PythonRunner::predictUsingModel(string script_name, string function_name,in
  * @param test_sensor_data
  * @param predict_activity_labels
  */
-void PythonRunner::predictUsingModel_(string script_name, string function_name, int num_function_arg, FeatureContainer *train_sensor_data, FeatureContainer *test_sensor_data, vector<int>& actual_activity_label,vector<int> &predict_activity_labels)
+void PythonRunner::predictUsingModel_(string script_name, string function_name, int num_function_arg, FeatureContainer *train_sensor_data, FeatureContainer *test_sensor_data, vector<int>& actual_activity_label,vector<int> &predict_activity_labels, PyInterpreterState* interp)
 {
   logging::INFO("predictUsingModel_");
 
@@ -170,7 +171,7 @@ void PythonRunner::predictUsingModel_(string script_name, string function_name, 
 
   cout<<thread_id<<endl;
 
-  useModelFunction_(script_name,function_name,num_function_arg,train_features_py_obj,test_features_py_obj,predict_activity_labels,thread_id,success);
+  useModelFunction_(script_name,function_name,num_function_arg,train_features_py_obj,test_features_py_obj,predict_activity_labels,thread_id,interp,success);
 
   if(!success)
     {
@@ -191,17 +192,20 @@ void PythonRunner::predictUsingModel_(string script_name, string function_name, 
  * @param test_features_py_obj
  * @param success
  */
-void PythonRunner::useModelFunction_(string script_name, string function_name, int num_function_arg, PyObject* train_features_py_obj, PyObject* test_features_py_obj, vector<int> &predict_activity_labels,int thread_id, bool &success)
+void PythonRunner::useModelFunction_(string script_name, string function_name, int num_function_arg, PyObject* train_features_py_obj, PyObject* test_features_py_obj, vector<int> &predict_activity_labels,int thread_id, PyInterpreterState* interp, bool &success)
 {
-  logging::INFO("useModel_");
+  logging::INFO("useModelFunction_");
 
+  sub_interpreter::thread scope(interp);
 
+  initPython();
 
   PyObject *pName, *pModule, *pFunc;
   PyObject *pArgs, *pValue;
   cv::Mat result;
 
-  ensure_gil_state gil_scope;
+  //ensure_gil_state gil_scope;
+
 
   pName = PyString_FromString(script_name.c_str());
 
@@ -270,6 +274,8 @@ void PythonRunner::useModelFunction_(string script_name, string function_name, i
       fprintf(stderr, "{\"error\":\"Failed to load %s\"}\n", script_name.c_str());
       success = false;
     }
+
+  logging::INFO("useModelFunction_ Finished");
 }
 /**
  * @brief PythonRunner::prepareTestData_
