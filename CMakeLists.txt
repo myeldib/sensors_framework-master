@@ -100,7 +100,6 @@ SET(HEADERS
     components/aruba/impl/include/feature-writer.h
     components/aruba/impl/include/patterns-statistics.h
     components/aruba/impl/include/cluster-recognition.h
-    components/aruba/impl/include/confusion.h
     components/aruba/impl/include/evaluation.h
     components/aruba/impl/include/model-recognition.h
     components/aruba/impl/include/python-runner.h
@@ -145,6 +144,7 @@ SET(SOURCES components/aruba/impl/src/main.cpp
             components/aruba/impl/src/cluster-recognition.cpp
             components/aruba/impl/src/model-recognition.cpp
             components/aruba/impl/src/python-runner.cpp
+            components/aruba/impl/src/evaluation.cpp
 
 
 

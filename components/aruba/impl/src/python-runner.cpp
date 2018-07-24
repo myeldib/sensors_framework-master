@@ -433,9 +433,172 @@ void PythonRunner::computeAccuracy(string script_name, string function_name, int
     }
 }
 
-void PythonRunner::computeAccuracy_(string script_name, string function_name, int num_function_arg, vector<int> &actual_activity_labels, vector<int> &predicted_activity_labels, string &accuracy_info, bool &success)
+/**
+ * @brief PythonRunner::generateConfusionMatrix
+ * @param script_name
+ * @param function_name
+ * @param num_function_arg
+ * @param actual_activity_labels
+ * @param predicted_activity_labels
+ * @param img_file_name
+ * @param type
+ */
+void PythonRunner::generateConfusionMatrix(string script_name, string function_name, int num_function_arg, vector<int> &actual_activity_labels, vector<int> &predicted_activity_labels, string img_file_name, Constants::Result_Type result_type)
+{
+  logging::INFO("generateConfusionMatrix");
+
+  bool success = true;
+  generateConfusionMatrix_(script_name,function_name,num_function_arg,actual_activity_labels,predicted_activity_labels,img_file_name,result_type,success);
+
+  if(!success)
+    {
+      logging::INFO("could not generate confusion matrix");
+    }
+
+}
+
+void PythonRunner::generateConfusionMatrix_(string script_name, string function_name, int num_function_arg, vector<int> &actual_activity_labels, vector<int> &predicted_activity_labels, string img_file_name, Constants::Result_Type result_type, bool &success)
 {
 
+  logging::INFO("generateConfusionMatrix_");
+
+  logging::INFO("actual_activity_labels_size:"+std::to_string(actual_activity_labels.size())+"\t"+
+                "predicted_activity_labels_size:"+std::to_string(predicted_activity_labels.size()));
+
+  Mat actual_labels_mat,predicted_labels_mat;
+
+
+  for(int i =0; i<predicted_activity_labels.size();i++)
+    {
+      if(actual_activity_labels[i] == 8)
+        {
+          predicted_activity_labels[i] = 8;
+        }
+    }
+
+  convert1DVectorToCvMat_(actual_activity_labels,actual_labels_mat);
+
+  logging::INFO("actual_labels_mat_rows:"+std::to_string(actual_labels_mat.rows)+"\t"+
+                "actual_labels_mat_cols:"+std::to_string(actual_labels_mat.cols));
+
+
+  convert1DVectorToCvMat_(predicted_activity_labels,predicted_labels_mat);
+
+  logging::INFO("predicted_labels_mat_rows:"+std::to_string(predicted_labels_mat.rows)+"\t"+
+                "predicted_labels_mat_cols:"+std::to_string(predicted_labels_mat.cols));
+
+
+  PyObject *actual_labels_py_obj;
+  PyObject *predicted_labels_py_obj;
+  int label_type = -1;
+
+  makeNumpyArray_(actual_labels_mat.rows,actual_labels_mat.cols,(float*)actual_labels_mat.data,actual_labels_py_obj);
+  makeNumpyArray_(predicted_labels_mat.rows,predicted_labels_mat.cols,(float*)predicted_labels_mat.data,predicted_labels_py_obj);
+
+  //0: with othe activity label
+  //1: without other activity label
+  if(result_type == Constants::Result_Type::with_other_activity_label)
+    {
+      img_file_name = img_file_name+"cm_with_other_activity_label";
+      label_type = 0;
+    }
+  else if(result_type == Constants::Result_Type::without_other_activity_label)
+    {
+      img_file_name = img_file_name+"cm_without_other_activity_label";
+      label_type = 1;
+    }
+
+  useConfusionMatrix_(script_name,function_name,num_function_arg,actual_labels_py_obj,predicted_labels_py_obj,img_file_name,label_type,success);
+}
+/**
+ * @brief PythonRunner::useConfusionMatrix_
+ * @param script_name
+ * @param function_name
+ * @param num_function_arg
+ * @param actual_labels_py_obj
+ * @param predicted_labels_py_obj
+ * @param img_file_name
+ * @param result_type
+ * @param success
+ */
+void PythonRunner::useConfusionMatrix_(string script_name, string function_name, int num_function_arg, PyObject *actual_labels_py_obj, PyObject *predicted_labels_py_obj, string img_file_name, int result_type, bool &success)
+{
+  logging::INFO("useConfusionMatrix_");
+
+  PyObject *pName, *pModule, *pFunc;
+  PyObject *pArgs, *img_file_name_py_obj,*result_type_py_obj,*pValue;
+
+  pName = PyString_FromString(script_name.c_str());
+  pModule = PyImport_Import(pName);
+  Py_DECREF(pName);
+
+  if (pModule != NULL) {
+      pFunc = PyObject_GetAttrString(pModule, function_name.c_str());
+      /* pFunc is a new reference */
+
+      if (pFunc && PyCallable_Check(pFunc))
+        {
+          img_file_name_py_obj = PyUnicode_FromString(img_file_name.c_str());
+          result_type_py_obj = PyInt_FromLong(result_type);
+
+          pArgs = PyTuple_New(num_function_arg);
+
+          PyTuple_SetItem(pArgs, 0, actual_labels_py_obj);
+          PyTuple_SetItem(pArgs, 1, predicted_labels_py_obj);
+          PyTuple_SetItem(pArgs, 2, img_file_name_py_obj);
+          PyTuple_SetItem(pArgs, 3, result_type_py_obj);
+
+
+          pValue = PyObject_CallObject(pFunc, pArgs);
+
+          Py_DECREF(pArgs);
+          if (pValue != NULL) {
+              if(!PyInt_AsLong(pValue))
+                {
+                  printf("{\"error\":\"Result of call: %ld\"}\n", PyInt_AsLong(pValue));
+                }
+              Py_DECREF(pValue);
+            }
+          else
+            {
+              Py_DECREF(pFunc);
+              Py_DECREF(pModule);
+              PyErr_Print();
+              fprintf(stderr,"{\"error\":\"Call failed\"}\n");
+              success = false;
+            }
+        }
+      else
+        {
+          if (PyErr_Occurred())
+            {
+              PyErr_Print();
+            }
+          fprintf(stderr, "{\"error\":\"Cannot find function %s\"}\n", function_name.c_str());
+          success = false;
+        }
+      Py_XDECREF(pFunc);
+      Py_DECREF(pModule);
+    }
+  else
+    {
+      PyErr_Print();
+      fprintf(stderr, "{\"error\":\"Failed to load %s\"}\n", script_name.c_str());
+      success = false;
+    }
+}
+/**
+ * @brief PythonRunner::computeAccuracy_
+ * @param script_name
+ * @param function_name
+ * @param num_function_arg
+ * @param actual_activity_labels
+ * @param predicted_activity_labels
+ * @param accuracy_info
+ * @param success
+ */
+void PythonRunner::computeAccuracy_(string script_name, string function_name, int num_function_arg, vector<int> &actual_activity_labels, vector<int> &predicted_activity_labels, string &accuracy_info, bool &success)
+{
   logging::INFO("computeAccuracy_");
 
   logging::INFO("actual_activity_labels_size:"+std::to_string(actual_activity_labels.size())+"\t"+
@@ -526,6 +689,7 @@ void PythonRunner::UseAccuracyFucntion_(string script_name, string function_name
         }
       Py_XDECREF(pFunc);
       Py_DECREF(pModule);
+
     }
   else
     {

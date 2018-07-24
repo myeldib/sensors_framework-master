@@ -615,6 +615,36 @@ components/aruba/impl/src/cluster-recognition.cpp.s:
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/cluster-recognition.cpp.s
 .PHONY : components/aruba/impl/src/cluster-recognition.cpp.s
 
+components/aruba/impl/src/evaluation.o: components/aruba/impl/src/evaluation.cpp.o
+
+.PHONY : components/aruba/impl/src/evaluation.o
+
+# target to build an object file
+components/aruba/impl/src/evaluation.cpp.o:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o
+.PHONY : components/aruba/impl/src/evaluation.cpp.o
+
+components/aruba/impl/src/evaluation.i: components/aruba/impl/src/evaluation.cpp.i
+
+.PHONY : components/aruba/impl/src/evaluation.i
+
+# target to preprocess a source file
+components/aruba/impl/src/evaluation.cpp.i:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.i
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.i
+.PHONY : components/aruba/impl/src/evaluation.cpp.i
+
+components/aruba/impl/src/evaluation.s: components/aruba/impl/src/evaluation.cpp.s
+
+.PHONY : components/aruba/impl/src/evaluation.s
+
+# target to generate assembly for a file
+components/aruba/impl/src/evaluation.cpp.s:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.s
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.s
+.PHONY : components/aruba/impl/src/evaluation.cpp.s
+
 components/aruba/impl/src/feature-container.o: components/aruba/impl/src/feature-container.cpp.o
 
 .PHONY : components/aruba/impl/src/feature-container.o
@@ -1212,6 +1242,9 @@ help:
 	@echo "... components/aruba/impl/src/cluster-recognition.o"
 	@echo "... components/aruba/impl/src/cluster-recognition.i"
 	@echo "... components/aruba/impl/src/cluster-recognition.s"
+	@echo "... components/aruba/impl/src/evaluation.o"
+	@echo "... components/aruba/impl/src/evaluation.i"
+	@echo "... components/aruba/impl/src/evaluation.s"
 	@echo "... components/aruba/impl/src/feature-container.o"
 	@echo "... components/aruba/impl/src/feature-container.i"
 	@echo "... components/aruba/impl/src/feature-container.s"

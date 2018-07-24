@@ -243,27 +243,9 @@ feature-writer.h
 -
 utilities.h
 -
-confusion.h
--
-evaluation.h
+python-runner.h
 -
 boost/thread.hpp
--
-
-../components/aruba/impl/include/confusion.h
-iostream
--
-string
--
-vector
--
-tgmath.h
--
-sstream
--
-algorithm
--
-array
 -
 
 ../components/aruba/impl/include/constants.h
@@ -271,8 +253,18 @@ string
 -
 
 ../components/aruba/impl/include/evaluation.h
-confusion.h
-../components/aruba/impl/include/confusion.h
+utilities.h
+-
+home.h
+-
+feature-writer.h
+-
+feature-reader.h
+-
+python-runner.h
+-
+logger.h
+-
 
 ../components/aruba/impl/include/feature-container.h
 utilities.h
@@ -446,8 +438,6 @@ feature-reader.h
 feature-writer.h
 -
 utilities.h
--
-confusion.h
 -
 evaluation.h
 -
@@ -664,6 +654,10 @@ between-day-clustering.h
 cluster-recognition.h
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/cluster-recognition.h
 
+/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/evaluation.cpp
+evaluation.h
+-
+
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/feature-container.cpp
 feature-container.h
 -
@@ -719,13 +713,11 @@ cluster-recognition.h
 -
 model-recognition.h
 -
+evaluation.h
+-
 logger.h
 -
 ctime
--
-Python.h
--
-numpy/arrayobject.h
 -
 chrono
 -

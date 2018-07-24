@@ -16,19 +16,19 @@
  */
 FeatureReader::FeatureReader(Home* home)
 {
-    COUT<<"FeatureReader"<<endl;
-    logging::INFO("FeatureReader");
+  COUT<<"FeatureReader"<<endl;
+  logging::INFO("FeatureReader");
 
-    this->home = home;
-    this->home->readHomeSetup();
+  this->home = home;
+  this->home->readHomeSetup();
 }
 /**
  * @brief FeatureReader::~FeatureReader
  */\
 FeatureReader::~FeatureReader()
 {
-    COUT<<"~FeatureReader"<<endl;
-    logging::INFO("~FeatureReader");
+  COUT<<"~FeatureReader"<<endl;
+  logging::INFO("~FeatureReader");
 }
 
 /**
@@ -37,36 +37,36 @@ FeatureReader::~FeatureReader()
  */
 void FeatureReader::AssignTimeIndexPerPattern_(FeatureContainer* fc)
 {
-    COUT<<"AssignTimeIndexPerPattern_"<<endl;
-    logging::INFO("AssignTimeIndexPerPattern_");
+  COUT<<"AssignTimeIndexPerPattern_"<<endl;
+  logging::INFO("AssignTimeIndexPerPattern_");
 
-    vector<int> sequence_patterns = fc->getSequencePatterns();
-    vector<float> time_index_to_patterns_minutes;
+  vector<int> sequence_patterns = fc->getSequencePatterns();
+  vector<float> time_index_to_patterns_minutes;
 
-    //convert time constraints from seconds to hour (e.g. 3600/60)
-    int time_constraint = ceil((home->getTimeConstraint()*1.0)/(home->getSensorTimeInterval()*1.0));
-    //compute number of steps inside a single day segment
-    int step=time_constraint;
-    //incrementer for the count
-    int step_increment=time_constraint;
-    //assign time index to pattern
-    int time_index_hours = 0;
+  //convert time constraints from seconds to hour (e.g. 3600/60)
+  int time_constraint = ceil((home->getTimeConstraint()*1.0)/(home->getSensorTimeInterval()*1.0));
+  //compute number of steps inside a single day segment
+  int step=time_constraint;
+  //incrementer for the count
+  int step_increment=time_constraint;
+  //assign time index to pattern
+  int time_index_hours = 0;
 
 
-    for(int i=0; i<sequence_patterns.size();i=i+step)
+  for(int i=0; i<sequence_patterns.size();i=i+step)
     {
-        float time_index_minutes = time_index_hours;
-        for(int j = i;  j <step_increment && j<sequence_patterns.size(); j++)
+      float time_index_minutes = time_index_hours;
+      for(int j = i;  j <step_increment && j<sequence_patterns.size(); j++)
         {
-            time_index_to_patterns_minutes.push_back(time_index_minutes);
-            time_index_minutes+=0.01;
+          time_index_to_patterns_minutes.push_back(time_index_minutes);
+          time_index_minutes+=0.01;
         }
 
-        step_increment = step_increment+step;
-        time_index_hours++;
+      step_increment = step_increment+step;
+      time_index_hours++;
     }
 
-    fc->setTimeIndexPerPattern(time_index_to_patterns_minutes);
+  fc->setTimeIndexPerPattern(time_index_to_patterns_minutes);
 }
 
 /**
@@ -75,28 +75,28 @@ void FeatureReader::AssignTimeIndexPerPattern_(FeatureContainer* fc)
  */
 void FeatureReader::readWithinDayClusterFeatures_(string folder_path,vector<FeatureContainer*>& featureContainers)
 {
-    COUT<<"readWithinDayClusterFeatures_"<<endl;
-    logging::INFO("readWithinDayClusterFeatures_");
+  COUT<<"readWithinDayClusterFeatures_"<<endl;
+  logging::INFO("readWithinDayClusterFeatures_");
 
-    //get folder names
-    vector<string> folder_names=Common::getFolderNamesWithPaths(folder_path.c_str());
+  //get folder names
+  vector<string> folder_names=Common::getFolderNamesWithPaths(folder_path.c_str());
 
-    for(int i = 0 ;i <folder_names.size();i++)
+  for(int i = 0 ;i <folder_names.size();i++)
     {
-        FeatureContainer* featureContainer = new FeatureContainer();
+      FeatureContainer* featureContainer = new FeatureContainer();
 
-        COUT<<folder_names[i]<<endl;
-        logging::INFO(folder_names[i]);
+      COUT<<folder_names[i]<<endl;
+      logging::INFO(folder_names[i]);
 
-        readActivityFile_(folder_names[i],featureContainer);
-        readDiscoveredPatternsFile_(folder_names[i],featureContainer);
-        readSensorDurationsFile_(folder_names[i],featureContainer);
-        readSequencePatternsFile_(folder_names[i],featureContainer);
+      readActivityFile_(folder_names[i],featureContainer);
+      readDiscoveredPatternsFile_(folder_names[i],featureContainer);
+      readSensorDurationsFile_(folder_names[i],featureContainer);
+      readSequencePatternsFile_(folder_names[i],featureContainer);
 
-        AssignTimeIndexPerPattern_(featureContainer);
-        assignDayName_(folder_names[i],featureContainer);
+      AssignTimeIndexPerPattern_(featureContainer);
+      assignDayName_(folder_names[i],featureContainer);
 
-        featureContainers.push_back(featureContainer);
+      featureContainers.push_back(featureContainer);
 
     }
 
@@ -108,23 +108,23 @@ void FeatureReader::readWithinDayClusterFeatures_(string folder_path,vector<Feat
  */
 void FeatureReader::readBetweenDayClusterFeatures_(string folder_path, vector<FeatureContainer*>& featureContainers)
 {
-    COUT<<"readBetweenDayClusterFeatures_"<<endl;
-    logging::INFO("readBetweenDayClusterFeatures_");
+  COUT<<"readBetweenDayClusterFeatures_"<<endl;
+  logging::INFO("readBetweenDayClusterFeatures_");
 
-    FeatureContainer* featureContainer = new FeatureContainer();
+  FeatureContainer* featureContainer = new FeatureContainer();
 
-    COUT<<folder_path<<endl;
-    logging::INFO(folder_path);
+  COUT<<folder_path<<endl;
+  logging::INFO(folder_path);
 
-    readActivityFile_(folder_path,featureContainer);
-    readDiscoveredPatternsFile_(folder_path,featureContainer);
-    readSensorDurationsFile_(folder_path,featureContainer);
-    readSequencePatternsFile_(folder_path,featureContainer);
-    readDayNames_(folder_path,featureContainer);
-    readTimeIndex_(folder_path,featureContainer);
+  readActivityFile_(folder_path,featureContainer);
+  readDiscoveredPatternsFile_(folder_path,featureContainer);
+  readSensorDurationsFile_(folder_path,featureContainer);
+  readSequencePatternsFile_(folder_path,featureContainer);
+  readDayNames_(folder_path,featureContainer);
+  readTimeIndex_(folder_path,featureContainer);
 
 
-    featureContainers.push_back(featureContainer);
+  featureContainers.push_back(featureContainer);
 
 
 }
@@ -135,21 +135,113 @@ void FeatureReader::readBetweenDayClusterFeatures_(string folder_path, vector<Fe
  */
 vector<FeatureContainer*> FeatureReader::readFeatures(string folder_path,Constants::Cluster_Type type)
 {
-    COUT<<"readFeatures"<<endl;
-    logging::INFO("readFeatures");
+  COUT<<"readFeatures"<<endl;
+  logging::INFO("readFeatures");
 
-    vector<FeatureContainer*> featureContainers;
+  vector<FeatureContainer*> featureContainers;
 
-    if(type == Constants::within_day_cluster)
+  if(type == Constants::Cluster_Type::within_day_cluster)
     {
-        readWithinDayClusterFeatures_(folder_path,featureContainers);
+      readWithinDayClusterFeatures_(folder_path,featureContainers);
     }
-    else if (type = Constants::between_day_cluster)
+  else if (type == Constants::Cluster_Type::between_day_cluster)
     {
-        readBetweenDayClusterFeatures_(folder_path,featureContainers);
+      readBetweenDayClusterFeatures_(folder_path,featureContainers);
+    }
+  else if ( type == Constants::Cluster_Type::cluster_recognition)
+    {
+      readClusterResults_(folder_path,featureContainers);
+    }
+  else if (type == Constants::Cluster_Type::model_recognition)
+    {
+      readModelResults_(folder_path,featureContainers);
     }
 
-    return featureContainers;
+  return featureContainers;
+}
+
+/**
+ * @brief FeatureReader::readClusterResults_
+ * @param folder_path
+ * @param featureContainers
+ */
+void FeatureReader::readClusterResults_(string folder_path, vector<FeatureContainer *> &featureContainers)
+{
+  logging::INFO("readClusterResults_");
+
+  logging::INFO(folder_path);
+
+  FeatureContainer* featureContainer = new FeatureContainer();
+
+  readActualActivityLabels_(folder_path,featureContainer);
+  readPredictedActivityLabels_(folder_path,featureContainer);
+
+  featureContainers.push_back(featureContainer);
+}
+
+/**
+ * @brief FeatureReader::readModelResults_
+ * @param folder_path
+ * @param featureContainers
+ */
+void FeatureReader::readModelResults_(string folder_path, vector<FeatureContainer *> &featureContainers)
+{
+  logging::INFO("readModelResults_");
+  logging::INFO(folder_path);
+
+  FeatureContainer* featureContainer = new FeatureContainer();
+
+  readActualActivityLabels_(folder_path,featureContainer);
+  readPredictedActivityLabels_(folder_path,featureContainer);
+
+  featureContainers.push_back(featureContainer);
+
+}
+
+/**
+ * @brief FeatureReader::readActualActivityLabels_
+ * @param file_path
+ * @param fc
+ */
+void FeatureReader::readActualActivityLabels_(string file_path, FeatureContainer *fc)
+{
+  logging::INFO("readActualActivityLabels_");
+
+  string file_name = file_path + "actual_activity_labels.txt";
+
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<int> actual_activity_labels;
+
+  for(int i = 0 ;i <fileContents.size();i++)
+    {
+      vector<string> lineContent =fileContents[i];
+      actual_activity_labels.push_back(std::atoi(lineContent[0].c_str()));
+    }
+
+  fc->setActualActivityLabels(actual_activity_labels);
+}
+
+/**
+ * @brief FeatureReader::readPredictedActivityLabels_
+ * @param file_path
+ * @param fc
+ */
+void FeatureReader::readPredictedActivityLabels_(string file_path, FeatureContainer *fc)
+{
+  logging::INFO("readPredictedActivityLabels_");
+
+  string file_name = file_path + "predicted_activity_labels.txt";
+
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<int> predicted_activity_labels;
+
+  for(int i = 0 ;i <fileContents.size();i++)
+    {
+      vector<string> lineContent =fileContents[i];
+      predicted_activity_labels.push_back(std::atoi(lineContent[0].c_str()));
+    }
+
+  fc->setPredictedActivityLabels(predicted_activity_labels);
 }
 
 /**
@@ -159,19 +251,19 @@ vector<FeatureContainer*> FeatureReader::readFeatures(string folder_path,Constan
  */
 void FeatureReader::readDayNames_(string file_path, FeatureContainer *fc)
 {
-    logging::INFO("readDayNames_");
-    string file_name = file_path + "day_names.txt";
+  logging::INFO("readDayNames_");
+  string file_name = file_path + "day_names.txt";
 
-    vector<vector<string> > fileContents = Common::readFile(file_name,',');
-    vector<string> day_names_per_pattern;
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<string> day_names_per_pattern;
 
-    for(int i = 0 ;i <fileContents.size();i++)
+  for(int i = 0 ;i <fileContents.size();i++)
     {
-        vector<string> lineContent =fileContents[i];
-        day_names_per_pattern.push_back(lineContent[0]);
+      vector<string> lineContent =fileContents[i];
+      day_names_per_pattern.push_back(lineContent[0]);
     }
 
-    fc->setDayNamePerPattern(day_names_per_pattern);
+  fc->setDayNamePerPattern(day_names_per_pattern);
 }
 
 /**
@@ -181,19 +273,19 @@ void FeatureReader::readDayNames_(string file_path, FeatureContainer *fc)
  */
 void FeatureReader::readTimeIndex_(string file_path, FeatureContainer *fc)
 {
-    logging::INFO("readTimeIndex_");
-    string file_name = file_path + "time_index.txt";
+  logging::INFO("readTimeIndex_");
+  string file_name = file_path + "time_index.txt";
 
-    vector<vector<string> > fileContents = Common::readFile(file_name,',');
-    vector<float> time_index_per_pattern;
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<float> time_index_per_pattern;
 
-    for(int i = 0 ;i <fileContents.size();i++)
+  for(int i = 0 ;i <fileContents.size();i++)
     {
-        vector<string> lineContent =fileContents[i];
-        time_index_per_pattern.push_back(atof(lineContent[0].c_str()));
+      vector<string> lineContent =fileContents[i];
+      time_index_per_pattern.push_back(atof(lineContent[0].c_str()));
     }
 
-    fc->setTimeIndexPerPattern(time_index_per_pattern);
+  fc->setTimeIndexPerPattern(time_index_per_pattern);
 }
 
 /**
@@ -203,32 +295,32 @@ void FeatureReader::readTimeIndex_(string file_path, FeatureContainer *fc)
  */
 void FeatureReader::readActivityFile_(string file_path,FeatureContainer* fc)
 {
-    COUT<<"readActivityFile_"<<endl;
-    logging::INFO("readActivityFile_");
+  COUT<<"readActivityFile_"<<endl;
+  logging::INFO("readActivityFile_");
 
-    string file_name = file_path + "activity_per_window.txt";
+  string file_name = file_path + "activity_per_window.txt";
 
-    vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
 
-    vector<string> activit_labels;
+  vector<string> activit_labels;
 
-    for(int i = 0 ;i <fileContents.size();i++)
+  for(int i = 0 ;i <fileContents.size();i++)
     {
-        vector<string> lineContent =fileContents[i];
+      vector<string> lineContent =fileContents[i];
 
-        //No annotated activity
-        if(lineContent.size() == 0)
+      //No annotated activity
+      if(lineContent.size() == 0)
         {
-            activit_labels.push_back("-");
+          activit_labels.push_back("-");
         }
-        else
+      else
         {
-            activit_labels.push_back(lineContent[0]);
+          activit_labels.push_back(lineContent[0]);
         }
 
     }
 
-    fc->setActivityLabel(activit_labels);
+  fc->setActivityLabel(activit_labels);
 }
 
 /**
@@ -238,22 +330,22 @@ void FeatureReader::readActivityFile_(string file_path,FeatureContainer* fc)
  */
 void FeatureReader::readSequencePatternsFile_(string file_path,FeatureContainer* fc)
 {
-    COUT<<"readSequencePatternsFile_"<<endl;
-    logging::INFO("readSequencePatternsFile_");
+  COUT<<"readSequencePatternsFile_"<<endl;
+  logging::INFO("readSequencePatternsFile_");
 
-    string file_name = file_path + "sequence_patterns.txt";
+  string file_name = file_path + "sequence_patterns.txt";
 
-    vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
 
-    vector<int> sequence_patterns;
+  vector<int> sequence_patterns;
 
-    for(int i = 0 ;i <fileContents.size();i++)
+  for(int i = 0 ;i <fileContents.size();i++)
     {
-        vector<string> lineContent =fileContents[i];
-        sequence_patterns.push_back(atof(lineContent[0].c_str()));
+      vector<string> lineContent =fileContents[i];
+      sequence_patterns.push_back(atof(lineContent[0].c_str()));
     }
 
-    fc->setSequencePatterns(sequence_patterns);
+  fc->setSequencePatterns(sequence_patterns);
 }
 /**
  * @brief FeatureReader::readDiscoveredPatternsFile_
@@ -262,22 +354,22 @@ void FeatureReader::readSequencePatternsFile_(string file_path,FeatureContainer*
  */
 void FeatureReader::readDiscoveredPatternsFile_(string file_path,FeatureContainer* fc)
 {
-    COUT<<"readDiscoveredPatternsFile_"<<endl;
-    logging::INFO("readDiscoveredPatternsFile_");
+  COUT<<"readDiscoveredPatternsFile_"<<endl;
+  logging::INFO("readDiscoveredPatternsFile_");
 
-    string file_name = file_path + "discovered_patterns.txt";
+  string file_name = file_path + "discovered_patterns.txt";
 
-    vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
 
-    vector<int> discovered_sequence;
+  vector<int> discovered_sequence;
 
-    for(int i = 0 ;i <fileContents.size();i++)
+  for(int i = 0 ;i <fileContents.size();i++)
     {
-        vector<string> lineContent =fileContents[i];
-        discovered_sequence.push_back(atoi(lineContent[0].c_str()));
+      vector<string> lineContent =fileContents[i];
+      discovered_sequence.push_back(atoi(lineContent[0].c_str()));
     }
 
-    fc->setDiscoveredPatterns(discovered_sequence);
+  fc->setDiscoveredPatterns(discovered_sequence);
 }
 /**
  * @brief FeatureReader::readSensorDurationsFile_
@@ -286,30 +378,30 @@ void FeatureReader::readDiscoveredPatternsFile_(string file_path,FeatureContaine
  */
 void FeatureReader::readSensorDurationsFile_(string file_path,FeatureContainer* fc)
 {
-    COUT<<"readSensorDurationsFile_"<<endl;
-    logging::INFO("readSensorDurationsFile_");
+  COUT<<"readSensorDurationsFile_"<<endl;
+  logging::INFO("readSensorDurationsFile_");
 
-    string file_name = file_path + "sensors_duration.txt";
+  string file_name = file_path + "sensors_duration.txt";
 
-    vector<vector<string> > fileContents = Common::readFile(file_name,',');
+  vector<vector<string> > fileContents = Common::readFile(file_name,',');
 
-    vector<vector<float> > sensor_durations_per_day;
+  vector<vector<float> > sensor_durations_per_day;
 
-    for(int i = 0 ;i <fileContents.size();i++)
+  for(int i = 0 ;i <fileContents.size();i++)
     {
-        vector<string> lineContent =fileContents[i];
-        vector<float> sensor_durations_per_window;
+      vector<string> lineContent =fileContents[i];
+      vector<float> sensor_durations_per_window;
 
-        for(int j = 0; j<lineContent.size(); j++)
+      for(int j = 0; j<lineContent.size(); j++)
         {
-            sensor_durations_per_window.push_back(atof(lineContent[j].c_str()));
+          sensor_durations_per_window.push_back(atof(lineContent[j].c_str()));
         }
 
-        sensor_durations_per_day.push_back(sensor_durations_per_window);
+      sensor_durations_per_day.push_back(sensor_durations_per_window);
 
     }
 
-    fc->setSensorDurations(sensor_durations_per_day);
+  fc->setSensorDurations(sensor_durations_per_day);
 
 }
 
@@ -320,18 +412,18 @@ void FeatureReader::readSensorDurationsFile_(string file_path,FeatureContainer* 
  */
 void FeatureReader::assignDayName_(string file_path, FeatureContainer *fc)
 {
-    COUT<<"assignDayName_"<<endl;
-    logging::INFO("assignDayName_");
+  COUT<<"assignDayName_"<<endl;
+  logging::INFO("assignDayName_");
 
-    vector<string> elem;
-    Common::split(file_path,'/',elem);
+  vector<string> elem;
+  Common::split(file_path,'/',elem);
 
-    string day_name = elem[elem.size()-1];
+  string day_name = elem[elem.size()-1];
 
-    int num_of_sequence_patterns = fc->getSequencePatterns().size();
-    vector<string> day_name_per_pattern(num_of_sequence_patterns,day_name);
+  int num_of_sequence_patterns = fc->getSequencePatterns().size();
+  vector<string> day_name_per_pattern(num_of_sequence_patterns,day_name);
 
-    fc->setDayNamePerPattern(day_name_per_pattern);
+  fc->setDayNamePerPattern(day_name_per_pattern);
 
 
 }

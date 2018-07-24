@@ -8,12 +8,12 @@
  * @param time_window_config
  * @param success
  */
-ModelRecognition::ModelRecognition(string hierarchal_clustering_path,string cluster_rec_path,string with_day_cluster_path, string home_setup_file, string time_window_config, bool &success)
+ModelRecognition::ModelRecognition(string hierarchal_clustering_path, string config_path,string cluster_rec_path,string with_day_cluster_path, string home_setup_file, string time_window_config, bool &success)
 {
 
   logging::INFO("ModelRecognition");
 
-  init_(hierarchal_clustering_path,cluster_rec_path,with_day_cluster_path,home_setup_file,time_window_config,success);
+  init_(hierarchal_clustering_path,config_path,cluster_rec_path,with_day_cluster_path,home_setup_file,time_window_config,success);
 
   if(!success)
     {
@@ -29,7 +29,7 @@ ModelRecognition::ModelRecognition(string hierarchal_clustering_path,string clus
  * @param time_window_config
  * @param success
  */
-void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_rec_path, string within_day_cluster_path,string home_setup_file, string time_window_config, bool &success)
+void ModelRecognition::init_(string hierarchal_clustering_path,string config_path,string cluster_rec_path, string within_day_cluster_path,string home_setup_file, string time_window_config, bool &success)
 {
 
   logging::INFO("init_");
@@ -68,13 +68,9 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string cluster_re
       FeatureContainer* tmp = featureReader_->readFeatures(hierarchal_clustering_path,Constants::between_day_cluster)[0];
       tmp->setThreadID(i);
       copy_clustered_sensor_data.push_back(tmp);
-
-      //      PythonRunner* tmppythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
-      //      pythonRunnerContainer_.push_back(tmppythonRunner_);
-      //      pythonRunnerContainer_[i]->initPython();
     }
 
-  pythonRunner_ = new PythonRunner(cluster_rec_path,home_setup_file,time_window_config);
+  pythonRunner_ = new PythonRunner(config_path,home_setup_file,time_window_config);
   pythonRunner_->initPython();
 
 
@@ -150,13 +146,6 @@ ModelRecognition::~ModelRecognition()
     {
       delete featureWriter_;
     }
-  //  for(int i=0; i<pythonRunnerContainer_.size();i++)
-  //    {
-  //      if(pythonRunnerContainer_[i])
-  //        {
-  //          delete pythonRunnerContainer_[i];
-  //        }
-  //    }
 
   for(int i =0; i<sub_interpreters_vec_.size();i++)
     {
@@ -329,33 +318,6 @@ void ModelRecognition::divideContainer_(int thread_id, int from, int to, vector<
 
 }
 
-
-/**
- * @brief ModelRecognition::includeOtherActivityClass_
- * @param activity_index
- * @return
- */
-bool ModelRecognition::includeOtherActivityClass_(int activity_index)
-{
-  if(home_->getIncludeOtherActivityClass())
-    {
-      return true;
-    }
-  else
-    {
-      if(activity_index !=home_->getActivityLabelStringIntMap().at(""))
-        {
-          return true;
-        }
-      else
-        {
-          return false;
-        }
-    }
-
-}
-
-
 /**
  * @brief ModelRecognition::prepareTrainingData_
  * @param test_day
@@ -368,7 +330,6 @@ void ModelRecognition::prepareTrainingData_(string test_day, FeatureContainer *c
 
   vector<string> clustered_day_names = clustered_sensor_data->getDayNamePerPattern();
   vector<int> clustered_sequence_patterns = clustered_sensor_data->getSequencePatterns();
-  vector<int> clustered_discovered_patterns = clustered_sensor_data->getDiscoveredPatterns();
   vector<vector<float> > clustered_sensor_duration = clustered_sensor_data->getSensorDurations();
   vector<float> clustered_time_index = clustered_sensor_data->getTimeIndexPerPattern();
   vector<string> clustered_activity_labels = clustered_sensor_data->getActivityLabel();
@@ -416,46 +377,6 @@ void ModelRecognition::prepareTrainingData_(string test_day, FeatureContainer *c
 
 }
 
-/**
- * @brief ModelRecognition::printDurationTwoPatterns
- * @param sensor_durations1
- * @param sensor_durations2
- */
-void ModelRecognition::printDurationTwoPatterns_(vector<float> sensor_durations1, vector<float> sensor_durations2)
-{
-  for(int i =0; i<sensor_durations1.size();i++)
-    {
-      stringstream message;
-      message<<sensor_durations1[i]<<":"<<sensor_durations2[i]<<endl;
-
-      logging::INFO(message.str());
-    }
-}
-
-/**
- * @brief ModelRecognition::checkPredictedActivityLabel_
- * @param predicted_activity
- * @param activity_per_pattern
- */
-void ModelRecognition::checkPredictedActivityLabel_(int &predicted_activity,string& actual_activity_label, vector<int> activity_per_pattern)
-{
-  if(actual_activity_label=="-")   actual_activity_label="";
-
-  int other_activity_class_index =home_->getActivityLabelStringIntMap().at("");
-  int actual_activity_index = home_->getActivityLabelStringIntMap().at(actual_activity_label);
-
-  if(predicted_activity ==other_activity_class_index && actual_activity_index!=other_activity_class_index)
-    {
-      //we do not want to select other activity class if it is the max
-      activity_per_pattern[other_activity_class_index] =0;
-
-      //find max similarity value
-      auto max_activity_value = std::max_element(std::begin(activity_per_pattern), std::end(activity_per_pattern));
-      int max_activity_index=std::distance(std::begin(activity_per_pattern), max_activity_value);
-
-      predicted_activity = max_activity_index;
-    }
-}
 
 /**
  * @brief ModelRecognition::evaluate_
@@ -470,103 +391,12 @@ void ModelRecognition::evaluate_(FeatureContainer *fc)
 
   cout<<targets.size()<<"\t"<<outputs.size()<<endl;
 
-  // pythonRunnerContainer_[0]->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
   pythonRunner_->computeAccuracy(script_name_,function_name2_,function_num_param_,targets,outputs,accuracy_info);
 
   fc->setAccuracyResultsMessage(accuracy_info);
 
 }
-/**
- * @brief ModelRecognition::recognize_
- * @param test_sensor_data
- * @param train_sensor_data
- * @param actual_activity_labels
- * @param predicted_activity_labels
- */
-void ModelRecognition::recognize_(FeatureContainer *test_sensor_data,
-                                  FeatureContainer *train_sensor_data,
-                                  vector<int> &actual_activity_labels,
-                                  vector<int> &predicted_activity_labels,
-                                  vector<int>& predicted_discovered_patterns)
-{
 
-  logging::INFO("recognize_");
-
-  vector<vector<float> > test_sensor_duration=test_sensor_data->getSensorDurations();
-  vector<vector<int> > test_active_sensors = test_sensor_data->getActiveSensorsPerPattern();
-  vector<float> test_time_index = test_sensor_data->getTimeIndexPerPattern();
-  vector<string> test_activity_label = test_sensor_data->getActivityLabel();
-
-  vector<int> train_discovered_patterns = train_sensor_data->getDiscoveredPatterns();
-  vector<int> train_most_select_activity_label = train_sensor_data->getMostCommonActivityLabelPerPattern();
-  vector<vector<float> > train_sensor_avg_duration = train_sensor_data->getAverageSensorDurationsPerPattern();
-  vector<vector<int> > train_active_sensors = train_sensor_data->getActiveSensorsPerPattern();
-  vector<int> train_time_index = train_sensor_data->getMostAssignedTimeIndexPerPatternInHourIndex();
-  vector<vector<int> > train_activity_label_per_pattern=train_sensor_data->getActivityLabelsPerPattern();
-
-  for(int i =0; i<test_sensor_duration.size(); i++)
-    {
-
-      vector<float> sim_results;
-
-
-      vector<float> sensor_duration1 = test_sensor_duration[i];
-      vector<int> active_sensors1 = test_active_sensors[i];
-      float time_index1=test_time_index[i];
-
-      for(int j =0;j<train_sensor_avg_duration.size();j++)
-        {
-          vector<float> sensor_duration2 = train_sensor_avg_duration[j];
-          vector<int> active_sensors2 = train_active_sensors[j];
-          float time_index2=train_time_index[j];
-
-          float duration_sim=0.0;
-          float sensor_structure_sim = 0.0;
-          float time_sim= 0.0;
-          float total_sim= 0.0;
-
-          similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
-          similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
-          similarityMeasure_->computeDurationSimilarity(sensor_duration1,sensor_duration2,duration_sim);
-
-          total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
-
-          sim_results.push_back(total_sim);
-        }
-
-      //find max similarity value in col (host pattern)
-      auto max_host_similarity_value = std::max_element(std::begin(sim_results), std::end(sim_results));
-      int max_similarity_index=std::distance(std::begin(sim_results), max_host_similarity_value);
-
-      int predicted_sequence_pattern = train_discovered_patterns[max_similarity_index];
-      int predicted_activity_label_index =train_most_select_activity_label[max_similarity_index];
-
-      checkPredictedActivityLabel_(predicted_activity_label_index,test_activity_label[i],train_activity_label_per_pattern[max_similarity_index]);
-
-      //      vector<float> sensor_duration2 = train_sensor_avg_duration[max_similarity_index];
-      //      printDurationTwoPatterns_(sensor_duration1,sensor_duration2);
-
-      stringstream message;
-      message<<i<<" max_similarity_index:"<<max_similarity_index<<
-               "\t sim_results:"<<sim_results[max_similarity_index]<<
-               "\t predicted_sequence_pattern:"<<predicted_sequence_pattern<<
-               "\t p_activity_label:"<<home_->getActivityLabelIntStringMap().at(predicted_activity_label_index)<<
-               "\t a_activity_label:"<<test_activity_label[i]<<endl;
-
-      logging::INFO(message.str());
-
-
-      int actual_activity_label_index = home_->getActivityLabelStringIntMap().at(test_activity_label[i]);
-
-      if(includeOtherActivityClass_(actual_activity_label_index) && includeOtherActivityClass_(predicted_activity_label_index))
-        {
-          actual_activity_labels.push_back(actual_activity_label_index);
-          predicted_activity_labels.push_back(predicted_activity_label_index);
-          predicted_discovered_patterns.push_back(predicted_sequence_pattern);
-        }
-
-    }
-}
 
 /**
  * @brief ModelRecognition::writePredictions_
@@ -606,7 +436,7 @@ void ModelRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensor
       string tmp_script_name=script_name_;
       string tmp_function_name1=function_name1_;
       int tmp_function_num_param =function_num_param_;
-      //pythonRunnerContainer_[train_sensor_data->getThreadID()]->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label);
+
       pythonRunner_->predictUsingModel(tmp_script_name,tmp_function_name1,tmp_function_num_param,train_sensor_data,test_sensor_data,actual_activity_label,predicted_activity_label,interp);
 
       delete train_sensor_data;

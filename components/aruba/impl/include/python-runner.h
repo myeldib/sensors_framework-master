@@ -7,6 +7,42 @@
 #include <opencv2/opencv.hpp>
 #include<logger.h>
 
+// initialize and clean up python
+struct initialize_python
+{
+  initialize_python()
+  {
+    logging::INFO("initialize_python");
+    Py_InitializeEx(1);
+    PyEval_InitThreads();
+  }
+
+  ~initialize_python()
+  {
+    logging::INFO("~initialize_python");
+    Py_Finalize();
+  }
+};
+
+class enable_threads
+{
+public:
+  enable_threads()
+  {
+     logging::INFO("enable_threads");
+    _state = PyEval_SaveThread();
+  }
+
+  ~enable_threads()
+  {
+    logging::INFO("~enable_threads");
+    PyEval_RestoreThread(_state);
+  }
+
+private:
+  PyThreadState* _state;
+};
+
 // acquire GIL
 class ensure_gil_state
 {
@@ -32,13 +68,13 @@ struct gil_lock
 {
   gil_lock()
   {
-     logging::INFO("gil_lock");
+    logging::INFO("gil_lock");
     PyEval_AcquireLock();
   }
 
   ~gil_lock()
   {
-     logging::INFO("~gil_lock");
+    logging::INFO("~gil_lock");
     PyEval_ReleaseLock();
   }
 };
@@ -50,7 +86,7 @@ public:
 
   restore_tstate()
   {
-     logging::INFO("restore_tstate");
+    logging::INFO("restore_tstate");
     _ts = PyThreadState_Get();
   }
 
@@ -186,6 +222,14 @@ public:
                        vector<int>& actual_activity_labels,
                        vector<int>& predicted_activity_labels,
                        string& accuracy_info);
+
+  void generateConfusionMatrix(string script_name,
+                               string function_name,
+                               int num_function_arg,
+                               vector<int>& actual_activity_labels,
+                               vector<int>& predicted_activity_labels,
+                               string img_file_name,
+                               Constants::Result_Type type);
   void initPython();
   void finalizePython();
 private:
@@ -231,6 +275,22 @@ private:
                         vector<int>& predicted_activity_labels,
                         string& accuracy_info,
                         bool& success);
+  void generateConfusionMatrix_(string script_name,
+                               string function_name,
+                               int num_function_arg,
+                               vector<int>& actual_activity_labels,
+                               vector<int>& predicted_activity_labels,
+                               string img_file_name,
+                               Constants::Result_Type type,
+                               bool& success);
+  void useConfusionMatrix_(string script_name,
+                           string function_name,
+                           int num_function_arg,
+                           PyObject *actual_labels_py_obj,
+                           PyObject *predicted_labels_py_obj,
+                           string img_file_name,
+                           int result_type,
+                           bool& success);
 
 private:
   string data_dir;

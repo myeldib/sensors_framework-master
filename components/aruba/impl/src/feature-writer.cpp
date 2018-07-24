@@ -128,13 +128,80 @@ void FeatureWriter::writeFeatures(FeatureContainer* featureContainer, Constants:
 
 }
 
+/**
+ * @brief FeatureWriter::writeEvaluationResults
+ * @param fc
+ * @param cluster_type
+ * @param result_type
+ * @param path_to_results
+ */
+void FeatureWriter::writeEvaluationResults(FeatureContainer *fc, Constants::Cluster_Type cluster_type, Constants::Result_Type result_type,string& path_to_results)
+{
+  logging::INFO("writeEvaluationResults");
+
+  if(cluster_type == Constants::Cluster_Type::model_recognition)
+    {
+
+      string tmp_folder_path = folder_path;
+      folder_path.append("model_recognition/");
+      bool is_created = Common::createFolder(folder_path);
+
+      logging::INFO(folder_path);
+
+      if(result_type == Constants::Result_Type::with_other_activity_label)
+        {
+          logging::INFO("cluster_type:model_recognition \t result_type:with_other_activity_label");
+          writeRecognitionAccuracy_(fc,"with_other_activity_label.txt");
+        }
+      else if (result_type == Constants::Result_Type::without_other_activity_label)
+        {
+          logging::INFO("cluster_type:model_recognition \t result_type:without_other_activity_label");
+          writeRecognitionAccuracy_(fc,"without_other_activity_label.txt");
+        }
+
+      //set path to result folder
+      path_to_results = folder_path;
+
+      //reset folder_path to parent
+      folder_path = tmp_folder_path;
+    }
+  else if(cluster_type = Constants::Cluster_Type::cluster_recognition )
+    {
+      string tmp_folder_path = folder_path;
+      folder_path.append("cluster_recognition/");
+      bool is_created = Common::createFolder(folder_path);
+
+      logging::INFO(folder_path);
+
+      if(result_type == Constants::Result_Type::with_other_activity_label)
+        {
+          logging::INFO("cluster_type:cluster_recognition \t result_type:with_other_activity_label");
+          writeRecognitionAccuracy_(fc,"with_other_activity_label.txt");
+        }
+      else if (result_type == Constants::Result_Type::without_other_activity_label)
+        {
+          logging::INFO("cluster_type:cluster_recognition \t result_type:without_other_activity_label");
+          writeRecognitionAccuracy_(fc,"without_other_activity_label.txt");
+        }
+
+      //set path to result folder
+      path_to_results = folder_path;
+
+      //reset folder_path to parent
+      folder_path = tmp_folder_path;
+    }
+}
+/**
+ * @brief FeatureWriter::writeModelRecognition_
+ * @param fc
+ */
 void FeatureWriter::writeModelRecognition_(FeatureContainer *fc)
 {
   logging::INFO("writeModelRecognition_");
 
   writeActualActivityLabels_(fc);
   writePredictedActivityLabels_(fc);
-  writeRecognitionAccuracy_(fc);
+  writeRecognitionAccuracy_(fc,"recognition_accuracy.txt");
 }
 /**
  * @brief FeatureWriter::writeModelRecognitionTestData_
@@ -236,7 +303,7 @@ void FeatureWriter::writeClusterRecognition_(FeatureContainer *fc)
   writeActualActivityLabels_(fc);
   writePredictedActivityLabels_(fc);
   writePredictedDiscoveredPatterns_(fc);
-  writeRecognitionAccuracy_(fc);
+  writeRecognitionAccuracy_(fc,"recognition_accuracy.txt");
 
 }
 
@@ -261,14 +328,21 @@ void FeatureWriter::writePredictedDiscoveredPatterns_(FeatureContainer *fc)
   output_file.close();
 }
 
-void FeatureWriter::writeRecognitionAccuracy_(FeatureContainer *fc)
+/**
+ * @brief FeatureWriter::writeRecognitionAccuracy_
+ * @param fc
+ * @param file_name
+ */
+void FeatureWriter::writeRecognitionAccuracy_(FeatureContainer *fc,string file_name_path)
 {
   logging::INFO("writeRecognitionAccuracy_");
 
-  string file_name = this->folder_path+"recognition_accuracy.txt";
+  string file_name = this->folder_path+file_name_path;
   fstream output_file(file_name.c_str(),std::fstream::out);
 
   output_file<<fc->getAccuracyResultsMessage()<<endl;
+
+  output_file.close();
 }
 /**
  * @brief FeatureWriter::writeActualActivityLabels_

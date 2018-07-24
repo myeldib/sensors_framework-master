@@ -14,6 +14,7 @@ public:
   FeatureWriter(string folder_path, string extension, Home* home,bool& success);
   ~FeatureWriter();
   void writeFeatures(FeatureContainer* featureContainer,Constants::Cluster_Type type);
+  void writeEvaluationResults(FeatureContainer* fc,Constants::Cluster_Type cluster_type,Constants::Result_Type result_type,string& path_to_results);
   void writePatternsStatistics(vector<int> num_of_discovered_patterns, vector<int> num_of_pruned_patterns, vector<int> num_of_discovered_activities);
 private:
   void writeClusterRecognition_(FeatureContainer* fc);
@@ -28,7 +29,7 @@ private:
   void writeActualActivityLabels_(FeatureContainer* fc);
   void writePredictedActivityLabels_(FeatureContainer* fc);
   void writePredictedDiscoveredPatterns_(FeatureContainer* fc);
-  void writeRecognitionAccuracy_(FeatureContainer* fc);
+  void writeRecognitionAccuracy_(FeatureContainer* fc, string file_name);
   void writeModelRecognitionTestData_(FeatureContainer* fc);
   void writeModelRecognitionTrainData_(FeatureContainer* fc);
   void writeModelRecognition_(FeatureContainer* fc);

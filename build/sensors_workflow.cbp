@@ -406,10 +406,6 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
-		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/confusion.h">
-			<Option target="mainComponent"/>
-			<Option target="sensors_workflow"/>
-		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/constants.h">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
@@ -499,6 +495,10 @@
 			<Option target="sensors_workflow"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/cluster-recognition.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/evaluation.cpp">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>

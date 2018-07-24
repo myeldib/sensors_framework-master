@@ -25,6 +25,10 @@ private:
     void readDayNames_(string file_path,FeatureContainer* fc);
     void readWithinDayClusterFeatures_(string folder_path,vector<FeatureContainer*>& featureContainers);
     void readBetweenDayClusterFeatures_(string folder_path,vector<FeatureContainer*>& featureContainers);
+    void readModelResults_(string folder_path, vector<FeatureContainer*>& featureContainers);
+    void readClusterResults_(string folder_path, vector<FeatureContainer*>& featureContainers);
+    void readActualActivityLabels_(string file_path,FeatureContainer* fc);
+    void readPredictedActivityLabels_(string file_path,FeatureContainer* fc);
 
 private:
     Home* home;

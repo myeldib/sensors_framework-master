@@ -8,12 +8,12 @@
  * @param time_window_config
  * @param success
  */
-ClusterRecognition::ClusterRecognition(string hierarchal_clustering_path,string cluster_rec_path,string with_day_cluster_path, string home_setup_file, string time_window_config, bool &success)
+ClusterRecognition::ClusterRecognition(string hierarchal_clustering_path, string config_path, string cluster_rec_path,string with_day_cluster_path, string home_setup_file, string time_window_config, bool &success)
 {
 
   logging::INFO("ClusterRecognition");
 
-  init_(hierarchal_clustering_path,cluster_rec_path,with_day_cluster_path,home_setup_file,time_window_config,success);
+  init_(hierarchal_clustering_path, config_path, cluster_rec_path,with_day_cluster_path,home_setup_file,time_window_config,success);
 
   if(!success)
     {
@@ -29,7 +29,7 @@ ClusterRecognition::ClusterRecognition(string hierarchal_clustering_path,string 
  * @param time_window_config
  * @param success
  */
-void ClusterRecognition::init_(string hierarchal_clustering_path,string cluster_rec_path, string within_day_cluster_path,string home_setup_file, string time_window_config, bool &success)
+void ClusterRecognition::init_(string hierarchal_clustering_path, string config_path, string cluster_rec_path, string within_day_cluster_path,string home_setup_file, string time_window_config, bool &success)
 {
   logging::INFO("init_");
 
@@ -72,6 +72,12 @@ void ClusterRecognition::init_(string hierarchal_clustering_path,string cluster_
   sensor_data = featureReader_->readFeatures(within_day_cluster_path,Constants::within_day_cluster);
   merged_sub_containers = new FeatureContainer();
 
+  pythonRunner_ = new PythonRunner(config_path,home_setup_file,time_window_config);
+  pythonRunner_->initPython();
+
+  script_name_="train_model";
+  function_name1_ ="compute_accuracy";
+  function_num_param_= 2;
 
   logging::INFO("features_discovered_patterns:"+std::to_string(copy_clustered_sensor_data[0]->getDiscoveredPatterns().size()));
   logging::INFO("sensor_data_size:"+std::to_string(sensor_data.size()));
@@ -135,6 +141,12 @@ ClusterRecognition::~ClusterRecognition()
       delete featureWriter_;
     }
 
+  if(pythonRunner_)
+    {
+      pythonRunner_->finalizePython();
+      delete pythonRunner_;
+    }
+
 }
 
 /**
@@ -143,11 +155,6 @@ ClusterRecognition::~ClusterRecognition()
 void ClusterRecognition::run()
 {
   logging::INFO("run");
-
-  //  computeClustersPurity_(clustered_sensor_data);
-
-  //  leaveOneDayOutStrategy_(sensor_data,clustered_sensor_data);
-
 
   computeSubContainersClusters_(sensor_data,copy_clustered_sensor_data, merged_sub_containers,num_threads_);
   evaluate_(merged_sub_containers);
@@ -340,10 +347,11 @@ bool ClusterRecognition::includeOtherActivityClass_(int activity_index)
 
 }
 /**
- * @brief ClusterRecognition::computeClusterPurity_
+ * @brief ClusterRecognition::computeClustersPurity_
  * @param featureContainers
+ * @param purity
  */
-void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContainers)
+void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContainers, float& purity)
 {
 
   logging::INFO("computeClustersPurity_");
@@ -366,11 +374,12 @@ void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContain
   int sum_labels=  std::accumulate(all_activity_count_cluster.begin(), all_activity_count_cluster.end(), 0);
   int sum_clusters=  std::accumulate(most_common_activity_count_cluster.begin(), most_common_activity_count_cluster.end(), 0);
 
-  float purity=(sum_clusters*1.0)/(sum_labels*1.0);
-  cout<<purity<<endl;
+  logging::INFO("activity_labels_per_pattern_size:"+std::to_string(activity_labels_per_pattern.size())+"\t"+
+                 "sequence_patterns_size:"+std::to_string(sequence_patterns.size())+"\t"+
+                 "discovered_patterns_size:"+std::to_string(discovered_patterns.size()));
 
-
-  cout<<activity_labels_per_pattern.size()<<"\t"<<sequence_patterns.size()<<"\t"<<discovered_patterns.size()<<endl;
+  purity=(sum_clusters*1.0)/(sum_labels*1.0);
+  logging::INFO("purity:"+std::to_string(purity));
 
 }
 
@@ -483,14 +492,21 @@ void ClusterRecognition::evaluate_(FeatureContainer *fc)
   logging::INFO("evaluate_");
   vector<int> targets = fc->getActualActivityLabels();
   vector<int> outputs = fc->getPredictedActivityLabels();
-
-  Confusion confusion =  Confusion(targets, outputs);
-
-  Evaluation evaluation = Evaluation(confusion);
-
-  fc->setAccuracyResultsMessage(evaluation.getAccuracyResults());
+  string accuracy_info="";
+  float purity = 0.0;
 
 
+  computeClustersPurity_(copy_clustered_sensor_data[0],purity);
+
+  accuracy_info.append("Cluster Purity:"+std::to_string(purity));
+  accuracy_info.append("\n\n");
+
+  logging::INFO("targets_size:"+std::to_string(targets.size())+"\t"+
+                "outputs_size:"+std::to_string(outputs.size()));
+
+  pythonRunner_->computeAccuracy(script_name_,function_name1_,function_num_param_,targets,outputs,accuracy_info);
+
+  fc->setAccuracyResultsMessage(accuracy_info);
 }
 /**
  * @brief ClusterRecognition::recognize_
