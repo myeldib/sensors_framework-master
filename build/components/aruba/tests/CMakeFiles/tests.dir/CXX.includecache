@@ -200,6 +200,14 @@ vector
 logger.h
 -
 
+../components/aruba/impl/include/sensor-event-processor.h
+home.h
+-
+logger.h
+-
+feature-container.h
+-
+
 ../components/aruba/impl/include/sensor.h
 string
 -
@@ -364,6 +372,14 @@ test-constants.h
 gtest/gtest.h
 -
 
+/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SensorEventProcessorTester.cpp
+sensor-event-processor.h
+/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/sensor-event-processor.h
+test-constants.h
+/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/test-constants.h
+gtest/gtest.h
+-
+
 /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SimilarityMeasureTester.cpp
 test-constants.h
 -
@@ -389,8 +405,8 @@ gtest/gtest.h
 -
 
 /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/main.cpp
-FeatureProcessorTester.cpp
-/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/FeatureProcessorTester.cpp
+BetweenDayClusteringTester.cpp
+/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/BetweenDayClusteringTester.cpp
 gtest/gtest.h
 -
 

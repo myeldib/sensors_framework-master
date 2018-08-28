@@ -1,4 +1,5 @@
 #include<python-runner.h>
+const int ENTER_HOME_ACTIVITY_LABEL_INDEX = 8;
 using namespace cv;
 /**
  * @brief PythonRunner::PythonRunner
@@ -470,9 +471,9 @@ void PythonRunner::generateConfusionMatrix_(string script_name, string function_
 
   for(int i =0; i<predicted_activity_labels.size();i++)
     {
-      if(actual_activity_labels[i] == 8)
+      if(actual_activity_labels[i] == ENTER_HOME_ACTIVITY_LABEL_INDEX)
         {
-          predicted_activity_labels[i] = 8;
+          predicted_activity_labels[i] = ENTER_HOME_ACTIVITY_LABEL_INDEX;
         }
     }
 

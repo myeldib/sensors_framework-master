@@ -498,6 +498,7 @@ void ClusterRecognition::evaluate_(FeatureContainer *fc)
 
   computeClustersPurity_(copy_clustered_sensor_data[0],purity);
 
+  logging::INFO("purity:"+std::to_string(purity));
   accuracy_info.append("Cluster Purity:"+std::to_string(purity));
   accuracy_info.append("\n\n");
 

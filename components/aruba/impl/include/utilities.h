@@ -44,6 +44,7 @@ public:
     static vector<string> getFolderNamesWithPaths(string directory);
     static vector<string> getFolderNames(string directory);
     static void computeNumElementsPerThread(int num_elements, int& num_threads, vector<int> &elemnts_per_thread);
+    static void getMostCommonElementInVector(vector<int>& v, int& element);
 
 
 };

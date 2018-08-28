@@ -324,6 +324,30 @@ components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusterin
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o.provides.build: components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o
 
 
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o: components/aruba/tests/CMakeFiles/tests.dir/flags.make
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o: ../components/aruba/tests/src/SensorEventProcessorTester.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o"
+	cd /home/meldib/work_space/sensors_workflow/build/components/aruba/tests && /usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SensorEventProcessorTester.cpp
+
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.i"
+	cd /home/meldib/work_space/sensors_workflow/build/components/aruba/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SensorEventProcessorTester.cpp > CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.i
+
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.s"
+	cd /home/meldib/work_space/sensors_workflow/build/components/aruba/tests && /usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SensorEventProcessorTester.cpp -o CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.s
+
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.requires:
+
+.PHONY : components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.requires
+
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.provides: components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.requires
+	$(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.provides.build
+.PHONY : components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.provides
+
+components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.provides.build: components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o
+
+
 # Object files for target tests
 tests_OBJECTS = \
 "CMakeFiles/tests.dir/src/main.cpp.o" \
@@ -336,7 +360,8 @@ tests_OBJECTS = \
 "CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o" \
 "CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o" \
 "CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o" \
-"CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o"
+"CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o" \
+"CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o"
 
 # External object files for target tests
 tests_EXTERNAL_OBJECTS =
@@ -352,9 +377,10 @@ components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/s
 components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o
 components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o
 components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o
+components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o
 components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/build.make
 components/aruba/tests/libtests.a: components/aruba/tests/CMakeFiles/tests.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX static library libtests.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX static library libtests.a"
 	cd /home/meldib/work_space/sensors_workflow/build/components/aruba/tests && $(CMAKE_COMMAND) -P CMakeFiles/tests.dir/cmake_clean_target.cmake
 	cd /home/meldib/work_space/sensors_workflow/build/components/aruba/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/tests.dir/link.txt --verbose=$(VERBOSE)
 
@@ -374,6 +400,7 @@ components/aruba/tests/CMakeFiles/tests.dir/requires: components/aruba/tests/CMa
 components/aruba/tests/CMakeFiles/tests.dir/requires: components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o.requires
 components/aruba/tests/CMakeFiles/tests.dir/requires: components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o.requires
 components/aruba/tests/CMakeFiles/tests.dir/requires: components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o.requires
+components/aruba/tests/CMakeFiles/tests.dir/requires: components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o.requires
 
 .PHONY : components/aruba/tests/CMakeFiles/tests.dir/requires
 

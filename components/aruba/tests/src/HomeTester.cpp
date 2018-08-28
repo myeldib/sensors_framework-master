@@ -128,3 +128,33 @@ TEST(Home, checkActivityLabelInformation) {
   ASSERT_EQ(expectedSixthActivityValue,home.getActivityLabelIntStringMap().at(11));
 }
 
+
+TEST(Home, checkPatternStates) {
+  string home_setup_file = "../../../../components/aruba/tests/test_data/config_per_test/HomeTester/pattern_states/home_setup";
+  string time_window_config_file = "../../../../components/aruba/tests/test_data/config_per_test/HomeTester/pattern_states/time-window-config";
+
+  Home home(home_setup_file,time_window_config_file);
+
+  home.readHomeSetup();
+
+  ASSERT_EQ(38,home.getHomeSensorsId().size());
+  ASSERT_EQ(38,home.getHomeSensorsPosition().size());
+  ASSERT_EQ(38,home.getHomeSesnorLocation().size());
+  ASSERT_EQ(38,home.getHomeSensorsType().size());
+
+  ASSERT_EQ("S001",home.getHomeSensorsId()[35]);
+  ASSERT_EQ("S002",home.getHomeSensorsId()[36]);
+  ASSERT_EQ("S003",home.getHomeSensorsId()[37]);
+
+
+  ASSERT_EQ("inside",home.getHomeSesnorLocation()[35]);
+  ASSERT_EQ("outside",home.getHomeSesnorLocation()[36]);
+  ASSERT_EQ("default",home.getHomeSesnorLocation()[37]);
+
+  ASSERT_EQ("pattern_state",home.getHomeSensorsType()[35]);
+  ASSERT_EQ("pattern_state",home.getHomeSensorsType()[36]);
+  ASSERT_EQ("pattern_state",home.getHomeSensorsType()[37]);
+
+
+
+}

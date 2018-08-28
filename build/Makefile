@@ -1065,6 +1065,36 @@ components/aruba/impl/src/python-runner.cpp.s:
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.s
 .PHONY : components/aruba/impl/src/python-runner.cpp.s
 
+components/aruba/impl/src/sensor-event-processor.o: components/aruba/impl/src/sensor-event-processor.cpp.o
+
+.PHONY : components/aruba/impl/src/sensor-event-processor.o
+
+# target to build an object file
+components/aruba/impl/src/sensor-event-processor.cpp.o:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sensor-event-processor.cpp.o
+.PHONY : components/aruba/impl/src/sensor-event-processor.cpp.o
+
+components/aruba/impl/src/sensor-event-processor.i: components/aruba/impl/src/sensor-event-processor.cpp.i
+
+.PHONY : components/aruba/impl/src/sensor-event-processor.i
+
+# target to preprocess a source file
+components/aruba/impl/src/sensor-event-processor.cpp.i:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.i
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sensor-event-processor.cpp.i
+.PHONY : components/aruba/impl/src/sensor-event-processor.cpp.i
+
+components/aruba/impl/src/sensor-event-processor.s: components/aruba/impl/src/sensor-event-processor.cpp.s
+
+.PHONY : components/aruba/impl/src/sensor-event-processor.s
+
+# target to generate assembly for a file
+components/aruba/impl/src/sensor-event-processor.cpp.s:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.s
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sensor-event-processor.cpp.s
+.PHONY : components/aruba/impl/src/sensor-event-processor.cpp.s
+
 components/aruba/impl/src/similarity-measure.o: components/aruba/impl/src/similarity-measure.cpp.o
 
 .PHONY : components/aruba/impl/src/similarity-measure.o
@@ -1287,6 +1317,9 @@ help:
 	@echo "... components/aruba/impl/src/python-runner.o"
 	@echo "... components/aruba/impl/src/python-runner.i"
 	@echo "... components/aruba/impl/src/python-runner.s"
+	@echo "... components/aruba/impl/src/sensor-event-processor.o"
+	@echo "... components/aruba/impl/src/sensor-event-processor.i"
+	@echo "... components/aruba/impl/src/sensor-event-processor.s"
 	@echo "... components/aruba/impl/src/similarity-measure.o"
 	@echo "... components/aruba/impl/src/similarity-measure.i"
 	@echo "... components/aruba/impl/src/similarity-measure.s"

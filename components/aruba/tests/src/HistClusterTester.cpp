@@ -26,6 +26,28 @@ HistogramClustering* createSUT(string& folder_path)
 
 }
 
+HistogramClustering* createSUT2(string& folder_path,string& home_setup_file, string& time_window_config_file)
+{
+
+    Home* home = new Home(home_setup_file,time_window_config_file);
+
+
+    if(!home)
+    {
+        return NULL;
+    }
+
+    HistogramClustering* hc = new HistogramClustering(folder_path,home);
+
+    if(!hc)
+    {
+        return NULL;
+    }
+
+    return hc;
+
+}
+
 TEST(HistogramClustering, createHistogramClusteringObject)
 {
 
@@ -187,3 +209,196 @@ TEST(HistogramClustering, differentActivityInSameWindow)
 
 }
 
+
+TEST(HistogramClustering, sameSensorsOutsideInsidePatterns)
+{
+
+    string tmp_result_path="../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/same_sensors_inside_outside_pattern/";
+    string home_setup_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/same_sensors_inside_outside_pattern/2010-11-04/home_setup";
+    string time_window_config_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/same_sensors_inside_outside_pattern/2010-11-04/time-window-config";
+
+    HistogramClustering* hc = createSUT2(tmp_result_path,home_setup_file,time_window_config_file);
+    int expectedNumDays = 1;
+    int expectedSequencePatterns = 30;
+    int expectedDiscoveredPatterns = 2;
+
+
+    ASSERT_TRUE(hc != NULL);
+
+    hc->run();
+
+    //get folder names
+    vector<string> sequence_patterns_file=Common::getFolderFileNames(tmp_result_path,"sequence_patterns");
+    vector<string> discovered_patterns_file=Common::getFolderFileNames(tmp_result_path,"discovered_patterns");
+
+    vector<vector<string> > sequencePatternsContents = Common::readFile(sequence_patterns_file[0],',');
+    vector<vector<string> > discoverePatternsContents = Common::readFile(discovered_patterns_file[0],',');
+
+
+    ASSERT_EQ(expectedNumDays, sequence_patterns_file.size());
+    ASSERT_EQ(expectedNumDays, discovered_patterns_file.size());
+
+    ASSERT_EQ(expectedSequencePatterns,sequencePatternsContents.size());
+    ASSERT_EQ(expectedDiscoveredPatterns,discoverePatternsContents.size());
+
+    for(int i =0 ;i<discoverePatternsContents.size();i++)
+    {
+        bool isMatched = false;
+        for(int j= 0 ; j<sequencePatternsContents.size();j++)
+        {
+            if(discoverePatternsContents[i][0]==sequencePatternsContents[j][0])
+            {
+                isMatched = true ;
+            }
+        }
+        ASSERT_TRUE(isMatched);
+    }
+
+    delete hc;
+
+}
+
+
+TEST(HistogramClustering, diffSensorsOutsideInsidePatterns)
+{
+
+    string tmp_result_path="../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/diff_sensors_inside_outside_pattern/";
+    string home_setup_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/diff_sensors_inside_outside_pattern/2010-11-04/home_setup";
+    string time_window_config_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/diff_sensors_inside_outside_pattern/2010-11-04/time-window-config";
+
+    HistogramClustering* hc = createSUT2(tmp_result_path,home_setup_file,time_window_config_file);
+    int expectedNumDays = 1;
+    int expectedSequencePatterns = 30;
+    int expectedDiscoveredPatterns = 2;
+
+
+    ASSERT_TRUE(hc != NULL);
+
+    hc->run();
+
+    //get folder names
+    vector<string> sequence_patterns_file=Common::getFolderFileNames(tmp_result_path,"sequence_patterns");
+    vector<string> discovered_patterns_file=Common::getFolderFileNames(tmp_result_path,"discovered_patterns");
+
+    vector<vector<string> > sequencePatternsContents = Common::readFile(sequence_patterns_file[0],',');
+    vector<vector<string> > discoverePatternsContents = Common::readFile(discovered_patterns_file[0],',');
+
+
+    ASSERT_EQ(expectedNumDays, sequence_patterns_file.size());
+    ASSERT_EQ(expectedNumDays, discovered_patterns_file.size());
+
+    ASSERT_EQ(expectedSequencePatterns,sequencePatternsContents.size());
+    ASSERT_EQ(expectedDiscoveredPatterns,discoverePatternsContents.size());
+
+    for(int i =0 ;i<discoverePatternsContents.size();i++)
+    {
+        bool isMatched = false;
+        for(int j= 0 ; j<sequencePatternsContents.size();j++)
+        {
+            if(discoverePatternsContents[i][0]==sequencePatternsContents[j][0])
+            {
+                isMatched = true ;
+            }
+        }
+        ASSERT_TRUE(isMatched);
+    }
+
+    delete hc;
+
+}
+
+TEST(HistogramClustering, diffSensorsOutsidePatterns)
+{
+
+    string tmp_result_path="../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/diff_sensors_outside_pattern/";
+    string home_setup_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/diff_sensors_outside_pattern/2010-11-04/home_setup";
+    string time_window_config_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/diff_sensors_outside_pattern/2010-11-04/time-window-config";
+
+    HistogramClustering* hc = createSUT2(tmp_result_path,home_setup_file,time_window_config_file);
+    int expectedNumDays = 1;
+    int expectedSequencePatterns = 30;
+    int expectedDiscoveredPatterns = 2;
+
+
+    ASSERT_TRUE(hc != NULL);
+
+    hc->run();
+
+    //get folder names
+    vector<string> sequence_patterns_file=Common::getFolderFileNames(tmp_result_path,"sequence_patterns");
+    vector<string> discovered_patterns_file=Common::getFolderFileNames(tmp_result_path,"discovered_patterns");
+
+    vector<vector<string> > sequencePatternsContents = Common::readFile(sequence_patterns_file[0],',');
+    vector<vector<string> > discoverePatternsContents = Common::readFile(discovered_patterns_file[0],',');
+
+
+    ASSERT_EQ(expectedNumDays, sequence_patterns_file.size());
+    ASSERT_EQ(expectedNumDays, discovered_patterns_file.size());
+
+    ASSERT_EQ(expectedSequencePatterns,sequencePatternsContents.size());
+    ASSERT_EQ(expectedDiscoveredPatterns,discoverePatternsContents.size());
+
+    for(int i =0 ;i<discoverePatternsContents.size();i++)
+    {
+        bool isMatched = false;
+        for(int j= 0 ; j<sequencePatternsContents.size();j++)
+        {
+            if(discoverePatternsContents[i][0]==sequencePatternsContents[j][0])
+            {
+                isMatched = true ;
+            }
+        }
+        ASSERT_TRUE(isMatched);
+    }
+
+    delete hc;
+
+}
+
+TEST(HistogramClustering, sameSensorsOutsidePatterns)
+{
+
+    string tmp_result_path="../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/same_sensors_outside_pattern/";
+    string home_setup_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/same_sensors_outside_pattern/2010-11-04/home_setup";
+    string time_window_config_file = "../../../../components/aruba/tests/test_data/config_per_test/HistClusterTester/same_sensors_outside_pattern/2010-11-04/time-window-config";
+
+    HistogramClustering* hc = createSUT2(tmp_result_path,home_setup_file,time_window_config_file);
+    int expectedNumDays = 1;
+    int expectedSequencePatterns = 30;
+    int expectedDiscoveredPatterns = 1;
+
+
+    ASSERT_TRUE(hc != NULL);
+
+    hc->run();
+
+    //get folder names
+    vector<string> sequence_patterns_file=Common::getFolderFileNames(tmp_result_path,"sequence_patterns");
+    vector<string> discovered_patterns_file=Common::getFolderFileNames(tmp_result_path,"discovered_patterns");
+
+    vector<vector<string> > sequencePatternsContents = Common::readFile(sequence_patterns_file[0],',');
+    vector<vector<string> > discoverePatternsContents = Common::readFile(discovered_patterns_file[0],',');
+
+
+    ASSERT_EQ(expectedNumDays, sequence_patterns_file.size());
+    ASSERT_EQ(expectedNumDays, discovered_patterns_file.size());
+
+    ASSERT_EQ(expectedSequencePatterns,sequencePatternsContents.size());
+    ASSERT_EQ(expectedDiscoveredPatterns,discoverePatternsContents.size());
+
+    for(int i =0 ;i<discoverePatternsContents.size();i++)
+    {
+        bool isMatched = false;
+        for(int j= 0 ; j<sequencePatternsContents.size();j++)
+        {
+            if(discoverePatternsContents[i][0]==sequencePatternsContents[j][0])
+            {
+                isMatched = true ;
+            }
+        }
+        ASSERT_TRUE(isMatched);
+    }
+
+    delete hc;
+
+}

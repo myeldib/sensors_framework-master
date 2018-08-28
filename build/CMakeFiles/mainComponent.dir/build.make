@@ -564,9 +564,33 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o.provides
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o.provides.build: CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o
 
 
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o: CMakeFiles/mainComponent.dir/flags.make
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o: ../components/aruba/impl/src/sensor-event-processor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o"
+	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sensor-event-processor.cpp
+
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.i"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sensor-event-processor.cpp > CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.i
+
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.s"
+	/usr/bin/g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sensor-event-processor.cpp -o CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.s
+
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.requires:
+
+.PHONY : CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.requires
+
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.provides: CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.provides.build
+.PHONY : CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.provides
+
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.provides.build: CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o
+
+
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o: ../components/aruba/deprecated/src/SensorReader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/SensorReader.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.i: cmake_force
@@ -590,7 +614,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o.
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o: ../components/aruba/deprecated/src/GenerateMeasures.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/GenerateMeasures.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.i: cmake_force
@@ -614,7 +638,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o: ../components/aruba/deprecated/src/Home.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/Home.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.i: cmake_force
@@ -638,7 +662,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o.provides
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.o: ../components/aruba/deprecated/src/Common.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/Common.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.i: cmake_force
@@ -662,7 +686,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Common.cpp.o.provid
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.o: ../components/aruba/deprecated/src/HeatMap.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/HeatMap.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.i: cmake_force
@@ -686,7 +710,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/HeatMap.cpp.o.provi
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.o: ../components/aruba/deprecated/src/SensorFeature.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/SensorFeature.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.i: cmake_force
@@ -710,7 +734,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorFeature.cpp.o
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.cpp.o: ../components/aruba/deprecated/src/ActivityDiscovery.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/ActivityDiscovery.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.cpp.i: cmake_force
@@ -734,7 +758,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ActivityDiscovery.c
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.o: ../components/aruba/deprecated/src/EMD.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/EMD.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.i: cmake_force
@@ -758,7 +782,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/EMD.cpp.o.provides.
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscovery.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscovery.cpp.o: ../components/aruba/deprecated/src/InferentialDiscovery.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscovery.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscovery.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscovery.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/InferentialDiscovery.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscovery.cpp.i: cmake_force
@@ -782,7 +806,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/InferentialDiscover
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp.o: ../components/aruba/deprecated/src/ClusterPatterns.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/ClusterPatterns.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp.i: cmake_force
@@ -806,7 +830,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ClusterPatterns.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp.o: ../components/aruba/deprecated/src/ConfusionMatrix.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/ConfusionMatrix.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp.i: cmake_force
@@ -830,7 +854,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/ConfusionMatrix.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.o: ../components/aruba/deprecated/src/Recognition.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/Recognition.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.i: cmake_force
@@ -854,7 +878,7 @@ CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Recognition.cpp.o.p
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.o: CMakeFiles/mainComponent.dir/flags.make
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.o: ../components/aruba/deprecated/src/main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.o"
 	/usr/bin/g++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.o -c /home/meldib/work_space/sensors_workflow/components/aruba/deprecated/src/main.cpp
 
 CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.i: cmake_force
@@ -899,6 +923,7 @@ mainComponent_OBJECTS = \
 "CMakeFiles/mainComponent.dir/components/aruba/impl/src/model-recognition.cpp.o" \
 "CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o" \
 "CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o" \
+"CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o" \
 "CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o" \
 "CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o" \
 "CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o" \
@@ -937,6 +962,7 @@ libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/impl/src/clust
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/impl/src/model-recognition.cpp.o
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o
+libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o
@@ -952,7 +978,7 @@ libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src
 libmainComponent.a: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/main.cpp.o
 libmainComponent.a: CMakeFiles/mainComponent.dir/build.make
 libmainComponent.a: CMakeFiles/mainComponent.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Linking CXX static library libmainComponent.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Linking CXX static library libmainComponent.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/mainComponent.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/mainComponent.dir/link.txt --verbose=$(VERBOSE)
 
@@ -982,6 +1008,7 @@ CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/a
 CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/impl/src/model-recognition.cpp.o.requires
 CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o.requires
 CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o.requires
+CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o.requires
 CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/SensorReader.cpp.o.requires
 CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/GenerateMeasures.cpp.o.requires
 CMakeFiles/mainComponent.dir/requires: CMakeFiles/mainComponent.dir/components/aruba/deprecated/src/Home.cpp.o.requires

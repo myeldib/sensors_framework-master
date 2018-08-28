@@ -470,6 +470,10 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/sensor-event-processor.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/sensor.h">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
@@ -558,6 +562,10 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sensor-event-processor.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/similarity-measure.cpp">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
@@ -599,6 +607,9 @@
 			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/PreprocessingStageTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SensorEventProcessorTester.cpp">
 			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SimilarityMeasureTester.cpp">

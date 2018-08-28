@@ -18,16 +18,38 @@
 vector<string>& Common::split(const string &s, char delim, vector<string> &elems)
 {
 
-    stringstream ss(s);
-    string item;
-    while (getline(ss, item, delim))
+  stringstream ss(s);
+  string item;
+  while (getline(ss, item, delim))
     {
-        elems.push_back(item);
+      elems.push_back(item);
     }
-    return elems;
+  return elems;
 
 }
 
+/**
+ * @brief Common::getMostCommonElementInVector
+ * @param v
+ * @param element
+ */
+void Common::getMostCommonElementInVector(vector<int> &v, int &element)
+{
+  map<int,int> m;
+  int max = 0;
+  int most_common = -1;
+  for (std::vector<int>::iterator vi = v.begin(); vi != v.end(); vi++)
+    {
+      m[*vi]++;
+      if (m[*vi] > max)
+        {
+          max = m[*vi];
+          most_common = *vi;
+        }
+    }
+
+  element = most_common;
+}
 /**
  * @brief Common::computeNumElementsPerThread
  * @param num_elements
@@ -36,49 +58,49 @@ vector<string>& Common::split(const string &s, char delim, vector<string> &elems
  */
 void Common::computeNumElementsPerThread(int num_elements, int& num_threads, vector<int> &elemnts_per_thread)
 {
-    logging::INFO("computeNumElementsPerThread");
+  logging::INFO("computeNumElementsPerThread");
 
-    logging::INFO("num_elements:"+std::to_string(num_elements));
+  logging::INFO("num_elements:"+std::to_string(num_elements));
 
-    if(num_threads>num_elements)
+  if(num_threads>num_elements)
     {
-        num_threads=1;
+      num_threads=1;
     }
 
-    //compute number of elements to be included for each thread
-    float num_elements_per_thread= (1.0*num_elements)/(1.0*num_threads);
-    float left_over=0;
+  //compute number of elements to be included for each thread
+  float num_elements_per_thread= (1.0*num_elements)/(1.0*num_threads);
+  float left_over=0;
 
 
-    logging::INFO("num_elements_per_thread:"+std::to_string(num_elements_per_thread));
+  logging::INFO("num_elements_per_thread:"+std::to_string(num_elements_per_thread));
 
-    //if each thread will have odd number of elemnts
-    if(num_elements%num_threads!=0)
+  //if each thread will have odd number of elemnts
+  if(num_elements%num_threads!=0)
     {
-        //compute left over to be included in the last thread
-        left_over= num_elements_per_thread-(int)num_elements_per_thread;
+      //compute left over to be included in the last thread
+      left_over= num_elements_per_thread-(int)num_elements_per_thread;
 
-        logging::INFO("left_over:"+std::to_string(left_over));
+      logging::INFO("left_over:"+std::to_string(left_over));
 
     }
 
-    for(int i = 0; i<num_threads;i++)
+  for(int i = 0; i<num_threads;i++)
     {
 
-        //add sub elements to last thread
-        //add left over of elements if exist to last thread
-        if(i==num_threads-1)
+      //add sub elements to last thread
+      //add left over of elements if exist to last thread
+      if(i==num_threads-1)
         {
-            int sum_last_sub_element = num_elements_per_thread+(left_over*num_threads);
+          int sum_last_sub_element = num_elements_per_thread+(left_over*num_threads);
 
-            elemnts_per_thread.push_back(sum_last_sub_element);
+          elemnts_per_thread.push_back(sum_last_sub_element);
 
-            logging::INFO("sum_last_sub_element:"+std::to_string(sum_last_sub_element));
+          logging::INFO("sum_last_sub_element:"+std::to_string(sum_last_sub_element));
         }
-        else
+      else
         {
-            //add sub elements to each thread
-            elemnts_per_thread.push_back(num_elements_per_thread);
+          //add sub elements to each thread
+          elemnts_per_thread.push_back(num_elements_per_thread);
 
         }
 
@@ -94,7 +116,7 @@ void Common::computeNumElementsPerThread(int num_elements, int& num_threads, vec
  */
 string Common::buildOutputFile(string folder_path,string folder_name, string file_name)
 {
-    return folder_path+folder_name+"/"+file_name+".txt";
+  return folder_path+folder_name+"/"+file_name+".txt";
 }
 
 
@@ -105,11 +127,11 @@ string Common::buildOutputFile(string folder_path,string folder_name, string fil
  */
 string Common::extractDayFromFileName(string file_name)
 {
-    vector<string> elem1,elem2;
-    Common::split(file_name,Constants::DIRECTOR_SEPARATOR,elem1);
-    Common::split(elem1[elem1.size()-1],'.',elem2);
+  vector<string> elem1,elem2;
+  Common::split(file_name,Constants::DIRECTOR_SEPARATOR,elem1);
+  Common::split(elem1[elem1.size()-1],'.',elem2);
 
-    return elem2[0];
+  return elem2[0];
 }
 
 /**
@@ -119,15 +141,15 @@ string Common::extractDayFromFileName(string file_name)
  */
 uint64_t Common::millis_from_date(const string& s)
 {
-    boost::posix_time::ptime pt;
-    istringstream is(s);
-    auto* f = new boost::posix_time::time_input_facet("%Y-%m-%dT%H:%M:%S%FZ");
-    locale loc(locale(""), f);
-    is.imbue(loc);
-    is >> pt;
-    boost::posix_time::ptime timet_start(boost::gregorian::date(1970,1,1));
-    boost::posix_time::time_duration diff = pt - timet_start;
-    return diff.total_milliseconds();
+  boost::posix_time::ptime pt;
+  istringstream is(s);
+  auto* f = new boost::posix_time::time_input_facet("%Y-%m-%dT%H:%M:%S%FZ");
+  locale loc(locale(""), f);
+  is.imbue(loc);
+  is >> pt;
+  boost::posix_time::ptime timet_start(boost::gregorian::date(1970,1,1));
+  boost::posix_time::time_duration diff = pt - timet_start;
+  return diff.total_milliseconds();
 }
 
 /**
@@ -137,12 +159,12 @@ uint64_t Common::millis_from_date(const string& s)
  */
 string Common::date_from_millis(uint64_t ms)
 {
-    static const boost::posix_time::ptime epoch(boost::gregorian::date(1970,1,1));
-    boost::posix_time::time_facet * facet = new boost::posix_time::time_facet("%Y-%m-%dT%H:%M:%S.%fZ");
-    ostringstream stream;
-    stream.imbue(locale(stream.getloc(), facet));
-    stream << epoch + boost::posix_time::milliseconds(ms);;
-    return stream.str();
+  static const boost::posix_time::ptime epoch(boost::gregorian::date(1970,1,1));
+  boost::posix_time::time_facet * facet = new boost::posix_time::time_facet("%Y-%m-%dT%H:%M:%S.%fZ");
+  ostringstream stream;
+  stream.imbue(locale(stream.getloc(), facet));
+  stream << epoch + boost::posix_time::milliseconds(ms);;
+  return stream.str();
 }
 
 /**
@@ -151,8 +173,8 @@ string Common::date_from_millis(uint64_t ms)
  */
 void Common::eraseDuplicatesFromVector(vector<int>& vec)
 {
-    sort( vec.begin(), vec.end() );
-    vec.erase( unique( vec.begin(), vec.end() ), vec.end() );
+  sort( vec.begin(), vec.end() );
+  vec.erase( unique( vec.begin(), vec.end() ), vec.end() );
 }
 
 /**
@@ -162,11 +184,11 @@ void Common::eraseDuplicatesFromVector(vector<int>& vec)
  */
 map<int,int> Common::countVectorElements(vector<int> v)
 {
-    map<int,int> dup;
+  map<int,int> dup;
 
-    for_each( v.begin(), v.end(), [&dup]( int val ){ dup[val]++; } );
+  for_each( v.begin(), v.end(), [&dup]( int val ){ dup[val]++; } );
 
-    return dup;
+  return dup;
 }
 
 /**
@@ -177,8 +199,8 @@ map<int,int> Common::countVectorElements(vector<int> v)
 bool Common::deleteFolder(const string &folder_path)
 {
 
-    filesystem::remove_all(folder_path.c_str());
-    return true;
+  filesystem::remove_all(folder_path.c_str());
+  return true;
 }
 /**
  * @brief Common::createFolder
@@ -188,14 +210,14 @@ bool Common::deleteFolder(const string &folder_path)
 bool Common::createFolder(const string &folder_path)
 {
 
-    filesystem::path dir(folder_path);
-    if(filesystem::create_directory(dir))
+  filesystem::path dir(folder_path);
+  if(filesystem::create_directory(dir))
     {
-        return true;
+      return true;
     }
-    else
+  else
     {
-        return false;
+      return false;
     }
 
 }
@@ -207,35 +229,35 @@ bool Common::createFolder(const string &folder_path)
  */
 vector<string> Common::getFolderFileNames(string directory,string file_name)
 {
-    vector<string> days_folder_file_names;
-    DIR           *d;
-    struct dirent *dir;
-    d = opendir(directory.c_str());
-    if (d)
+  vector<string> days_folder_file_names;
+  DIR           *d;
+  struct dirent *dir;
+  d = opendir(directory.c_str());
+  if (d)
     {
-        while ((dir = readdir(d)) != NULL)
+      while ((dir = readdir(d)) != NULL)
         {
-            if (string(".").compare(dir->d_name) != 0 && string("..").compare(dir->d_name) != 0)
+          if (string(".").compare(dir->d_name) != 0 && string("..").compare(dir->d_name) != 0)
             {
-                string directory_file_name=directory;
+              string directory_file_name=directory;
+              directory_file_name.append(dir->d_name);
+              directory_file_name.append("/");
+              if(file_name=="")
                 directory_file_name.append(dir->d_name);
-                directory_file_name.append("/");
-                if(file_name=="")
-                    directory_file_name.append(dir->d_name);
-                else
-                    directory_file_name.append(file_name);
-                directory_file_name.append(".txt");
+              else
+                directory_file_name.append(file_name);
+              directory_file_name.append(".txt");
 
-                days_folder_file_names.push_back(directory_file_name);
+              days_folder_file_names.push_back(directory_file_name);
             }
         }
 
-        closedir(d);
+      closedir(d);
     }
 
-    sort(days_folder_file_names.begin(), days_folder_file_names.end());
+  sort(days_folder_file_names.begin(), days_folder_file_names.end());
 
-    return days_folder_file_names;
+  return days_folder_file_names;
 }
 
 /**
@@ -245,30 +267,30 @@ vector<string> Common::getFolderFileNames(string directory,string file_name)
  */
 vector<string> Common::getFolderNamesWithPaths(string directory)
 {
-    vector<string> days_folder_file_names;
-    DIR           *d;
-    struct dirent *dir;
-    d = opendir(directory.c_str());
-    if (d)
+  vector<string> days_folder_file_names;
+  DIR           *d;
+  struct dirent *dir;
+  d = opendir(directory.c_str());
+  if (d)
     {
-        while ((dir = readdir(d)) != NULL)
+      while ((dir = readdir(d)) != NULL)
         {
-            if (string(".").compare(dir->d_name) != 0 && string("..").compare(dir->d_name) != 0)
+          if (string(".").compare(dir->d_name) != 0 && string("..").compare(dir->d_name) != 0)
             {
-                string directory_file_name=directory;
-                directory_file_name.append(dir->d_name);
-                directory_file_name.append("/");
+              string directory_file_name=directory;
+              directory_file_name.append(dir->d_name);
+              directory_file_name.append("/");
 
-                days_folder_file_names.push_back(directory_file_name);
+              days_folder_file_names.push_back(directory_file_name);
             }
         }
 
-        closedir(d);
+      closedir(d);
     }
 
-    sort(days_folder_file_names.begin(), days_folder_file_names.end());
+  sort(days_folder_file_names.begin(), days_folder_file_names.end());
 
-    return days_folder_file_names;
+  return days_folder_file_names;
 }
 
 /**
@@ -278,26 +300,26 @@ vector<string> Common::getFolderNamesWithPaths(string directory)
  */
 vector<string> Common::getFolderNames(string directory)
 {
-    vector<string> days_folder_file_names;
-    DIR           *d;
-    struct dirent *dir;
-    d = opendir(directory.c_str());
-    if (d)
+  vector<string> days_folder_file_names;
+  DIR           *d;
+  struct dirent *dir;
+  d = opendir(directory.c_str());
+  if (d)
     {
-        while ((dir = readdir(d)) != NULL)
+      while ((dir = readdir(d)) != NULL)
         {
-            if (string(".").compare(dir->d_name) != 0 && string("..").compare(dir->d_name) != 0)
+          if (string(".").compare(dir->d_name) != 0 && string("..").compare(dir->d_name) != 0)
             {
-                days_folder_file_names.push_back(dir->d_name);
+              days_folder_file_names.push_back(dir->d_name);
             }
         }
 
-        closedir(d);
+      closedir(d);
     }
 
-    sort(days_folder_file_names.begin(), days_folder_file_names.end());
+  sort(days_folder_file_names.begin(), days_folder_file_names.end());
 
-    return days_folder_file_names;
+  return days_folder_file_names;
 }
 /**
  * @brief fileExists
@@ -306,8 +328,8 @@ vector<string> Common::getFolderNames(string directory)
  */
 bool Common::fileExists(const string& filename)
 {
-    ifstream infile(filename);
-    return infile.good();
+  ifstream infile(filename);
+  return infile.good();
 }
 
 
@@ -319,22 +341,22 @@ bool Common::fileExists(const string& filename)
  */
 vector<vector<string> > Common::readFile(string &folder_path, char separator)
 {
-    ifstream input_stream( folder_path );
-    vector<vector<string> > fileConntents;
+  ifstream input_stream( folder_path );
+  vector<vector<string> > fileConntents;
 
-    while (input_stream)
+  while (input_stream)
     {
-        string line;
-        vector<string> elem;
+      string line;
+      vector<string> elem;
 
-        if (!getline( input_stream, line )) break;
+      if (!getline( input_stream, line )) break;
 
-        Common::split(line,separator,elem);
+      Common::split(line,separator,elem);
 
-        fileConntents.push_back(elem);
+      fileConntents.push_back(elem);
     }
 
-    return fileConntents;
+  return fileConntents;
 
 }
 

@@ -83,12 +83,17 @@ TEST(SimilarityMeasure, compute1DEMD)
     std::vector<float> sensor_durations_float1(sensor_durations[0].begin(), sensor_durations[0].end());
     std::vector<float> sensor_durations_float16(sensor_durations[16].begin(), sensor_durations[16].end());
     std::vector<float> sensor_durations_float17(sensor_durations[17].begin(), sensor_durations[17].end());
+    std::vector<float> sensor_durations_float30(sensor_durations[30].begin(), sensor_durations[30].end());
+    std::vector<float> sensor_durations_float31(sensor_durations[31].begin(), sensor_durations[31].end());
 
     similarityMeasure->compute1DEMD(sensor_durations_float1,sensor_durations_float16,dist);
     ASSERT_EQ(expectedEMDValue1,dist);
 
     similarityMeasure->compute1DEMD(sensor_durations_float1,sensor_durations_float17,dist);
     ASSERT_EQ(expectedEMDValue2,dist);
+
+    similarityMeasure->compute1DEMD(sensor_durations_float30,sensor_durations_float31,dist);
+    cout<<dist<<endl;
 
     if(featureContainer)
     {

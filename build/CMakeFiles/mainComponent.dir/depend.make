@@ -845,6 +845,8 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o: /usr
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o: /usr/include/python2.7/warnings.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/python-runner.cpp.o: /usr/include/python2.7/weakrefobject.h
 
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/sensor-event-processor.cpp.o: ../components/aruba/impl/src/sensor-event-processor.cpp
+
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/constants.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/logger.h

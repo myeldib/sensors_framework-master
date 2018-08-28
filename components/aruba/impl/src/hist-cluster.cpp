@@ -21,13 +21,13 @@
 
 HistogramClustering::HistogramClustering(string hist_folder_path,Home* home)
 {
-    COUT<<"HistogramClustering"<<endl;
-    logging::INFO("HistogramClustering");
+  COUT<<"HistogramClustering"<<endl;
+  logging::INFO("HistogramClustering");
 
-    this->hist_folder_path=hist_folder_path;
-    this->home=home;
-    this->serialize_results = false;
-    this->num_threads = boost::thread::hardware_concurrency();
+  this->hist_folder_path=hist_folder_path;
+  this->home=home;
+  this->serialize_results = false;
+  this->num_threads = boost::thread::hardware_concurrency();
 }
 
 /**
@@ -35,8 +35,8 @@ HistogramClustering::HistogramClustering(string hist_folder_path,Home* home)
  */
 HistogramClustering::~HistogramClustering()
 {
-    COUT<<"~HistogramClustering"<<endl;
-    logging::INFO("~HistogramClustering");
+  COUT<<"~HistogramClustering"<<endl;
+  logging::INFO("~HistogramClustering");
 }
 
 /**
@@ -44,36 +44,63 @@ HistogramClustering::~HistogramClustering()
  */
 void HistogramClustering::destroy()
 {
-    COUT<<"destroy"<<endl;
-    logging::INFO("destroy");
-    delete this;
+  COUT<<"destroy"<<endl;
+  logging::INFO("destroy");
+  delete this;
 }
 
 /**
  * @brief HistogramClustering::writeClusteredPatterns
  * @param sensor_clusters
+ * @param sensors_hist
+ * @param activity_labels
  * @param folder_name
  */
-void HistogramClustering::writeClusteredPatterns(vector<int> sensor_clusters, string folder_name)
+void HistogramClustering::writeClusteredPatterns(vector<int> sensor_clusters, vector<vector<int> >& sensors_hist,vector<string>& short_interval_activity_labels, string folder_name)
 {
-    COUT<<"writeClusteredPatterns"<<endl;
-    logging::INFO("writeClusteredPatterns");
+  COUT<<"writeClusteredPatterns"<<endl;
+  logging::INFO("writeClusteredPatterns");
 
-    string sequence_patterns_filename = Common::buildOutputFile(this->hist_folder_path,Common::extractDayFromFileName(folder_name),"sequence_patterns");
-    string discovered_patterns_filename = Common::buildOutputFile(this->hist_folder_path,Common::extractDayFromFileName(folder_name),"discovered_patterns");
+  string sequence_patterns_filename = Common::buildOutputFile(this->hist_folder_path,Common::extractDayFromFileName(folder_name),"sequence_patterns");
+  string discovered_patterns_filename = Common::buildOutputFile(this->hist_folder_path,Common::extractDayFromFileName(folder_name),"discovered_patterns");
+  string sensors_hist_filename = Common::buildOutputFile(this->hist_folder_path,Common::extractDayFromFileName(folder_name),"sensors_duration");
+  string short_internval_activity_label_filename = Common::buildOutputFile(this->hist_folder_path,Common::extractDayFromFileName(folder_name),"activity_per_window");
 
-    fstream  clustered_patterns_file(sequence_patterns_filename, std::fstream::out);
-    fstream  discovered_patterns_file(discovered_patterns_filename, std::fstream::out);
+  fstream  clustered_patterns_file(sequence_patterns_filename, std::fstream::out);
+  fstream  discovered_patterns_file(discovered_patterns_filename, std::fstream::out);
+  fstream  sensors_hist_file(sensors_hist_filename, std::fstream::out);
+  fstream  short_interval_activity_label_file(short_internval_activity_label_filename, std::fstream::out);
 
-    //write clustered patterns to file
-    for(int j=0;j<sensor_clusters.size();j++)
-        clustered_patterns_file<<sensor_clusters[j]<<endl;
+  //write clustered patterns to file
+  for(int j=0;j<sensor_clusters.size();j++)
+    clustered_patterns_file<<sensor_clusters[j]<<endl;
 
-    //erase duplicates to write unique discovered patterns to file
-    Common::eraseDuplicatesFromVector(sensor_clusters);
+  //write sensors duration after updating pattern states during within day clustering
+  for(int i =0;i<sensors_hist.size();i++)
+    {
+      vector<int> sensors_dur = sensors_hist[i];
+      for(int j = 0; j<sensors_dur.size();j++)
+        {
+          sensors_hist_file<<sensors_dur[j]<<",";
+        }
 
-    for(int j=0;j<sensor_clusters.size();j++)
-        discovered_patterns_file<<sensor_clusters[j]<<endl;
+      sensors_hist_file<<endl;
+    }
+
+  //write activity labels after updating pattern states during with day clustering
+  for(int i =0; i<short_interval_activity_labels.size();i++)
+    short_interval_activity_label_file<<short_interval_activity_labels[i]<<endl;
+
+
+  //erase duplicates to write unique discovered patterns to file
+  Common::eraseDuplicatesFromVector(sensor_clusters);
+
+  for(int j=0;j<sensor_clusters.size();j++)
+    discovered_patterns_file<<sensor_clusters[j]<<endl;
+
+  clustered_patterns_file.close();
+  discovered_patterns_file.close();
+  sensors_hist_file.close();
 
 }
 
@@ -85,45 +112,58 @@ void HistogramClustering::writeClusteredPatterns(vector<int> sensor_clusters, st
  */
 void HistogramClustering::run()
 {
-    COUT<<"generateClustersFromHistograms"<<endl;
-    logging::INFO("generateClustersFromHistograms");
+  COUT<<"generateClustersFromHistograms"<<endl;
+  logging::INFO("generateClustersFromHistograms");
 
-    this->home->readHomeSetup();
+  this->home->readHomeSetup();
 
-    //get folder names
-    vector<string> data_files=Common::getFolderFileNames(this->hist_folder_path,"");
-    //load long duration feature vectors from files (location histograms)
-    vector<string> location_hist_files=Common::getFolderFileNames(this->hist_folder_path,"locations_duration");
+  //get folder names
+  vector<string> data_files=Common::getFolderFileNames(this->hist_folder_path,"");
+  //load long duration feature vectors from files (location histograms)
+  vector<string> location_hist_files=Common::getFolderFileNames(this->hist_folder_path,"locations_duration");
 
-    //load short duration feature vectors from files (sensor histograms)
-    vector<string> sensor_hist_files=Common::getFolderFileNames(this->hist_folder_path,"sensors_duration");
+  //load short duration feature vectors from files (sensor histograms)
+  vector<string> sensor_hist_files=Common::getFolderFileNames(this->hist_folder_path,"sensors_duration");
+
+  //load short interval activities in order to be updated
+  vector<string> short_interval_activity_files = Common::getFolderFileNames(this->hist_folder_path,"activity_per_window");
+
+  //load long interval activities in order to be used to update the short interval activity labels
+  vector<string> long_interval_activity_files = Common::getFolderFileNames(this->hist_folder_path,"activity_per_long_window");
 
 
-    vector<vector<string> > sensor_hist_files_per_thread,location_hist_files_per_thread,data_files_per_thread;
+  vector<vector<string> > sensor_hist_files_per_thread,location_hist_files_per_thread,short_interval_activity_files_per_thread,long_interval_activity_files_per_thread,data_files_per_thread;
 
-    divideElementsBetweenThreads_(location_hist_files,
-                                  sensor_hist_files,
-                                  data_files,
-                                  location_hist_files_per_thread,
-                                  sensor_hist_files_per_thread,
-                                  data_files_per_thread);
+  divideElementsBetweenThreads_(location_hist_files,
+                                sensor_hist_files,
+                                data_files,
+                                short_interval_activity_files,
+                                long_interval_activity_files,
+                                location_hist_files_per_thread,
+                                sensor_hist_files_per_thread,
+                                data_files_per_thread,
+                                short_interval_activity_files_per_thread,
+                                long_interval_activity_files_per_thread);
 
-    //threading to generateClusters_
-    for(int i =0;i<sensor_hist_files_per_thread.size();i++)
+  //threading to generateClusters_
+  for(int i =0;i<sensor_hist_files_per_thread.size();i++)
     {
-        vector<string> sub_sensor_hist_files= sensor_hist_files_per_thread[i];
-        vector<string> sub_location_hist_files = location_hist_files_per_thread[i];
-        vector<string> sub_data_files = data_files_per_thread[i];
+      vector<string> sub_sensor_hist_files= sensor_hist_files_per_thread[i];
+      vector<string> sub_location_hist_files = location_hist_files_per_thread[i];
+      vector<string> sub_data_files = data_files_per_thread[i];
+      vector<string> sub_short_interval_activity_files= short_interval_activity_files_per_thread[i];
+      vector<string> sub_long_interval_activity_files= long_interval_activity_files_per_thread[i];
 
-        for(int j=0;j<sub_sensor_hist_files.size();j++)
+
+      for(int j=0;j<sub_sensor_hist_files.size();j++)
         {
-            logging::INFO(sub_sensor_hist_files[j]);
+          logging::INFO(sub_sensor_hist_files[j]);
         }
 
-        g.add_thread(new boost::thread([sub_location_hist_files,sub_sensor_hist_files,sub_data_files,this] { generateClusters_(sub_location_hist_files,sub_sensor_hist_files,sub_data_files); }));
+      g.add_thread(new boost::thread([sub_location_hist_files,sub_sensor_hist_files,sub_data_files,sub_short_interval_activity_files,sub_long_interval_activity_files,this] { generateClusters_(sub_location_hist_files,sub_sensor_hist_files,sub_data_files,sub_short_interval_activity_files,sub_long_interval_activity_files); }));
     }
 
-    g.join_all();
+  g.join_all();
 
 }
 
@@ -132,140 +172,179 @@ void HistogramClustering::run()
  * @param location_hist_files
  * @param sensor_hist_files
  * @param data_files
+ * @param short_interval_activity_files
+ * @param long_interval_activity_files
  * @param location_hist_files_per_thread
  * @param sensor_hist_files_per_thread
  * @param data_files_per_thread
+ * @param short_interval_activity_files_per_thread
+ * @param long_interval_activity_files_per_thread
  */
 void HistogramClustering::divideElementsBetweenThreads_(vector<string> location_hist_files,
                                                         vector<string> sensor_hist_files,
                                                         vector<string> data_files,
+                                                        vector<string> short_interval_activity_files,
+                                                        vector<string> long_interval_activity_files,
                                                         vector<vector<string> > &location_hist_files_per_thread,
                                                         vector<vector<string> > &sensor_hist_files_per_thread,
-                                                        vector<vector<string> > &data_files_per_thread)
+                                                        vector<vector<string> > &data_files_per_thread,
+                                                        vector<vector<string> > &short_interval_activity_files_per_thread,
+                                                        vector<vector<string> > &long_interval_activity_files_per_thread)
 {
-    logging::INFO("divideElementsBetweenThreads_");
+  logging::INFO("divideElementsBetweenThreads_");
 
-    //number of assigned elements to run in each thread
-    vector<int> num_elements_per_thread;
+  //number of assigned elements to run in each thread
+  vector<int> num_elements_per_thread;
 
-    Common::computeNumElementsPerThread(sensor_hist_files.size(),num_threads,num_elements_per_thread);
+  Common::computeNumElementsPerThread(sensor_hist_files.size(),num_threads,num_elements_per_thread);
 
-    int from=0;
-    int to = num_elements_per_thread[0];
+  int from=0;
+  int to = num_elements_per_thread[0];
 
-    for(int i =0; i<num_elements_per_thread.size();i++)
+  for(int i =0; i<num_elements_per_thread.size();i++)
     {
-        logging::INFO("from:"+
-                      std::to_string(from)+
-                      "\t"+
-                      "to:"+
-                      std::to_string(to));
+      logging::INFO("from:"+
+                    std::to_string(from)+
+                    "\t"+
+                    "to:"+
+                    std::to_string(to));
 
 
-        divideElements_(from,
-                        to,
-                        location_hist_files,
-                        sensor_hist_files,
-                        data_files,
-                        location_hist_files_per_thread,
-                        sensor_hist_files_per_thread,
-                        data_files_per_thread);
+      divideElements_(from,
+                      to,
+                      location_hist_files,
+                      sensor_hist_files,
+                      data_files,
+                      short_interval_activity_files,
+                      long_interval_activity_files,
+                      location_hist_files_per_thread,
+                      sensor_hist_files_per_thread,
+                      data_files_per_thread,
+                      short_interval_activity_files_per_thread,
+                      long_interval_activity_files_per_thread);
 
-        //update ranges
-        from = to;
-        to+=num_elements_per_thread[i+1];
+      //update ranges
+      from = to;
+      to+=num_elements_per_thread[i+1];
     }
 }
 
 /**
- * @brief HistogramClustering::divideElementsBetweenThreads_
+ * @brief HistogramClustering::divideElements_
  * @param from
  * @param to
  * @param location_hist_files
  * @param sensor_hist_files
+ * @param data_files
+ * @param short_interval_activity_files
+ * @param long_interval_activity_files
  * @param location_hist_files_per_thread
  * @param sensor_hist_files_per_thread
+ * @param data_files_per_thread
+ * @param short_interval_activity_files_per_thread
+ * @param long_interval_activity_files_per_thread
  */
 void HistogramClustering::divideElements_(int from,
                                           int to,
                                           vector<string> location_hist_files,
                                           vector<string> sensor_hist_files,
                                           vector<string> data_files,
+                                          vector<string> short_interval_activity_files,
+                                          vector<string> long_interval_activity_files,
                                           vector<vector<string> > &location_hist_files_per_thread,
                                           vector<vector<string> > &sensor_hist_files_per_thread,
-                                          vector<vector<string> >& data_files_per_thread)
+                                          vector<vector<string> >& data_files_per_thread,
+                                          vector<vector<string> >& short_interval_activity_files_per_thread,
+                                          vector<vector<string> >& long_interval_activity_files_per_thread)
 {
-    logging::INFO("divideElements_");
+  logging::INFO("divideElements_");
 
-    vector<string> sub_sensor_hist_files;
-    vector<string> sub_location_hist_files;
-    vector<string> sub_data_files;
+  vector<string> sub_sensor_hist_files;
+  vector<string> sub_location_hist_files;
+  vector<string> sub_data_files;
+  vector<string> sub_short_interval_activity_files;
+  vector<string> sub_long_interval_activity_files;
 
-    //copy data to sub container
-    for(int i = from; i< to; i++)
+  //copy data to sub container
+  for(int i = from; i< to; i++)
     {
-        sub_sensor_hist_files.push_back(sensor_hist_files[i]);
-        sub_location_hist_files.push_back(location_hist_files[i]);
-        sub_data_files.push_back(data_files[i]);
+      sub_sensor_hist_files.push_back(sensor_hist_files[i]);
+      sub_location_hist_files.push_back(location_hist_files[i]);
+      sub_data_files.push_back(data_files[i]);
+      sub_short_interval_activity_files.push_back(short_interval_activity_files[i]);
+      sub_long_interval_activity_files.push_back(long_interval_activity_files[i]);
 
     }
 
-    location_hist_files_per_thread.push_back(sub_location_hist_files);
-    sensor_hist_files_per_thread.push_back(sub_sensor_hist_files);
-    data_files_per_thread.push_back(sub_data_files);
+  location_hist_files_per_thread.push_back(sub_location_hist_files);
+  sensor_hist_files_per_thread.push_back(sub_sensor_hist_files);
+  data_files_per_thread.push_back(sub_data_files);
+  short_interval_activity_files_per_thread.push_back(sub_short_interval_activity_files);
+  long_interval_activity_files_per_thread.push_back(sub_long_interval_activity_files);
 }
 
 /**
- * @brief HistogramClustering::generateClusters
+ * @brief HistogramClustering::generateClusters_
  * @param location_hist_files
  * @param sensor_hist_files
+ * @param data_files
+ * @param short_interval_activity_files
+ * @param long_interval_activity_files
  */
-void HistogramClustering::generateClusters_(vector<string> location_hist_files, vector<string> sensor_hist_files,vector<string> data_files)
+void HistogramClustering::generateClusters_(vector<string> location_hist_files, vector<string> sensor_hist_files,vector<string> data_files,vector<string> short_interval_activity_files,vector<string> long_interval_activity_files)
 {
-    logging::INFO("generateClusters_");
+  logging::INFO("generateClusters_");
 
-    //for each day, discover duration clusters using the long and short duration feature vectors
-    for(int i=0;i<location_hist_files.size();i++)
+  //for each day, discover duration clusters using the long and short duration feature vectors
+  for(int i=0;i<location_hist_files.size();i++)
     {
 
-        COUT<<"Processing file:"<<location_hist_files[i]<<endl;
-        logging::INFO("Processing file:"+location_hist_files[i]);
+      COUT<<"Processing file:"<<location_hist_files[i]<<endl;
+      logging::INFO("Processing file:"+location_hist_files[i]);
 
-        //read long duration feature vectors from file
-        vector<vector<int> > locations_hist=readHistogramFile(location_hist_files[i]);
-        //read short duration feature vectors from file
-        vector<vector<int> > sensors_hist=readHistogramFile(sensor_hist_files[i]);
+      //read long duration feature vectors from file
+      vector<vector<int> > locations_hist=readHistogramFile(location_hist_files[i]);
+      //read short duration feature vectors from file
+      vector<vector<int> > sensors_hist=readHistogramFile(sensor_hist_files[i]);
+      //read short interval activity labels from file
+      vector<string>short_interval_activity_labels = readActivityFile(short_interval_activity_files[i]);
+      //read long interval activity labels from file
+      vector<string>long_interval_activity_labels = readActivityFile(long_interval_activity_files[i]);
 
-        //declare vairables to represent the found clusters from the long and short durations
-        //all feature vectors (short or long) are assigned to cluster 0 by default
-        vector<int> locations_clusters(locations_hist.size(),0);
-        vector<int> sensor_clusters(sensors_hist.size(),0);
+      //declare vairables to represent the found clusters from the long and short durations
+      //all feature vectors (short or long) are assigned to cluster 0 by default
+      vector<int> locations_clusters(locations_hist.size(),0);
+      vector<int> sensor_clusters(sensors_hist.size(),0);
 
-        //find clusters using long duration feature vectors (location histograms)
-        clusterHistograms(locations_hist,home->getLocationTimeInterval(),home->getTimeConstraint(),home->getLongDurationLambda(),locations_clusters);
+      //find clusters using long duration feature vectors (location histograms)
+      clusterHistograms(locations_hist,home->getLocationTimeInterval(),home->getTimeConstraint(),home->getLongDurationLambda(),locations_clusters);
 
 
-        for(int j=0;j<locations_clusters.size();j++)
+      for(int j=0;j<locations_clusters.size();j++)
         {
-            COUT<<j<<"\t"<<locations_clusters[j]<<endl;
+          COUT<<j<<"\t"<<locations_clusters[j]<<endl;
         }
 
-        //assign short duration feature vectors to the discovered clusters
-        mapLocationClustersToSensorClusters(locations_clusters,sensor_clusters,home->getSensorTimeInterval(),home->getLocationTimeInterval());
+      //assign short duration feature vectors to the discovered clusters
+      //update pattern states
+      //update short interval activity labels using long interval activity labels
+      mapLocationClustersToSensorClusters(locations_clusters,locations_hist,sensor_clusters,sensors_hist,short_interval_activity_labels,long_interval_activity_labels,home->getSensorTimeInterval(),home->getLocationTimeInterval());
 
-        for(int j=0;j<sensor_clusters.size();j++)
+      for(int j=0;j<sensor_clusters.size();j++)
         {
-            COUT<<j<<"\t"<<sensor_clusters[j]<<endl;
+          COUT<<j<<"\t"<<sensor_clusters[j]<<endl;
         }
 
-        //discover clusters for the unassigned short duration feature vectors from the previous step
-        clusterHistograms(sensors_hist,home->getSensorTimeInterval(),home->getTimeConstraint(),home->getShortDurationLambda(),sensor_clusters);
+      //discover clusters for the unassigned short duration feature vectors from the previous step
+      clusterHistograms(sensors_hist,home->getSensorTimeInterval(),home->getTimeConstraint(),home->getShortDurationLambda(),sensor_clusters);
 
-        //write clustered sensors
-        writeClusteredPatterns(sensor_clusters,data_files[i]);
+      //write clustered sensors
+      //write sensor durations after updating pattern states
+      //write activity labels after updating pattern states
+      writeClusteredPatterns(sensor_clusters,sensors_hist,short_interval_activity_labels,data_files[i]);
 
-        //write location abs duration difference to file
-        writeAbsDifferenceToFile(locations_hist,sensors_hist);
+      //write location abs duration difference to file
+      writeAbsDifferenceToFile(locations_hist,sensors_hist);
 
     }
 }
@@ -278,34 +357,34 @@ void HistogramClustering::generateClusters_(vector<string> location_hist_files, 
 void HistogramClustering::writeAbsDifferenceToFile(vector<vector<int> > locations_hist, vector<vector<int> >sensors_hist)
 {
 
-    COUT<<"writeAbsDifferenceToFile"<<endl;
-    logging::INFO("writeAbsDifferenceToFile");
+  COUT<<"writeAbsDifferenceToFile"<<endl;
+  logging::INFO("writeAbsDifferenceToFile");
 
-    if(this->serialize_results)
+  if(this->serialize_results)
     {
-        string location_output= this->hist_folder_path;
-        location_output.append("location_abs_diff.txt");
-        int rc= serializeAbsDurationDifference(locations_hist,home->getLocationTimeInterval(),home->getTimeConstraint(),location_output);
+      string location_output= this->hist_folder_path;
+      location_output.append("location_abs_diff.txt");
+      int rc= serializeAbsDurationDifference(locations_hist,home->getLocationTimeInterval(),home->getTimeConstraint(),location_output);
 
-        if(!rc)
+      if(!rc)
         {
-            cerr<<"ERROR serializeAbsDurationDifference"<<endl;
-            logging::ERROR("serializeAbsDurationDifference");
+          cerr<<"ERROR serializeAbsDurationDifference"<<endl;
+          logging::ERROR("serializeAbsDurationDifference");
         }
 
     }
 
-    //write location abs duration difference to file
-    if(this->serialize_results)
+  //write location abs duration difference to file
+  if(this->serialize_results)
     {
-        string sensor_output= this->hist_folder_path;
-        sensor_output.append("sensor_abs_diff.txt");
-        int rc= serializeAbsDurationDifference(sensors_hist,home->getSensorTimeInterval(),home->getTimeConstraint(),sensor_output);
+      string sensor_output= this->hist_folder_path;
+      sensor_output.append("sensor_abs_diff.txt");
+      int rc= serializeAbsDurationDifference(sensors_hist,home->getSensorTimeInterval(),home->getTimeConstraint(),sensor_output);
 
-        if(!rc)
+      if(!rc)
         {
-            cerr<<"ERROR serializeAbsDurationDifference"<<endl;
-            logging::ERROR("serializeAbsDurationDifference");
+          cerr<<"ERROR serializeAbsDurationDifference"<<endl;
+          logging::ERROR("serializeAbsDurationDifference");
         }
 
     }
@@ -320,43 +399,69 @@ void HistogramClustering::writeAbsDifferenceToFile(vector<vector<int> > location
  */
 int HistogramClustering::computeDaySegment(int window_id, int time_constraint, int time_interval)
 {
-    COUT<<"computeDaySegment"<<endl;
-    logging::INFO("computeDaySegment");
+  COUT<<"computeDaySegment"<<endl;
+  logging::INFO("computeDaySegment");
 
-    return ceil((window_id*time_interval*1.0)/time_constraint*1.0);
+  return ceil((window_id*time_interval*1.0)/time_constraint*1.0);
 }
 /**
  * @brief HistogramClustering::mapLocationClustersToSensorClusters
  * @param location_clusters: the discovered clusters from the long duration feature vectors (location histograms)
+ * @param location_hist: include location durations and pattern state
  * @param sensor_clusters: the long duration cluster ids are assgined to the short duration feature vectors.
+ * @param sensor_hist: includes sensors durations, and pattern state
+ * @param short_interval_activity_labels: include activity labels at short time interval level, which need to be updated with the pattern state
+ * @param long_interval_activity_labels: include the activity labels at long time interval level, which is used to update the short interval activity labels
  * @param short_time_interval: the size of the short duration feature vector in unit of time (seconds)
  * @param long_time_interval: the size of the long duration feature vector in unit of time (seconds)
  */
-void HistogramClustering:: mapLocationClustersToSensorClusters(vector<int> location_clusters,vector<int>& sensor_clusters, int short_time_interval, int long_time_interval)
+void HistogramClustering:: mapLocationClustersToSensorClusters(vector<int> location_clusters,vector<vector<int> >& location_hist,vector<int>& sensor_clusters,vector<vector<int> >&  sensor_hist, vector<string>& short_interval_activity_labels,vector<string>& long_interval_activity_labels,int short_time_interval, int long_time_interval)
 {
-    COUT<<"mapLocationClustersToSensorClusters"<<endl;
-    logging::INFO("mapLocationClustersToSensorClusters");
+  COUT<<"mapLocationClustersToSensorClusters"<<endl;
+  logging::INFO("mapLocationClustersToSensorClusters");
 
-    map<int,int> discovered_patterns=Common::countVectorElements(location_clusters);
+  map<int,int> discovered_patterns=Common::countVectorElements(location_clusters);
+  float factor = long_time_interval/short_time_interval;
 
-
-    for( auto l : discovered_patterns )
+  for( auto l : discovered_patterns )
     {
-        //get cluster id
-        int cluster_id=l.first;
+      //get cluster id
+      int cluster_id=l.first;
 
-        for(int i=0; i<location_clusters.size();i++)
+      for(int i=0; i<location_clusters.size();i++)
         {
-            if(cluster_id==location_clusters[i])
+          if(cluster_id==location_clusters[i])
             {
-                //start and end of short time interval window
-                int start_short_window_index=(i*long_time_interval)/short_time_interval;
-                int end_short_window_index=(i*long_time_interval+long_time_interval)/short_time_interval;
+              //start and end of short time interval window
+              int start_short_window_index=(i*long_time_interval)/short_time_interval;
+              int end_short_window_index=(i*long_time_interval+long_time_interval)/short_time_interval;
 
-                for(int j=start_short_window_index;j<end_short_window_index;j++)
+              vector<int> location_dur = location_hist[i];
+
+              for(int j=start_short_window_index;j<end_short_window_index;j++)
                 {
-                    sensor_clusters[j]=cluster_id;
+                  sensor_clusters[j]=cluster_id;
+                  vector<int> sensor_dur = sensor_hist[j];
+                  //update pattern states:
+                  // - sensor_dur.size()-2 = inside pattern state
+                  // - sensor_dur.size()-1 = outside pattern state
+                  //cout<<"cluster_id:"<<cluster_id<<"\t i:"<<(i+1)<<"\t j:"<<(j+1)<<endl;
+                  //cout<<"location pattern state inside:"<<location_dur[location_dur.size()-2]<<"\t outside:"<<location_dur[location_dur.size()-1]<<endl;
+                  //cout<<"before sensor pattern state inside:"<<sensor_dur[sensor_dur.size()-2]<<"\t outside:"<<sensor_dur[sensor_dur.size()-1]<<"\t"<<short_interval_activity_labels[j]<<endl;
+
+                  sensor_dur[sensor_dur.size()-2] = location_dur[location_dur.size()-2]/factor;
+                  sensor_dur[sensor_dur.size()-1] = location_dur[location_dur.size()-1]/factor;
+
+                  //update short interval activity labels using long interval activity labels
+                  short_interval_activity_labels[j] = long_interval_activity_labels[i];
+
+                  //cout<<"after sensor pattern state inside:"<<sensor_dur[sensor_dur.size()-2]<<"\t outside:"<<sensor_dur[sensor_dur.size()-1]<<"\t"<<short_interval_activity_labels[j]<<endl;
+
+
+                  //assign sensor duration back after update the pattern state
+                  sensor_hist[j] = sensor_dur;
                 }
+
             }
 
         }
@@ -380,52 +485,52 @@ void HistogramClustering:: mapLocationClustersToSensorClusters(vector<int> locat
 void HistogramClustering::clusterHistograms(vector<vector<int> > histograms,int time_interval,int time_constraint,int duration_lambda,vector<int>& clusters)
 {
 
-    COUT<<"clusterHistograms"<<endl;
-    logging::INFO("clusterHistograms");
+  COUT<<"clusterHistograms"<<endl;
+  logging::INFO("clusterHistograms");
 
-    //compute number of steps inside a single day segment
-    int step=ceil((time_constraint*1.0)/(time_interval*1.0));
-    //incrementer for the count
-    int step_increment=ceil((time_constraint*1.0)/(time_interval*1.0));
-    //if the list has already cluster ids, then pick up the max id + 1
-    int cluster_id=*max_element(clusters.begin(), clusters.end())+1;
+  //compute number of steps inside a single day segment
+  int step=ceil((time_constraint*1.0)/(time_interval*1.0));
+  //incrementer for the count
+  int step_increment=ceil((time_constraint*1.0)/(time_interval*1.0));
+  //if the list has already cluster ids, then pick up the max id + 1
+  int cluster_id=*max_element(clusters.begin(), clusters.end())+1;
 
-    for (int i = 0; i < histograms.size();i++ )
+  for (int i = 0; i < histograms.size();i++ )
     {
-        //feature vector (histogram)
-        vector<int> hist1=histograms[i];
-        bool update_cluster_id=false;
+      //feature vector (histogram)
+      vector<int> hist1=histograms[i];
+      bool update_cluster_id=false;
 
-        //if feature vector does not belong to any cluster yet, then evaluate it against other feature vectors
-        if(!clusters[i])
+      //if feature vector does not belong to any cluster yet, then evaluate it against other feature vectors
+      if(!clusters[i])
         {
-            //compare current feature vector to others in the same day segment
-            for (int j = i; j < step_increment && j<histograms.size(); j++)
+          //compare current feature vector to others in the same day segment
+          for (int j = i; j < step_increment && j<histograms.size(); j++)
             {
-                //feature vector in same day segment
-                vector<int> hist2=histograms[j];
+              //feature vector in same day segment
+              vector<int> hist2=histograms[j];
 
-                COUT<<"round:"<<i<<"\t"<<j<<"\t"<<cluster_id<<"\t"<<step_increment<<endl;
+              COUT<<"round:"<<i<<"\t"<<j<<"\t"<<cluster_id<<"\t"<<step_increment<<endl;
 
-                //check the similarity between two feature vectors, and the second feature vector has not been assigned to a cluster
-                if(isSimilarHistograms(hist1,hist2,duration_lambda) && !clusters[j])
+              //check the similarity between two feature vectors, and the second feature vector has not been assigned to a cluster
+              if(isSimilarHistograms(hist1,hist2,duration_lambda) && !clusters[j])
                 {
-                    //assign feature vector to a cluster
-                    clusters[j]=cluster_id;
-                    //update cluster ids if no feature vectors are similar for the next comparison
-                    update_cluster_id=true;
+                  //assign feature vector to a cluster
+                  clusters[j]=cluster_id;
+                  //update cluster ids if no feature vectors are similar for the next comparison
+                  update_cluster_id=true;
                 }
 
             }
         }
 
-        //update cluster id
-        if(update_cluster_id)
-            cluster_id++;
+      //update cluster id
+      if(update_cluster_id)
+        cluster_id++;
 
-        //update day segment
-        if(i+1==step_increment)
-            step_increment+=step;
+      //update day segment
+      if(i+1==step_increment)
+        step_increment+=step;
     }
 
 }
@@ -440,54 +545,54 @@ void HistogramClustering::clusterHistograms(vector<vector<int> > histograms,int 
 int HistogramClustering::serializeAbsDurationDifference(vector<vector<int> > histograms, int time_interval, int time_constraint,string file_name)
 {
 
-    COUT<<"serializeAbsDurationDifference"<<endl;
-    logging::INFO("serializeAbsDurationDifference");
+  COUT<<"serializeAbsDurationDifference"<<endl;
+  logging::INFO("serializeAbsDurationDifference");
 
-    FileSeparator* fs = new FileSeparator(file_name,this->hist_folder_path);
-    int rc = 1;
+  FileSeparator* fs = new FileSeparator(file_name,this->hist_folder_path);
+  int rc = 1;
 
-    //compute number of steps inside a single day segment
-    int step=ceil((time_constraint*1.0)/(time_interval*1.0));
-    //incrementer for the count
-    int step_increment=ceil((time_constraint*1.0)/(time_interval*1.0));
+  //compute number of steps inside a single day segment
+  int step=ceil((time_constraint*1.0)/(time_interval*1.0));
+  //incrementer for the count
+  int step_increment=ceil((time_constraint*1.0)/(time_interval*1.0));
 
 
-    for (int i = 0; i < histograms.size();i++ )
+  for (int i = 0; i < histograms.size();i++ )
     {
-        //feature vector (histogram)
-        vector<int> hist1=histograms[i];
+      //feature vector (histogram)
+      vector<int> hist1=histograms[i];
 
-        //compare current feature vector to others in the same day segment
-        for (int j = i; j < step_increment && j<histograms.size(); j++)
+      //compare current feature vector to others in the same day segment
+      for (int j = i; j < step_increment && j<histograms.size(); j++)
         {
-            //feature vector in same day segment
-            vector<int> hist2=histograms[j];
+          //feature vector in same day segment
+          vector<int> hist2=histograms[j];
 
-            //compute the feature vectors difference (histogram difference)
-            int hist_diff=computeHistogramsDifference(hist1,hist2);
+          //compute the feature vectors difference (histogram difference)
+          int hist_diff=computeHistogramsDifference(hist1,hist2);
 
-            COUT<<hist_diff<<endl;
-            logging::INFO(std::to_string(hist_diff));
+          COUT<<hist_diff<<endl;
+          logging::INFO(std::to_string(hist_diff));
 
-            rc =fs->writeValueToFile(hist_diff);
+          rc =fs->writeValueToFile(hist_diff);
 
-            if(!rc)
+          if(!rc)
             {
-                return rc;
+              return rc;
             }
 
         }
 
-        //update day segment
-        if(i+1==step_increment)
-            step_increment+=step;
+      //update day segment
+      if(i+1==step_increment)
+        step_increment+=step;
     }
 
-    if(fs)
+  if(fs)
     {
-        delete fs;
+      delete fs;
     }
-    return rc;
+  return rc;
 
 }
 
@@ -501,24 +606,24 @@ int HistogramClustering::serializeAbsDurationDifference(vector<vector<int> > his
  */
 bool HistogramClustering::isSimilarHistograms(vector<int> hist1, vector<int> hist2,int duration_lambda)
 {
-    COUT<<"isSimilarHistograms"<<endl;
-    //logging::INFO("isSimilarHistograms");
+  COUT<<"isSimilarHistograms"<<endl;
+  //logging::INFO("isSimilarHistograms");
 
-    //compute the feature vectors difference (histogram difference)
-    int hist_diff=computeHistogramsDifference(hist1,hist2);
+  //compute the feature vectors difference (histogram difference)
+  int hist_diff=computeHistogramsDifference(hist1,hist2);
 
-    //compute degree of similarity using an exponential function, where the duration lambda determine the degree of similarity
-    //the function computers the degree of similairty using durations in miliseconds, and lambda in miliseconds as well
-    float degree_similarity_histograms=1-std::exp(-1*pow(2,-1*(duration_lambda+Constants::EXP_ONE_MILI_SECOND))*hist_diff);
+  //compute degree of similarity using an exponential function, where the duration lambda determine the degree of similarity
+  //the function computers the degree of similairty using durations in miliseconds, and lambda in miliseconds as well
+  float degree_similarity_histograms=1-std::exp(-1*pow(2,-1*(duration_lambda+Constants::EXP_ONE_MILI_SECOND))*hist_diff);
 
-    COUT<<hist_diff<<"\t"<<degree_similarity_histograms<<"\t"<<duration_lambda<<endl;
+  COUT<<hist_diff<<"\t"<<degree_similarity_histograms<<"\t"<<duration_lambda<<endl;
 
 
-    //if the degree of similarity is less than a threshold (area under the curve)
-    if(degree_similarity_histograms<=home->getHistogramSimilarityThreshold())
-        return true;
+  //if the degree of similarity is less than a threshold (area under the curve)
+  if(degree_similarity_histograms<=home->getHistogramSimilarityThreshold())
+    return true;
 
-    return false;
+  return false;
 }
 /**
  * @brief HistogramClustering::computeHistogramsDifference
@@ -529,18 +634,18 @@ bool HistogramClustering::isSimilarHistograms(vector<int> hist1, vector<int> his
  */
 float HistogramClustering::computeHistogramsDifference(vector<int> hist1, vector<int> hist2)
 {
-    COUT<<"computeHistogramsDifference"<<endl;
-    //logging::INFO("computeHistogramsDifference");
+  COUT<<"computeHistogramsDifference"<<endl;
+  //logging::INFO("computeHistogramsDifference");
 
-    int hist_diff=0;
-    for(int i=0;i<hist1.size();i++)
+  int hist_diff=0;
+  for(int i=0;i<hist1.size();i++)
     {
-        COUT<<hist1[i]<<"\t"<<hist2[i]<<"\t"<<abs(hist1[i]-hist2[i])<<endl;
+      COUT<<hist1[i]<<"\t"<<hist2[i]<<"\t"<<abs(hist1[i]-hist2[i])<<endl;
 
-        hist_diff+=std::abs(hist1[i]-hist2[i]);
+      hist_diff+=std::abs(hist1[i]-hist2[i]);
     }
 
-    return hist_diff;
+  return hist_diff;
 }
 /**
  * @brief HistogramClustering::readHistogramFile
@@ -549,27 +654,54 @@ float HistogramClustering::computeHistogramsDifference(vector<int> hist1, vector
  */
 vector<vector<int> > HistogramClustering::readHistogramFile(string file_path)
 {
-    COUT<<"readHistogramFile"<<endl;
-    logging::INFO("readHistogramFile");
+  COUT<<"readHistogramFile"<<endl;
+  logging::INFO("readHistogramFile");
 
-    //read histograms of a day instance from file
-    ifstream in_file(file_path);
-    vector<vector<int> > duration_histograms;
+  //read histograms of a day instance from file
+  ifstream in_file(file_path);
+  vector<vector<int> > duration_histograms;
 
-    while (in_file)
+  while (in_file)
     {
-        string line;
-        vector<string> elem;
-        vector<int> duration_histogram;
+      string line;
+      vector<string> elem;
+      vector<int> duration_histogram;
 
-        if (!getline( in_file, line )) break;
+      if (!getline( in_file, line )) break;
 
-        Common::split(line,Constants::COMMA_SEPARATOR,elem);
+      Common::split(line,Constants::COMMA_SEPARATOR,elem);
 
-        for(int i=0;i<elem.size();i++)
-            duration_histogram.push_back(atoi(elem[i].c_str()));
+      for(int i=0;i<elem.size();i++)
+        duration_histogram.push_back(atoi(elem[i].c_str()));
 
-        duration_histograms.push_back(duration_histogram);
+      duration_histograms.push_back(duration_histogram);
     }
-    return duration_histograms;
+  return duration_histograms;
 }
+
+/**
+ * @brief HistogramClustering::readActivityFile
+ * @param file_path
+ * @return
+ */
+vector<string> HistogramClustering::readActivityFile(string file_path)
+{
+  COUT<<"readActivityFile"<<endl;
+  logging::INFO("readActivityFile");
+
+  //read activity labels of a day instance from file
+  ifstream in_file(file_path);
+  vector<string> file_content;
+
+  while (in_file)
+    {
+      string line;
+
+      if (!getline( in_file, line )) break;
+
+
+      file_content.push_back(line);
+    }
+  return file_content;
+}
+

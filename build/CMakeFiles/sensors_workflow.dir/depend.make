@@ -4458,6 +4458,8 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.o: /
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.o: /usr/local/include/opencv2/videostab/wobble_suppression.hpp
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/python-runner.cpp.o: /usr/local/include/opencv2/xfeatures2d/cuda.hpp
 
+CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sensor-event-processor.cpp.o: ../components/aruba/impl/src/sensor-event-processor.cpp
+
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/constants.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/similarity-measure.cpp.o: ../components/aruba/impl/include/logger.h

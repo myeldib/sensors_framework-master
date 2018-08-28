@@ -4,10 +4,11 @@
 //#include "TimeWindowApproachTester.cpp"
 //#include "HistClusterTester.cpp"
 //#include "FeatureReaderTester.cpp"
-#include "FeatureProcessorTester.cpp"
+//#include "FeatureProcessorTester.cpp"
 //#include "SimilarityMeasureTester.cpp"
 //#include "BetweenDayClusteringTester.cpp"
 //#include "HierarchalAgglomerativeClusteringTester.cpp"
+#include "SensorEventProcessorTester.cpp"
 #include <gtest/gtest.h>
 
 int main(int argc, char **argv) {

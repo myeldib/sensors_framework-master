@@ -14,14 +14,14 @@
  */
 TimeWindow::TimeWindow(Home* home,string folder_path)
 {
-    COUT<<"TimeWindow"<<endl;
-    logging::INFO("TimeWindow");
+  COUT<<"TimeWindow"<<endl;
+  logging::INFO("TimeWindow");
 
-    this->home=home;
-    home->readHomeSetup();
-    this->folder_path=folder_path;
-    this->sensor_data_files=Common::getFolderFileNames(folder_path,"");
-    this->num_threads = boost::thread::hardware_concurrency();
+  this->home=home;
+  home->readHomeSetup();
+  this->folder_path=folder_path;
+  this->sensor_data_files=Common::getFolderFileNames(folder_path,"");
+  this->num_threads = 1;//boost::thread::hardware_concurrency();
 
 }
 
@@ -30,8 +30,8 @@ TimeWindow::TimeWindow(Home* home,string folder_path)
  */
 TimeWindow::~TimeWindow()
 {
-    COUT<<"~TimeWindow"<<endl;
-    logging::INFO("~TimeWindow");
+  COUT<<"~TimeWindow"<<endl;
+  logging::INFO("~TimeWindow");
 }
 
 /**
@@ -40,28 +40,28 @@ TimeWindow::~TimeWindow()
 void TimeWindow::run()
 {
 
-    COUT<<"run"<<endl;
-    logging::INFO("run");
+  COUT<<"run"<<endl;
+  logging::INFO("run");
 
 
-    vector<vector<string> > sensor_data_files_per_thread;
+  vector<vector<string> > sensor_data_files_per_thread;
 
-    divideElementsBetweenThreads_(sensor_data_files,sensor_data_files_per_thread);
+  divideElementsBetweenThreads_(sensor_data_files,sensor_data_files_per_thread);
 
-    //threading to generateClusters_
-    for(int i =0;i<sensor_data_files_per_thread.size();i++)
+  //threading to generateClusters_
+  for(int i =0;i<sensor_data_files_per_thread.size();i++)
     {
-        vector<string> sub_sensor_data_files= sensor_data_files_per_thread[i];
+      vector<string> sub_sensor_data_files= sensor_data_files_per_thread[i];
 
-        for(int j=0;j<sub_sensor_data_files.size();j++)
+      for(int j=0;j<sub_sensor_data_files.size();j++)
         {
-            logging::INFO(sub_sensor_data_files[j]);
+          logging::INFO(sub_sensor_data_files[j]);
         }
 
-        g.add_thread(new boost::thread([sub_sensor_data_files,this] { createDurationWindow_(sub_sensor_data_files); }));
+      g.add_thread(new boost::thread([sub_sensor_data_files,this] { createDurationWindow_(sub_sensor_data_files); }));
     }
 
-    g.join_all();
+  g.join_all();
 
 }
 
@@ -71,35 +71,35 @@ void TimeWindow::run()
  * @param sensor_data_files_per_thread
  */
 void TimeWindow::divideElementsBetweenThreads_(vector<string> sensor_data_files,
-                                                        vector<vector<string> > &sensor_data_files_per_thread)
+                                               vector<vector<string> > &sensor_data_files_per_thread)
 {
-    logging::INFO("divideElementsBetweenThreads_");
+  logging::INFO("divideElementsBetweenThreads_");
 
-    //number of assigned elements to run in each thread
-    vector<int> num_elements_per_thread;
+  //number of assigned elements to run in each thread
+  vector<int> num_elements_per_thread;
 
-    Common::computeNumElementsPerThread(sensor_data_files.size(),num_threads,num_elements_per_thread);
+  Common::computeNumElementsPerThread(sensor_data_files.size(),num_threads,num_elements_per_thread);
 
-    int from=0;
-    int to = num_elements_per_thread[0];
+  int from=0;
+  int to = num_elements_per_thread[0];
 
-    for(int i =0; i<num_elements_per_thread.size();i++)
+  for(int i =0; i<num_elements_per_thread.size();i++)
     {
-        logging::INFO("from:"+
-                      std::to_string(from)+
-                      "\t"+
-                      "to:"+
-                      std::to_string(to));
+      logging::INFO("from:"+
+                    std::to_string(from)+
+                    "\t"+
+                    "to:"+
+                    std::to_string(to));
 
 
-        divideElements_(from,
-                        to,
-                        sensor_data_files,
-                        sensor_data_files_per_thread);
+      divideElements_(from,
+                      to,
+                      sensor_data_files,
+                      sensor_data_files_per_thread);
 
-        //update ranges
-        from = to;
-        to+=num_elements_per_thread[i+1];
+      //update ranges
+      from = to;
+      to+=num_elements_per_thread[i+1];
     }
 }
 
@@ -111,22 +111,22 @@ void TimeWindow::divideElementsBetweenThreads_(vector<string> sensor_data_files,
  * @param sensor_data_files_per_thread
  */
 void TimeWindow::divideElements_(int from,
-                                          int to,
-                                          vector<string> sensor_data_files,
-                                          vector<vector<string> > &sensor_data_files_per_thread)
+                                 int to,
+                                 vector<string> sensor_data_files,
+                                 vector<vector<string> > &sensor_data_files_per_thread)
 {
-    logging::INFO("divideElements_");
+  logging::INFO("divideElements_");
 
-    vector<string> sub_sensor_data_files;
+  vector<string> sub_sensor_data_files;
 
 
-    //copy data to sub container
-    for(int i = from; i< to; i++)
+  //copy data to sub container
+  for(int i = from; i< to; i++)
     {
-        sub_sensor_data_files.push_back(sensor_data_files[i]);
+      sub_sensor_data_files.push_back(sensor_data_files[i]);
     }
 
-    sensor_data_files_per_thread.push_back(sub_sensor_data_files);
+  sensor_data_files_per_thread.push_back(sub_sensor_data_files);
 }
 
 /**
@@ -135,13 +135,13 @@ void TimeWindow::divideElements_(int from,
  */
 void TimeWindow::createDurationWindow_(vector<string> sensor_data_files)
 {
-    logging::INFO("createDurationWindow_");
-    for(int i=0;i<sensor_data_files.size();i++)
+  logging::INFO("createDurationWindow_");
+  for(int i=0;i<sensor_data_files.size();i++)
     {
-        cout<<"Processing file:"<<sensor_data_files[i]<<endl;
-        logging::INFO("Processing file:"+sensor_data_files[i]);
+      cout<<"Processing file:"<<sensor_data_files[i]<<endl;
+      logging::INFO("Processing file:"+sensor_data_files[i]);
 
-        processDateFile(sensor_data_files[i]);
+      processDateFile(sensor_data_files[i]);
     }
 }
 
@@ -152,14 +152,14 @@ void TimeWindow::createDurationWindow_(vector<string> sensor_data_files)
  */
 time_t TimeWindow::initializeClock(string file_name)
 {
-    COUT<<"initializeClock"<<endl;
-    logging::INFO("initializeClock");
+  COUT<<"initializeClock"<<endl;
+  logging::INFO("initializeClock");
 
-    //extract date from file path, and prepare clock from midnight
-    string date_from_file=Common::extractDayFromFileName(file_name)+Constants::DATE_SEPARATOR+"00:00:00.00"+Constants::MILI_SECOND_SEPARATOR;
+  //extract date from file path, and prepare clock from midnight
+  string date_from_file=Common::extractDayFromFileName(file_name)+Constants::DATE_SEPARATOR+"00:00:00.00"+Constants::MILI_SECOND_SEPARATOR;
 
-    //convert date to miliseconds
-    return Common::millis_from_date(date_from_file);
+  //convert date to miliseconds
+  return Common::millis_from_date(date_from_file);
 }
 
 /**
@@ -171,51 +171,92 @@ time_t TimeWindow::initializeClock(string file_name)
  */
 void TimeWindow::checkWindowDuration(vector<int> &duration_info, int time_interval)
 {
-    COUT<<"checkWindowDuration"<<endl;
-    //logging::INFO("checkWindowDuration");
+  COUT<<"checkWindowDuration"<<endl;
+  //logging::INFO("checkWindowDuration");
 
-    int wind_dur_sum=std::accumulate(duration_info.begin(),duration_info.end(),0);
+  int wind_dur_sum=std::accumulate(duration_info.begin(),duration_info.end(),0);
 
-    if(wind_dur_sum!=time_interval*Constants::ONE_SECOND_IN_MELI)
+  if(wind_dur_sum!=time_interval*Constants::ONE_SECOND_IN_MELI)
     {
-        //if time interval is larger, than sum, then add leftover to max duration
-        if(time_interval>wind_dur_sum)
-            *max_element(duration_info.rbegin(), duration_info.rend())+=time_interval*Constants::ONE_SECOND_IN_MELI-wind_dur_sum;
-        //if durations sum is larger, then leftover of durations sum from max duration
-        else
-            *max_element(duration_info.rbegin(), duration_info.rend())-=wind_dur_sum-time_interval*Constants::ONE_SECOND_IN_MELI;
+      //if time interval is larger, than sum, then add leftover to max duration
+      if(time_interval>wind_dur_sum)
+        *max_element(duration_info.rbegin(), duration_info.rend())+=time_interval*Constants::ONE_SECOND_IN_MELI-wind_dur_sum;
+      //if durations sum is larger, then leftover of durations sum from max duration
+      else
+        *max_element(duration_info.rbegin(), duration_info.rend())-=wind_dur_sum-time_interval*Constants::ONE_SECOND_IN_MELI;
     }
 }
 
 /**
+ * @brief TimeWindow::writeActivityInfo
+ * @param sensorEventProcessor
+ * @param ds_outfile
+ * @param activity_info
+ * @param is_label_synched
+ */
+void TimeWindow::writeActivityInfo(SensorEventProcessor* sensorEventProcessor,fstream &ds_outfile, vector<int> &activity_info, bool& is_label_synched )
+{
+  string activity="";
+
+  //delayed feature, so label has to be synched
+  if(is_label_synched && sensorEventProcessor->getEnteredPatternState())
+    {
+      activity = "Enter_Home";
+    }
+  //early label with wrong feature, synch label with feature
+  else if(!sensorEventProcessor->getEnteredPatternState() && !sensorEventProcessor->getDefaultPatternState() && activity_info[home->getActivityLabelStringIntMap().at("Enter_Home")]>0 && is_label_synched)
+    {
+      activity = "Leave_Home";
+
+    }
+  //enable label synching
+  else if(activity_info[home->getActivityLabelStringIntMap().at("Leave_Home")]>0)
+    {
+      activity = "Leave_Home";
+      is_label_synched = true;
+    }
+  else
+    {
+      is_label_synched = false;
+      int indexOfDominantActivity =std::distance(activity_info.begin(), std::max_element(activity_info.begin(), activity_info.end()));
+      activity = home->getActivityLabelIntStringMap().at(indexOfDominantActivity);
+
+    }
+
+  ds_outfile<<activity<<endl;
+}
+/**
  * @brief TimeWindow::writeDurationInfo
  * @param ds_outfile
+ * @param sensorEventProcessor
+ * @param sensor_events
  * @param duration_info
  * @param time_interval
- * @param is_duration
  */
-void TimeWindow::writeDurationInfo(fstream &ds_outfile, vector<int> &duration_info,int time_interval,bool is_duration)
+void TimeWindow::writeDurationInfo(fstream &ds_outfile,SensorEventProcessor* sensorEventProcessor,vector<string>& sensor_events,vector<int> &duration_info,int time_interval)
 {
-    COUT<<"writeDurationInfo"<<endl;
-    //logging::INFO("writeDurationInfo");
+  COUT<<"writeDurationInfo"<<endl;
+  //logging::INFO("writeDurationInfo");
 
-    if(is_duration)
+  //handling sensor, and location durations
+  if(sensorEventProcessor!= NULL && sensor_events.size()!=0 )
     {
-        checkWindowDuration(duration_info,time_interval);
+      checkWindowDuration(duration_info,time_interval);
 
-        for(int i=0;i<duration_info.size();i++)
+      //check pattern state
+      //- inside [x,0]
+      //- outside [0,x]
+      //- default [0,0]
+      sensorEventProcessor->checkPatternState(sensor_events,time_interval,duration_info);
+
+      for(int i=0;i<duration_info.size();i++)
         {
-            ds_outfile<<duration_info[i]<<",";
+          ds_outfile<<duration_info[i]<<",";
         }
 
-        ds_outfile<<endl;
+      ds_outfile<<endl;
     }
-    else
-    {
-        int indexOfDominantActivity =std::distance(duration_info.begin(), std::max_element(duration_info.begin(), duration_info.end()));
-        string activity = home->getActivityLabelIntStringMap().at(indexOfDominantActivity);
-        ds_outfile<<activity<<endl;
-    }
+
 }
 
 /**
@@ -225,69 +266,78 @@ void TimeWindow::writeDurationInfo(fstream &ds_outfile, vector<int> &duration_in
  * @param activity_times
  * @param time_interval
  * @param ds_outfile
+ * @param is_label_synched
  */
-void TimeWindow::selectMostDominantActivityInWindow(Sensor *s, time_t &lower_limit, vector<int> &activity_times, int time_interval, fstream &ds_outfile)
+void TimeWindow::selectMostDominantActivityInWindow(Sensor *s,SensorEventProcessor* sensorEventProcessor, time_t &lower_limit, vector<int> &activity_times, int time_interval, fstream &ds_outfile,bool& is_label_synched)
 {
 
-    COUT<<"selectMostDominantActivityInWindow"<<endl;
-    //logging::INFO("selectMostDominantActivityInWindow");
+  COUT<<"selectMostDominantActivityInWindow"<<endl;
+  //logging::INFO("selectMostDominantActivityInWindow");
 
-    //set window upper limit
-    time_t upper_limit=lower_limit+time_interval*Constants::ONE_SECOND_IN_MELI;
+  //set window upper limit
+  time_t upper_limit=lower_limit+time_interval*Constants::ONE_SECOND_IN_MELI;
 
-    //check if sensor time within window limit
-    if(lower_limit<= s->getTimeMilli() && s->getTimeMilli() <=upper_limit)
+  //check if sensor time within window limit
+  if(lower_limit<= s->getTimeMilli() && s->getTimeMilli() <=upper_limit)
     {
-        activity_times[home->getActivityLabelStringIntMap().at(s->getActivity())]++;
+      activity_times[home->getActivityLabelStringIntMap().at(s->getActivity())]++;
     }
-    else
+  else
     {
-        //update window lower limit
-        lower_limit+=time_interval*Constants::ONE_SECOND_IN_MELI;
+      //update window lower limit
+      lower_limit+=time_interval*Constants::ONE_SECOND_IN_MELI;
 
-        //write to file
-        writeDurationInfo(ds_outfile,activity_times,time_interval,false);
+      //write to file
+      writeActivityInfo(sensorEventProcessor,ds_outfile,activity_times,is_label_synched);
 
-        //clear pevious window duration info
-        std::fill(activity_times.begin(), activity_times.end(), 0);
+      //clear pevious window duration info
+      std::fill(activity_times.begin(), activity_times.end(), 0);
 
-        //update current window with new activity info
-        activity_times[home->getActivityLabelStringIntMap().at(s->getActivity())]++;
+      //update current window with new activity info
+      activity_times[home->getActivityLabelStringIntMap().at(s->getActivity())]++;
     }
 
 }
 
 /**
  * @brief TimeWindow::createDurationInfoWindow
- * @param s: sensor event
- * @param lower_limit: lower window time limit
- * @param duration_info: duration information for N sensors or M locations
- * @param time_interval: size of window
- * @param ds_outfile: write durations information to file
+ * @param s
+ * @param sensorEventProcessor
+ * @param sensor_events
+ * @param lower_limit
+ * @param duration_info
+ * @param time_interval
+ * @param ds_outfile
  */
-void TimeWindow::createDurationInfoWindow(Sensor *s,time_t& lower_limit,vector<int>& duration_info,int time_interval,fstream& ds_outfile)
+void TimeWindow::createDurationInfoWindow(Sensor *s,SensorEventProcessor* sensorEventProcessor,vector<string>& sensor_events,time_t& lower_limit,vector<int>& duration_info,int time_interval,fstream& ds_outfile)
 {
 
-    COUT<<"createDurationInfoWindow"<<endl;
+  COUT<<"createDurationInfoWindow"<<endl;
 
 
-    //set window upper limit
-    time_t upper_limit=lower_limit+time_interval*Constants::ONE_SECOND_IN_MELI;
+  //set window upper limit
+  time_t upper_limit=lower_limit+time_interval*Constants::ONE_SECOND_IN_MELI;
 
-    //check if sensor time within window limit
-    if(lower_limit<= s->getTimeMilli() && s->getTimeMilli() <=upper_limit)
-        duration_info[s->getId2()]+=s->getDuration();
-    else
+  //check if sensor time within window limit
+  if(lower_limit<= s->getTimeMilli() && s->getTimeMilli() <=upper_limit)
     {
-        //update window lower limit
-        lower_limit+=time_interval*Constants::ONE_SECOND_IN_MELI;
-        //write to file
-        writeDurationInfo(ds_outfile,duration_info,time_interval,true);
-        //clear pevious window duration info
-        std::fill(duration_info.begin(), duration_info.end(), 0);
+      duration_info[s->getId2()]+=s->getDuration();
+      sensor_events.push_back(s->getId());
+    }
+  else
+    {
+      //update window lower limit
+      lower_limit+=time_interval*Constants::ONE_SECOND_IN_MELI;
 
-        //update current window with new duration info
-        duration_info[s->getId2()]+=s->getDuration();
+      //write to file
+      writeDurationInfo(ds_outfile,sensorEventProcessor,sensor_events,duration_info,time_interval);
+      //clear pevious window duration info
+      std::fill(duration_info.begin(), duration_info.end(), 0);
+      sensor_events.clear();
+
+      //update current window with new duration info
+      duration_info[s->getId2()]+=s->getDuration();
+      sensor_events.push_back(s->getId());
     }
 
 }
@@ -298,75 +348,94 @@ void TimeWindow::createDurationInfoWindow(Sensor *s,time_t& lower_limit,vector<i
  */
 void TimeWindow::processDateFile(string file_name)
 {
-    COUT<<"processDateFile"<<endl;
-    logging::INFO("processDateFile");
+  COUT<<"processDateFile"<<endl;
+  logging::INFO("processDateFile");
 
-    //read day instance file
-    ifstream in_file(file_name);
-    //prepare initial time in miliseconds from date
-    time_t sensor_lower_limit=initializeClock(file_name);
-    time_t activity_lower_limit=initializeClock(file_name);
-    time_t location_lower_limit=initializeClock(file_name);
+  //read day instance file
+  ifstream in_file(file_name);
+  //prepare initial time in miliseconds from date
+  time_t sensor_lower_limit=initializeClock(file_name);
+  time_t activity_short_window_lower_limit=initializeClock(file_name);
+  time_t activity_long_window_lower_limit=initializeClock(file_name);
+  time_t location_lower_limit=initializeClock(file_name);
 
-    //prepare holders for duration information
-    vector<int> sensors_duration(home->getHomeSensorsId().size(),0);
-    vector<int> locations_duration(home->getNumerOfLocations(),0);
-    vector<int> activity_times(home->getActivityLabelStringIntMap().size(),0);
+  //prepare holders for duration information
+  vector<int> sensors_duration(home->getHomeSensorsId().size(),0);
+  vector<int> locations_duration(home->getNumerOfLocations(),0);
+  vector<string> sensor_events_short_interval;
+  vector<string> sensor_events_long_interval;
+  vector<int> activity_times_short_window(home->getActivityLabelStringIntMap().size(),0);
+  vector<int> activity_times_long_window(home->getActivityLabelStringIntMap().size(),0);
 
-    //prepare output file
-    fstream  sensor_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"sensors_duration"), std::fstream::out);
-    fstream  location_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"locations_duration"), std::fstream::out);
-    fstream  activity_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"activity_per_window"), std::fstream::out);
+  //prepare output file
+  fstream  sensor_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"sensors_duration"), std::fstream::out);
+  fstream  location_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"locations_duration"), std::fstream::out);
+  fstream  activity_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"activity_per_window"), std::fstream::out);
+  fstream  activity_long_window_outfile(Common::buildOutputFile(this->folder_path,Common::extractDayFromFileName(file_name),"activity_per_long_window"), std::fstream::out);
 
+  //sensor event processor to mark leave, and enter home activities in short interval window
+  SensorEventProcessor* shortInternvalEventProcessor = new SensorEventProcessor();
 
-    while (in_file)
+  //sensor event processor to mark leave, and enter home activities in long interval window
+  SensorEventProcessor* longInternvalEventProcessor = new SensorEventProcessor();
+
+  bool is_short_window_label_synched = false;
+  bool is_long_window_label_synched = false;
+
+  while (in_file)
     {
-        string line;
-        vector<string> elem;
-        Sensor* s= new Sensor();
+      string line;
+      vector<string> elem;
+      Sensor* s= new Sensor();
 
-        if (!getline( in_file, line )) break;
+      if (!getline( in_file, line )) break;
 
-        Common::split(line,Constants::COMMA_SEPARATOR,elem);
+      Common::split(line,Constants::COMMA_SEPARATOR,elem);
 
-        //extract sensor information from file
-        s->setReadableTime(elem[0]);
-        s->setDuration(atof(elem[1].c_str()));
-        s->setTimeMilli(Common::millis_from_date(elem[0]));
-        s->setId(elem[2]);
-        s->setActivity(elem[4]);
-        s->setLocation(elem[5]);
-        //set sensor type:local or area sensor
-        s->setType(home->getHomeSensorsType()[s->getId2()]);
-        //set sensor position in home
-        s->setPosition(home->getHomeSensorsPosition()[s->getId2()]);
+      //extract sensor information from file
+      s->setReadableTime(elem[0]);
+      s->setDuration(atof(elem[1].c_str()));
+      s->setTimeMilli(Common::millis_from_date(elem[0]));
+      s->setId(elem[2]);
+      s->setActivity(elem[4]);
+      s->setLocation(elem[5]);
+      //set sensor type:local or area sensor
+      s->setType(home->getHomeSensorsType()[s->getId2()]);
+      //set sensor position in home
+      s->setPosition(home->getHomeSensorsPosition()[s->getId2()]);
 
-        //compute sensor time interval window
-        createDurationInfoWindow(s,sensor_lower_limit,sensors_duration,home->getSensorTimeInterval(),sensor_outfile);
+      //compute sensor time interval window
+      createDurationInfoWindow(s,shortInternvalEventProcessor,sensor_events_short_interval,sensor_lower_limit,sensors_duration,home->getSensorTimeInterval(),sensor_outfile);
 
-        selectMostDominantActivityInWindow(s,activity_lower_limit,activity_times,home->getSensorTimeInterval(),activity_outfile);
+      selectMostDominantActivityInWindow(s,shortInternvalEventProcessor,activity_short_window_lower_limit,activity_times_short_window,home->getSensorTimeInterval(),activity_outfile,is_short_window_label_synched);
 
-        //set location id
-        s->setId2(home->getLocationAsInt(s->getLocation()));
+      //set location id
+      s->setId2(home->getLocationAsInt(s->getLocation()));
 
-        //compute location time interval window
-        createDurationInfoWindow(s,location_lower_limit,locations_duration,home->getLocationTimeInterval(),location_outfile);
+      //compute location time interval window
+      createDurationInfoWindow(s,longInternvalEventProcessor,sensor_events_long_interval,location_lower_limit,locations_duration,home->getLocationTimeInterval(),location_outfile);
+
+      selectMostDominantActivityInWindow(s,longInternvalEventProcessor,activity_long_window_lower_limit,activity_times_long_window,home->getLocationTimeInterval(),activity_long_window_outfile,is_long_window_label_synched);
 
 
-        delete s;
+      delete s;
 
     }
 
-    //write last window
-    writeDurationInfo(sensor_outfile,sensors_duration,home->getSensorTimeInterval(),true);
-    writeDurationInfo(location_outfile,locations_duration,home->getLocationTimeInterval(),true);
-    writeDurationInfo(activity_outfile,activity_times,home->getSensorTimeInterval(),false);
+  //write last window
+  writeDurationInfo(sensor_outfile,shortInternvalEventProcessor,sensor_events_short_interval,sensors_duration,home->getSensorTimeInterval());
+  writeDurationInfo(location_outfile,longInternvalEventProcessor,sensor_events_long_interval,locations_duration,home->getLocationTimeInterval());
+  writeActivityInfo(shortInternvalEventProcessor,activity_outfile,activity_times_short_window,is_short_window_label_synched);
+  writeActivityInfo(longInternvalEventProcessor,activity_long_window_outfile,activity_times_long_window,is_long_window_label_synched);
 
 
-    //close files
-    sensor_outfile.close();
-    location_outfile.close();
-    in_file.close();
+  //close files
+  sensor_outfile.close();
+  location_outfile.close();
+  activity_long_window_outfile.close();
+  in_file.close();
+
+  delete shortInternvalEventProcessor;
 
 }
 

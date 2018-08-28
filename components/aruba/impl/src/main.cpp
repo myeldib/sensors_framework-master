@@ -182,11 +182,11 @@ int main(int argc, char ** argv)
 
   logging::configure({ {"type", "file"}, {"file_name", logger_file.c_str()} });
   //runWithinDayPattern();
-  //runBetweenDayPattern();
+  runBetweenDayPattern();
   //runHierachalCluster();
   //runClusterRecognition();
   //runModelRecognition();
-  runEvaluation();
+  //runEvaluation();
 
   int stop_s=clock();
   stringstream message;
@@ -194,7 +194,9 @@ int main(int argc, char ** argv)
   message<< fixed;
   message << "time: " << (stop_s-start_s)/double(CLOCKS_PER_SEC)*1000 << endl;
   logging::INFO(message.str());
+  cout<<message.str()<<endl;
 
+//  /std::system("systemctl suspend");
   //string test="../result/2010-12-26/locations_duration.txt";
 
   //HeatMap* hp = new HeatMap(test,home);

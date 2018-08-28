@@ -359,6 +359,33 @@ src/PreprocessingStageTester.cpp.s:
 	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/PreprocessingStageTester.cpp.s
 .PHONY : src/PreprocessingStageTester.cpp.s
 
+src/SensorEventProcessorTester.o: src/SensorEventProcessorTester.cpp.o
+
+.PHONY : src/SensorEventProcessorTester.o
+
+# target to build an object file
+src/SensorEventProcessorTester.cpp.o:
+	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o
+.PHONY : src/SensorEventProcessorTester.cpp.o
+
+src/SensorEventProcessorTester.i: src/SensorEventProcessorTester.cpp.i
+
+.PHONY : src/SensorEventProcessorTester.i
+
+# target to preprocess a source file
+src/SensorEventProcessorTester.cpp.i:
+	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.i
+.PHONY : src/SensorEventProcessorTester.cpp.i
+
+src/SensorEventProcessorTester.s: src/SensorEventProcessorTester.cpp.s
+
+.PHONY : src/SensorEventProcessorTester.s
+
+# target to generate assembly for a file
+src/SensorEventProcessorTester.cpp.s:
+	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.s
+.PHONY : src/SensorEventProcessorTester.cpp.s
+
 src/SimilarityMeasureTester.o: src/SimilarityMeasureTester.cpp.o
 
 .PHONY : src/SimilarityMeasureTester.o
@@ -477,6 +504,9 @@ help:
 	@echo "... src/PreprocessingStageTester.o"
 	@echo "... src/PreprocessingStageTester.i"
 	@echo "... src/PreprocessingStageTester.s"
+	@echo "... src/SensorEventProcessorTester.o"
+	@echo "... src/SensorEventProcessorTester.i"
+	@echo "... src/SensorEventProcessorTester.s"
 	@echo "... src/SimilarityMeasureTester.o"
 	@echo "... src/SimilarityMeasureTester.i"
 	@echo "... src/SimilarityMeasureTester.s"

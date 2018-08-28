@@ -67,7 +67,7 @@ void BetweenDayClustering::init(string reader_folder_path,string feature_writer_
     similarityMeasure = new SimilarityMeasure(home_setup_file,time_window_config);
 
 
-    //similarity threshold for emd in miliseconds
+    //similarity threshold for emd between (1.0 - 0.0 )
     this->emd_similarity_threshold = home->getEmdSimilarityThreshold();
     this->new_initial_pattern_index = 10000;
 }

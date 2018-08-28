@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o"
   "CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o"
   "CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o"
+  "CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o"
   "libtests.pdb"
   "libtests.a"
 )
