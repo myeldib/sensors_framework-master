@@ -43,6 +43,7 @@ SET(${MODULE_NAME}_SOURCES
     src/BetweenDayClusteringTester.cpp
     src/HierarchalAgglomerativeClusteringTester.cpp
     src/SensorEventProcessorTester.cpp
+    src/SorterProcessorTester.cpp
 
 )
 

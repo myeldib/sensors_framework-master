@@ -1125,6 +1125,36 @@ components/aruba/impl/src/similarity-measure.cpp.s:
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/similarity-measure.cpp.s
 .PHONY : components/aruba/impl/src/similarity-measure.cpp.s
 
+components/aruba/impl/src/sorter-processor.o: components/aruba/impl/src/sorter-processor.cpp.o
+
+.PHONY : components/aruba/impl/src/sorter-processor.o
+
+# target to build an object file
+components/aruba/impl/src/sorter-processor.cpp.o:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sorter-processor.cpp.o
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sorter-processor.cpp.o
+.PHONY : components/aruba/impl/src/sorter-processor.cpp.o
+
+components/aruba/impl/src/sorter-processor.i: components/aruba/impl/src/sorter-processor.cpp.i
+
+.PHONY : components/aruba/impl/src/sorter-processor.i
+
+# target to preprocess a source file
+components/aruba/impl/src/sorter-processor.cpp.i:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sorter-processor.cpp.i
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sorter-processor.cpp.i
+.PHONY : components/aruba/impl/src/sorter-processor.cpp.i
+
+components/aruba/impl/src/sorter-processor.s: components/aruba/impl/src/sorter-processor.cpp.s
+
+.PHONY : components/aruba/impl/src/sorter-processor.s
+
+# target to generate assembly for a file
+components/aruba/impl/src/sorter-processor.cpp.s:
+	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/components/aruba/impl/src/sorter-processor.cpp.s
+	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/sorter-processor.cpp.s
+.PHONY : components/aruba/impl/src/sorter-processor.cpp.s
+
 components/aruba/impl/src/time-window-approach.o: components/aruba/impl/src/time-window-approach.cpp.o
 
 .PHONY : components/aruba/impl/src/time-window-approach.o
@@ -1323,6 +1353,9 @@ help:
 	@echo "... components/aruba/impl/src/similarity-measure.o"
 	@echo "... components/aruba/impl/src/similarity-measure.i"
 	@echo "... components/aruba/impl/src/similarity-measure.s"
+	@echo "... components/aruba/impl/src/sorter-processor.o"
+	@echo "... components/aruba/impl/src/sorter-processor.i"
+	@echo "... components/aruba/impl/src/sorter-processor.s"
 	@echo "... components/aruba/impl/src/time-window-approach.o"
 	@echo "... components/aruba/impl/src/time-window-approach.i"
 	@echo "... components/aruba/impl/src/time-window-approach.s"

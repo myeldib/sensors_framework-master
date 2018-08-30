@@ -108,29 +108,38 @@ components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o: .
 components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o: ../components/aruba/tests/src/SimilarityMeasureTester.cpp
 
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/constants.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/feature-container.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/feature-reader.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/home.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/logger.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/sensor.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/sorter-processor.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/impl/include/utilities.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
+components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o: ../components/aruba/tests/src/SorterProcessorTester.cpp
+
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/constants.h
+components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/feature-container.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/file-separator.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/home.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/logger.h
+components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/sensor-event-processor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/sensor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/time-window-approach.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/impl/include/utilities.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o: ../components/aruba/tests/src/TimeWindowApproachTester.cpp
 
-components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/between-day-clustering.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/feature-container.h
-components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/feature-processor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/feature-reader.h
-components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/feature-writer.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/home.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/logger.h
-components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/patterns-statistics.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/sensor.h
-components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/similarity-measure.h
+components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/impl/include/utilities.h
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/tests/inc/test-constants.h
-components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/tests/src/BetweenDayClusteringTester.cpp
+components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/tests/src/SorterProcessorTester.cpp
 components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o: ../components/aruba/tests/src/main.cpp
 

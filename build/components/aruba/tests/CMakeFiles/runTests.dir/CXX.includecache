@@ -6,22 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../components/aruba/impl/include/between-day-clustering.h
-feature-reader.h
--
-feature-writer.h
--
-feature-processor.h
--
-similarity-measure.h
--
-logger.h
--
-patterns-statistics.h
--
-home.h
--
-
 ../components/aruba/impl/include/constants.h
 string
 -
@@ -30,36 +14,12 @@ string
 utilities.h
 -
 
-../components/aruba/impl/include/feature-processor.h
-feature-container.h
--
-home.h
--
-logger.h
--
-
 ../components/aruba/impl/include/feature-reader.h
 utilities.h
 -
 home.h
 -
 feature-container.h
--
-logger.h
--
-
-../components/aruba/impl/include/feature-writer.h
-feature-container.h
--
-constants.h
--
-utilities.h
--
-home.h
--
-iostream
--
-string
 -
 logger.h
 -
@@ -110,38 +70,24 @@ ctime
 cstdlib
 -
 
-../components/aruba/impl/include/patterns-statistics.h
-vector
--
-feature-writer.h
--
-home.h
--
-logger.h
--
-
 ../components/aruba/impl/include/sensor.h
 string
 -
 opencv2/opencv.hpp
 -
 
-../components/aruba/impl/include/similarity-measure.h
+../components/aruba/impl/include/sorter-processor.h
+algorithm
+-
+vector
+-
 vector
 -
 iostream
 -
-opencv/cv.h
--
-opencv/cxcore.h
--
-opencv2/imgproc/imgproc.hpp
-../components/aruba/impl/include/opencv2/imgproc/imgproc.hpp
 logger.h
 -
-home.h
--
-constants.h
+feature-container.h
 -
 
 ../components/aruba/impl/include/utilities.h
@@ -174,35 +120,23 @@ sensor.h
 string
 -
 
-/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/BetweenDayClusteringTester.cpp
-test-constants.h
+/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SorterProcessorTester.cpp
+home.h
 -
-between-day-clustering.h
+sorter-processor.h
+-
+feature-reader.h
+-
+test-constants.h
 -
 gtest/gtest.h
 -
 
 /home/meldib/work_space/sensors_workflow/components/aruba/tests/src/main.cpp
-BetweenDayClusteringTester.cpp
-/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/BetweenDayClusteringTester.cpp
+SorterProcessorTester.cpp
+/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SorterProcessorTester.cpp
 gtest/gtest.h
 -
-
-/usr/local/include/opencv/cv.h
-opencv2/core/core_c.h
-/usr/local/include/opencv/opencv2/core/core_c.h
-opencv2/imgproc/imgproc_c.h
-/usr/local/include/opencv/opencv2/imgproc/imgproc_c.h
-opencv2/photo/photo_c.h
-/usr/local/include/opencv/opencv2/photo/photo_c.h
-opencv2/video/tracking_c.h
-/usr/local/include/opencv/opencv2/video/tracking_c.h
-opencv2/objdetect/objdetect_c.h
-/usr/local/include/opencv/opencv2/objdetect/objdetect_c.h
-
-/usr/local/include/opencv/cxcore.h
-opencv2/core/core_c.h
-/usr/local/include/opencv/opencv2/core/core_c.h
 
 /usr/local/include/opencv2/calib3d.hpp
 opencv2/core.hpp
@@ -269,16 +203,6 @@ opencv2/core/check.hpp
 /usr/local/include/opencv2/core/check.hpp
 opencv2/core/base.hpp
 -
-
-/usr/local/include/opencv2/core/core_c.h
-opencv2/core/types_c.h
-/usr/local/include/opencv2/core/opencv2/core/types_c.h
-cxcore.h
-/usr/local/include/opencv2/core/cxcore.h
-cxcore.h
-/usr/local/include/opencv2/core/cxcore.h
-opencv2/core/utility.hpp
-/usr/local/include/opencv2/core/opencv2/core/utility.hpp
 
 /usr/local/include/opencv2/core/cuda.hpp
 opencv2/core.hpp
@@ -505,24 +429,6 @@ opencv2/core/cvstd.hpp
 /usr/local/include/opencv2/core/opencv2/core/cvstd.hpp
 opencv2/core/matx.hpp
 /usr/local/include/opencv2/core/opencv2/core/matx.hpp
-
-/usr/local/include/opencv2/core/types_c.h
-ipl.h
--
-ipl/ipl.h
--
-opencv2/core/cvdef.h
-/usr/local/include/opencv2/core/opencv2/core/cvdef.h
-assert.h
--
-stdlib.h
--
-string.h
--
-float.h
--
-opencv2/core.hpp
-/usr/local/include/opencv2/core/opencv2/core.hpp
 
 /usr/local/include/opencv2/core/utility.hpp
 opencv2/core.hpp
@@ -1046,18 +952,6 @@ opencv2/imgproc.hpp
 opencv2/highgui.hpp
 /usr/local/include/opencv2/opencv2/highgui.hpp
 
-/usr/local/include/opencv2/imgproc/imgproc.hpp
-opencv2/imgproc.hpp
-/usr/local/include/opencv2/imgproc/opencv2/imgproc.hpp
-
-/usr/local/include/opencv2/imgproc/imgproc_c.h
-opencv2/imgproc/types_c.h
-/usr/local/include/opencv2/imgproc/opencv2/imgproc/types_c.h
-
-/usr/local/include/opencv2/imgproc/types_c.h
-opencv2/core/core_c.h
-/usr/local/include/opencv2/imgproc/opencv2/core/core_c.h
-
 /usr/local/include/opencv2/ml.hpp
 opencv2/core.hpp
 /usr/local/include/opencv2/opencv2/core.hpp
@@ -1080,14 +974,6 @@ opencv2/objdetect/detection_based_tracker.hpp
 
 /usr/local/include/opencv2/objdetect/detection_based_tracker.hpp
 opencv2/core.hpp
--
-vector
--
-
-/usr/local/include/opencv2/objdetect/objdetect_c.h
-opencv2/core/core_c.h
-/usr/local/include/opencv2/objdetect/opencv2/core/core_c.h
-deque
 -
 vector
 -
@@ -1159,10 +1045,6 @@ opencv2/core.hpp
 /usr/local/include/opencv2/opencv2/core.hpp
 opencv2/imgproc.hpp
 /usr/local/include/opencv2/opencv2/imgproc.hpp
-
-/usr/local/include/opencv2/photo/photo_c.h
-opencv2/core/core_c.h
-/usr/local/include/opencv2/photo/opencv2/core/core_c.h
 
 /usr/local/include/opencv2/shape.hpp
 opencv2/shape/emdL1.hpp
@@ -1325,10 +1207,6 @@ opencv2/core.hpp
 /usr/local/include/opencv2/video/opencv2/core.hpp
 opencv2/imgproc.hpp
 /usr/local/include/opencv2/video/opencv2/imgproc.hpp
-
-/usr/local/include/opencv2/video/tracking_c.h
-opencv2/imgproc/types_c.h
-/usr/local/include/opencv2/video/opencv2/imgproc/types_c.h
 
 /usr/local/include/opencv2/videoio.hpp
 opencv2/core.hpp

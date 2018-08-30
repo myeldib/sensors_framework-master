@@ -413,6 +413,33 @@ src/SimilarityMeasureTester.cpp.s:
 	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.s
 .PHONY : src/SimilarityMeasureTester.cpp.s
 
+src/SorterProcessorTester.o: src/SorterProcessorTester.cpp.o
+
+.PHONY : src/SorterProcessorTester.o
+
+# target to build an object file
+src/SorterProcessorTester.cpp.o:
+	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o
+.PHONY : src/SorterProcessorTester.cpp.o
+
+src/SorterProcessorTester.i: src/SorterProcessorTester.cpp.i
+
+.PHONY : src/SorterProcessorTester.i
+
+# target to preprocess a source file
+src/SorterProcessorTester.cpp.i:
+	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.i
+.PHONY : src/SorterProcessorTester.cpp.i
+
+src/SorterProcessorTester.s: src/SorterProcessorTester.cpp.s
+
+.PHONY : src/SorterProcessorTester.s
+
+# target to generate assembly for a file
+src/SorterProcessorTester.cpp.s:
+	cd /home/meldib/work_space/sensors_workflow/build && $(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.s
+.PHONY : src/SorterProcessorTester.cpp.s
+
 src/TimeWindowApproachTester.o: src/TimeWindowApproachTester.cpp.o
 
 .PHONY : src/TimeWindowApproachTester.o
@@ -510,6 +537,9 @@ help:
 	@echo "... src/SimilarityMeasureTester.o"
 	@echo "... src/SimilarityMeasureTester.i"
 	@echo "... src/SimilarityMeasureTester.s"
+	@echo "... src/SorterProcessorTester.o"
+	@echo "... src/SorterProcessorTester.i"
+	@echo "... src/SorterProcessorTester.s"
 	@echo "... src/TimeWindowApproachTester.o"
 	@echo "... src/TimeWindowApproachTester.i"
 	@echo "... src/TimeWindowApproachTester.s"

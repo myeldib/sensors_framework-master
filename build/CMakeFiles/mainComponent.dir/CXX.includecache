@@ -494,6 +494,14 @@ opencv2/opencv.hpp
 logger.h
 -
 
+../components/aruba/impl/include/sensor-event-processor.h
+home.h
+-
+logger.h
+-
+feature-container.h
+-
+
 ../components/aruba/impl/include/sensor.h
 string
 -
@@ -518,6 +526,20 @@ home.h
 constants.h
 -
 
+../components/aruba/impl/include/sorter-processor.h
+algorithm
+-
+vector
+-
+vector
+-
+iostream
+-
+logger.h
+-
+feature-container.h
+-
+
 ../components/aruba/impl/include/time-window-approach.h
 string
 -
@@ -538,6 +560,8 @@ constants.h
 home.h
 -
 sensor.h
+-
+sensor-event-processor.h
 -
 logger.h
 -
@@ -699,27 +723,11 @@ home.h
 -
 
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/main.cpp
-within-day-clustering.h
+iostream
 -
-between-day-clustering.h
+algorithm
 -
-hierarchal-agglomerative-clustering.h
--
-heatmap.h
--
-feature-reader.h
--
-cluster-recognition.h
--
-model-recognition.h
--
-evaluation.h
--
-logger.h
--
-ctime
--
-chrono
+vector
 -
 
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/model-recognition.cpp
@@ -739,9 +747,15 @@ python-runner.h
 -
 
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sensor-event-processor.cpp
+sensor-event-processor.h
+-
 
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/similarity-measure.cpp
 similarity-measure.h
+-
+
+/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sorter-processor.cpp
+sorter-processor.h
 -
 
 /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/time-window-approach.cpp

@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/PreprocessingStageTester.cpp" "/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir/src/PreprocessingStageTester.cpp.o"
   "/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SensorEventProcessorTester.cpp" "/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir/src/SensorEventProcessorTester.cpp.o"
   "/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SimilarityMeasureTester.cpp" "/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir/src/SimilarityMeasureTester.cpp.o"
+  "/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SorterProcessorTester.cpp" "/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir/src/SorterProcessorTester.cpp.o"
   "/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/TimeWindowApproachTester.cpp" "/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir/src/TimeWindowApproachTester.cpp.o"
   "/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/main.cpp" "/home/meldib/work_space/sensors_workflow/build/components/aruba/tests/CMakeFiles/tests.dir/src/main.cpp.o"
   )

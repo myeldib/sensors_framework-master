@@ -8,7 +8,8 @@
 //#include "SimilarityMeasureTester.cpp"
 //#include "BetweenDayClusteringTester.cpp"
 //#include "HierarchalAgglomerativeClusteringTester.cpp"
-#include "SensorEventProcessorTester.cpp"
+//#include "SensorEventProcessorTester.cpp"
+#include "SorterProcessorTester.cpp"
 #include <gtest/gtest.h>
 
 int main(int argc, char **argv) {

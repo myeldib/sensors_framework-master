@@ -69,7 +69,7 @@ CMAKE_BINARY_DIR = /home/meldib/work_space/sensors_workflow/build
 CMakeFiles/mainComponent.dir/all:
 	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/depend
 	$(MAKE) -f CMakeFiles/mainComponent.dir/build.make CMakeFiles/mainComponent.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36 "Built target mainComponent"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37 "Built target mainComponent"
 .PHONY : CMakeFiles/mainComponent.dir/all
 
 # Include target in all.
@@ -79,7 +79,7 @@ all: CMakeFiles/mainComponent.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/mainComponent.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 36
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 37
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mainComponent.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 0
 .PHONY : CMakeFiles/mainComponent.dir/rule
@@ -106,7 +106,7 @@ clean: CMakeFiles/mainComponent.dir/clean
 CMakeFiles/sensors_workflow.dir/all:
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/depend
 	$(MAKE) -f CMakeFiles/sensors_workflow.dir/build.make CMakeFiles/sensors_workflow.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74 "Built target sensors_workflow"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76 "Built target sensors_workflow"
 .PHONY : CMakeFiles/sensors_workflow.dir/all
 
 # Include target in all.
@@ -116,7 +116,7 @@ all: CMakeFiles/sensors_workflow.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/sensors_workflow.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 36
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 37
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/sensors_workflow.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 0
 .PHONY : CMakeFiles/sensors_workflow.dir/rule
@@ -163,7 +163,7 @@ components/aruba/tests/preinstall:
 components/aruba/tests/CMakeFiles/tests.dir/all:
 	$(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/depend
 	$(MAKE) -f components/aruba/tests/CMakeFiles/tests.dir/build.make components/aruba/tests/CMakeFiles/tests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=75,76,77,78,79,80,81,82,83,84,85,86,87 "Built target tests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=77,78,79,80,81,82,83,84,85,86,87,88,89,90 "Built target tests"
 .PHONY : components/aruba/tests/CMakeFiles/tests.dir/all
 
 # Include target in all.
@@ -173,7 +173,7 @@ all: components/aruba/tests/CMakeFiles/tests.dir/all
 
 # Build rule for subdir invocation for target.
 components/aruba/tests/CMakeFiles/tests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 13
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 14
 	$(MAKE) -f CMakeFiles/Makefile2 components/aruba/tests/CMakeFiles/tests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 0
 .PHONY : components/aruba/tests/CMakeFiles/tests.dir/rule
@@ -200,7 +200,7 @@ clean: components/aruba/tests/CMakeFiles/tests.dir/clean
 components/aruba/tests/CMakeFiles/runTests.dir/all: CMakeFiles/mainComponent.dir/all
 	$(MAKE) -f components/aruba/tests/CMakeFiles/runTests.dir/build.make components/aruba/tests/CMakeFiles/runTests.dir/depend
 	$(MAKE) -f components/aruba/tests/CMakeFiles/runTests.dir/build.make components/aruba/tests/CMakeFiles/runTests.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=37,38 "Built target runTests"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/meldib/work_space/sensors_workflow/build/CMakeFiles --progress-num=38,39 "Built target runTests"
 .PHONY : components/aruba/tests/CMakeFiles/runTests.dir/all
 
 # Include target in all.
@@ -210,7 +210,7 @@ all: components/aruba/tests/CMakeFiles/runTests.dir/all
 
 # Build rule for subdir invocation for target.
 components/aruba/tests/CMakeFiles/runTests.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 38
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 39
 	$(MAKE) -f CMakeFiles/Makefile2 components/aruba/tests/CMakeFiles/runTests.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/meldib/work_space/sensors_workflow/build/CMakeFiles 0
 .PHONY : components/aruba/tests/CMakeFiles/runTests.dir/rule

@@ -104,6 +104,7 @@ SET(HEADERS
     components/aruba/impl/include/model-recognition.h
     components/aruba/impl/include/python-runner.h
     components/aruba/impl/include/sensor-event-processor.h
+    components/aruba/impl/include/sorter-processor.h
 
 
     components/aruba/deprecated/include/SensorReader.h
@@ -147,6 +148,7 @@ SET(SOURCES components/aruba/impl/src/main.cpp
             components/aruba/impl/src/python-runner.cpp
             components/aruba/impl/src/evaluation.cpp
             components/aruba/impl/src/sensor-event-processor.cpp
+            components/aruba/impl/src/sorter-processor.cpp
 
 
             components/aruba/deprecated/src/SensorReader.cpp

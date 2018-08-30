@@ -482,6 +482,10 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/sorter-processor.h">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/include/time-window-approach.h">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
@@ -570,6 +574,10 @@
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
 		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/sorter-processor.cpp">
+			<Option target="mainComponent"/>
+			<Option target="sensors_workflow"/>
+		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/impl/src/time-window-approach.cpp">
 			<Option target="mainComponent"/>
 			<Option target="sensors_workflow"/>
@@ -613,6 +621,9 @@
 			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SimilarityMeasureTester.cpp">
+			<Option target="tests"/>
+		</Unit>
+		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/SorterProcessorTester.cpp">
 			<Option target="tests"/>
 		</Unit>
 		<Unit filename="/home/meldib/work_space/sensors_workflow/components/aruba/tests/src/TimeWindowApproachTester.cpp">
