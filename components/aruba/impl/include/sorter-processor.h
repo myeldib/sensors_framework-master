@@ -13,7 +13,8 @@ public:
   ~SorterProcessor();
   void destroy();
   void radixSort(FeatureContainer* featureContainer);
-  void mergeSort(FeatureContainer* featureContainer);
+  void radixSortForProximityMatrix(vector<int>&discovered_patterns,vector<vector<float> >& proximity_matrix);
+
 private:
   void radixSort_(vector<int>& sequence_patterns,
                  vector<vector<float> >& sensors_durations,
@@ -26,13 +27,12 @@ private:
                   vector<string> &days_names,
                   vector<float> &time_index,
                   int exp);
-  void mergeSort_(vector<int>& sequence_patterns,
-                 vector<vector<float> >& sensors_durations,
-                 vector<string>& activity_labels,
-                 vector<string>& days_names,
-                 vector<float>& time_index);
-private:
 
+  void radixSortForProximtiyMatrix_(vector<int>& discovered_patterns,
+                 vector<vector<float> >& proximity_matrix);
+  void countSortForProximityMatrix_(vector<int> &discovered_patterns,
+                  vector<vector<float> > &proximity_matrix,
+                  int exp);
 
 };
 #endif // SORTERPROCESSOR_H

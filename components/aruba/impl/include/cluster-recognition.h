@@ -10,6 +10,7 @@
 #include <feature-reader.h>
 #include <feature-writer.h>
 #include <utilities.h>
+#include <sorter-processor.h>
 #include<python-runner.h>
 #include <boost/thread.hpp>
 
@@ -62,6 +63,7 @@ private:
   PythonRunner* pythonRunner_;
   FeatureWriter* featureWriter_;
   Home* home_;
+  SorterProcessor* sorterProcessor_;
   int num_threads_;
 
 };

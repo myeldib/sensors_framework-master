@@ -54,6 +54,24 @@ void SorterProcessor::radixSort(FeatureContainer* featureContainer)
 }
 
 /**
+ * @brief radixSortForProximtiyMatrix::radixSort
+ * @param discovered_patterns
+ * @param proximity_matrix
+ */
+void SorterProcessor::radixSortForProximityMatrix(vector<int>&discovered_patterns,vector<vector<float> >& proximity_matrix)
+{
+  logging::INFO("radixSortForProximityMatrix");
+
+
+  stringstream message;
+  message<<"featureContainer sizes:"<<discovered_patterns.size()<<","<<proximity_matrix.size()<<endl;
+
+  logging::INFO(message.str());
+
+  radixSortForProximtiyMatrix_(discovered_patterns,proximity_matrix);
+}
+
+/**
  * @brief SorterProcessor::countSort_
  * @param sequence_patterns
  * @param sensors_durations
@@ -134,4 +152,76 @@ void::SorterProcessor::radixSort_(vector<int> &sequence_patterns, vector<vector<
     {
       countSort_(sequence_patterns, sensors_durations,activity_labels,days_names,time_index,exp);
     }
+}
+
+/**
+ * @brief ::SorterProcessor::radixSortForProximityMatrix_
+ * @param discovered_patterns
+ * @param proximity_matrix
+ */
+void::SorterProcessor::radixSortForProximtiyMatrix_(vector<int>& discovered_patterns,vector<vector<float> >& proximity_matrix)
+{
+  logging::INFO("radixSortForProximityMatrix_");
+  //find the maximum number to know number of digits
+  int m = *std::max_element(std::begin(discovered_patterns), std::end(discovered_patterns));
+
+  //do counting sort for every digit. Note that instead
+  //of passing digit number, exp is passed. exp is 10^i
+  //where i is current digit number
+  for (int exp = 1; m/exp > 0; exp *= NUM_SIGNIFICANT_DIGITS)
+    {
+      countSortForProximityMatrix_(discovered_patterns, proximity_matrix,exp);
+    }
+}
+
+
+
+/**
+ * @brief SorterProcessor::countSortForProximityMatrix_
+ * @param discovered_patterns
+ * @param proximity_matrix
+ * @param exp
+ */
+void SorterProcessor::countSortForProximityMatrix_(vector<int> &discovered_patterns, vector<vector<float> > &proximity_matrix, int exp)
+{
+  int n = discovered_patterns.size();
+
+  //output holders
+  vector<int> output_discovered_patterns(n,0);
+  vector<vector<float> > output_proximity_matrix(n,proximity_matrix[0]);
+
+
+  int count_discovered_patterns[NUM_SIGNIFICANT_DIGITS] = {0};
+
+  //store count of occurrences in count_discovered_patterns vector
+  for (int i = 0; i < n; i++)
+    {
+      count_discovered_patterns[ (discovered_patterns[i]/exp)%NUM_SIGNIFICANT_DIGITS ]++;
+    }
+
+  //change count_discovered_patterns[i] so that count_discovered_patterns[i] now contains actual
+  //position of this digit in output_sequence_patterns[]
+  for (int i = 1; i < NUM_SIGNIFICANT_DIGITS; i++)
+    {
+      count_discovered_patterns[i] += count_discovered_patterns[i - 1];
+    }
+
+  //build the output vectors
+  for (int i = n - 1; i >= 0; i--)
+    {
+      output_discovered_patterns[count_discovered_patterns[ (discovered_patterns[i]/exp)%NUM_SIGNIFICANT_DIGITS ] - 1] = discovered_patterns[i];
+      output_proximity_matrix[count_discovered_patterns[ (discovered_patterns[i]/exp)%NUM_SIGNIFICANT_DIGITS ] - 1] = proximity_matrix[i];
+
+
+      count_discovered_patterns[ (discovered_patterns[i]/exp)%NUM_SIGNIFICANT_DIGITS ]--;
+    }
+
+  //copy the output vectors to original holders, so that original holders now
+  //contains sorted numbers according to current digit
+  for (int i = 0; i < n; i++)
+    {
+      discovered_patterns[i] = output_discovered_patterns[i];
+      proximity_matrix[i] = output_proximity_matrix[i];
+    }
+
 }

@@ -38,6 +38,8 @@ void ClusterRecognition::init_(string hierarchal_clustering_path, string config_
   home_ = new Home(home_setup_file,time_window_config);
   home_->readHomeSetup();
 
+  sorterProcessor_= new SorterProcessor();
+
   string tmp_ext=std::to_string(home_->getHierarchalClusteringThreshold());
   std::replace(tmp_ext.begin(), tmp_ext.end(), '.', '_');
 
@@ -78,6 +80,7 @@ void ClusterRecognition::init_(string hierarchal_clustering_path, string config_
   script_name_="train_model";
   function_name1_ ="compute_accuracy";
   function_num_param_= 2;
+
 
   logging::INFO("features_discovered_patterns:"+std::to_string(copy_clustered_sensor_data[0]->getDiscoveredPatterns().size()));
   logging::INFO("sensor_data_size:"+std::to_string(sensor_data.size()));
@@ -586,7 +589,7 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
                "\t p_activity_label:"<<home_->getActivityLabelIntStringMap().at(predicted_activity_label_index)<<
                "\t a_activity_label:"<<test_activity_label[i]<<endl;
 
-      logging::INFO(message.str());
+      //logging::INFO(message.str());
 
 
       int actual_activity_label_index = home_->getActivityLabelStringIntMap().at(test_activity_label[i]);
@@ -658,9 +661,10 @@ void ClusterRecognition::computeFeatures_(FeatureContainer *featureContainer)
 {
   logging::INFO("computeFeatures_");
 
-  featureProcessor_->computeAverageSensorDurationPerPattern(featureContainer);
-  featureProcessor_->computeMostCommonActivityLabelPerPattern(featureContainer);
+  sorterProcessor_->radixSort(featureContainer);
+
+  featureProcessor_->computeOptimizedAverageSensorDurationPerPattern(featureContainer);
+  featureProcessor_->computeOptimizedMostCommonActivityLabelPerPattern(featureContainer);
   featureProcessor_->computeActiveSensors(featureContainer,false);
-  featureProcessor_->computeMostAssignedTimeIndex(featureContainer);
-  featureProcessor_->computePatternsLength(featureContainer);
+  featureProcessor_->computeOptimizedMostAssignedTimeIndex(featureContainer);
 }

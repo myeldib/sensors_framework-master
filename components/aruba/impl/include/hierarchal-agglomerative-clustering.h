@@ -40,6 +40,12 @@ private:
     void printDebugInfo(FeatureContainer* featureContainer, float sim);
     void checkFeatures(FeatureContainer* featureContainer, int& host_pattern_index, int& guest_pattern_index,vector<vector<float> >& proximity_matrix);
 
+    //optimized methods
+    void optimizedComputeFeatures_(FeatureContainer* fc);
+    void optimizedUpdatePatterns_(FeatureContainer* featureContainer,vector<vector<float> >& proximity_matrix, int& host_pattern_index,int& guest_pattern_index);
+    void optimizedUpdateProximityMatrixWithHostPattern_(int& host_pattern_index,FeatureContainer* featureContainer,vector<vector<float> >& proximity_matrix);
+    void optimizedComputeContainerClusters_(FeatureContainer *featureContainer);
+
 private:
     FeatureContainer* mergedSubFeatureContainers_;
     FeatureProcessor* featureProcessor_;

@@ -45,7 +45,7 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
   hierarchal_clustering_path_=hierarchal_clustering_path;
   //set clustering threshold
   hierarchal_threshold= home_->getHierarchalClusteringThreshold();
-  num_threads= 1;//boost::thread::hardware_concurrency();
+  num_threads= boost::thread::hardware_concurrency();
   last_discovered_patterns = 0;
 
   logging::INFO("num_threads:"+std::to_string(num_threads));
@@ -137,8 +137,6 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
       subFeatureContainers.push_back(fc);
     }
 
-  sorterProcessor_->radixSort(mergedFeatureContainers);
-
   //divide problem to small problems
   divideContainerToSubContainers_(mergedFeatureContainers,subFeatureContainers,num_threads);
 
@@ -147,7 +145,9 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
     {
       FeatureContainer* fc = subFeatureContainers[i];
 
-      g.add_thread(new boost::thread([fc, this] { computeContainerClusters_(fc); }));
+      //g.add_thread(new boost::thread([fc, this] { computeContainerClusters_(fc); }));
+      g.add_thread(new boost::thread([fc, this] { optimizedComputeContainerClusters_(fc); }));
+
     }
 
   g.join_all();
@@ -175,6 +175,23 @@ void HierarchalAgglomerativeClustering::computeFeatures_(FeatureContainer* featu
   featureProcessor_->computeActiveSensors(featureContainer,false);
   featureProcessor_->computeMostAssignedTimeIndex(featureContainer);
   //featureProcessor_->computePatternsLength(featureContainer);
+}
+
+
+/**
+ * @brief HierarchalAgglomerativeClustering::optimizedComputeFeatures_
+ * @param featureContainer
+ */
+void HierarchalAgglomerativeClustering::optimizedComputeFeatures_(FeatureContainer* featureContainer)
+{
+  logging::INFO("optimizedComputeFeatures_");
+
+  sorterProcessor_->radixSort(featureContainer);
+
+  featureProcessor_->computeOptimizedAverageSensorDurationPerPattern(featureContainer);
+  featureProcessor_->computeOptimizedMostCommonActivityLabelPerPattern(featureContainer);
+  featureProcessor_->computeActiveSensors(featureContainer,false);
+  featureProcessor_->computeOptimizedMostAssignedTimeIndex(featureContainer);
 }
 
 /**
@@ -386,6 +403,7 @@ void HierarchalAgglomerativeClustering::checkFeatures(FeatureContainer *featureC
 
     }
 }
+
 /**
  * @brief HierarchalAgglomerativeClustering::computeContainerClusters
  * @param featureContainer
@@ -398,8 +416,6 @@ void HierarchalAgglomerativeClustering::computeContainerClusters_(FeatureContain
   int host_pattern_index=-1;
   int guest_pattern_index=-1;
   bool is_first_to_compute = true;
-
-  vector<int> discovered_pattern = featureContainer->getDiscoveredPatterns();
 
 
   do
@@ -426,6 +442,49 @@ void HierarchalAgglomerativeClustering::computeContainerClusters_(FeatureContain
 
     }while(sim >= hierarchal_threshold);
 }
+
+/**
+ * @brief HierarchalAgglomerativeClustering::optimizedComputeContainerClusters_
+ * @param featureContainer
+ */
+void HierarchalAgglomerativeClustering::optimizedComputeContainerClusters_(FeatureContainer *featureContainer)
+{
+  logging::INFO("optimizedComputeContainerClusters_");
+  vector<vector<float> > proximity_matrix;
+  float sim=0.0;
+  int host_pattern_index=-1;
+  int guest_pattern_index=-1;
+  bool is_first_to_compute = true;
+
+
+  do
+    {
+      optimizedComputeFeatures_(featureContainer);
+
+      if(is_first_to_compute)
+        {
+          computeProximityMatrix_(featureContainer,proximity_matrix,host_pattern_index,guest_pattern_index,sim);
+          is_first_to_compute = false;
+        }
+      else
+        {
+          optimizedUpdateProximityMatrixWithHostPattern_(host_pattern_index,featureContainer,proximity_matrix);
+        }
+
+      computePatternsToMerge_(proximity_matrix,host_pattern_index,guest_pattern_index,sim);
+
+      if(sim >= hierarchal_threshold)
+        {
+          //checkFeatures(featureContainer,host_pattern_index,guest_pattern_index,proximity_matrix);
+
+          optimizedUpdatePatterns_(featureContainer,proximity_matrix,host_pattern_index,guest_pattern_index);
+        }
+
+      printDebugInfo(featureContainer,sim);
+
+    }while(sim >= hierarchal_threshold);
+}
+
 
 /**
  * @brief HierarchalAgglomerativeClustering::printDebugInfo
@@ -522,9 +581,7 @@ void HierarchalAgglomerativeClustering::computeProximityMatrix_(FeatureContainer
 
       proximity_matrix.push_back(proximity_row);
     }
-
-  computePatternsToMerge_(proximity_matrix,host_pattern,guest_pattern,similarity);
-
+  //computePatternsToMerge_(proximity_matrix,host_pattern,guest_pattern,similarity);
 }
 
 /**
@@ -554,6 +611,8 @@ void HierarchalAgglomerativeClustering::updateProximityMatrix_(FeatureContainer 
   computePatternsToMerge_(proximity_matrix,host_pattern_index,guest_pattern_index,similarity);
 
 }
+
+
 
 /**
  * @brief HierarchalAgglomerativeClustering::updateProximityMatrixWithHostPattern_
@@ -652,6 +711,96 @@ void HierarchalAgglomerativeClustering::updateProximityMatrixWithHostPattern_(in
 }
 
 /**
+ * @brief HierarchalAgglomerativeClustering::optimzedUpdateProximityMatrixWithHostPattern_
+ * @param host_pattern_index
+ * @param featureContainer
+ * @param proximity_matrix
+ */
+void HierarchalAgglomerativeClustering::optimizedUpdateProximityMatrixWithHostPattern_(int &host_pattern_index, FeatureContainer *featureContainer, vector<vector<float> > &proximity_matrix)
+{
+
+  logging::INFO("optimizedUpdateProximityMatrixWithHostPattern_");
+  logging::INFO("host_pattern_index:"+std::to_string(host_pattern_index));
+
+  vector<vector<float> > avg_sensor_durations_per_pattern= featureContainer->getAverageSensorDurationsPerPattern();
+  vector<vector<int> > active_sensors_per_pattern = featureContainer->getActiveSensorsPerPattern();
+  vector<int> most_time_index_per_pattern = featureContainer->getMostAssignedTimeIndexPerPatternInHourIndex();
+
+
+  //select host pattern features
+  vector<float> avg_sensor_durations1 = avg_sensor_durations_per_pattern[host_pattern_index];
+  vector<int> active_sensors1 = active_sensors_per_pattern[host_pattern_index];
+  int time_index1 = most_time_index_per_pattern[host_pattern_index];
+
+  for(int i =0;i<avg_sensor_durations_per_pattern.size();i++)
+    {
+      float duration_sim=0.0;
+      float sensor_structure_sim = 0.0;
+      float time_sim= 0.0;
+      float total_sim= 0.0;
+
+
+
+      if(i != host_pattern_index)
+        {
+          //          logging::INFO("*row:"+std::to_string(i)+
+          //                        "\t"+
+          //                        "col:"+std::to_string(host_pattern_index));
+
+          //make sure it is a valid entry
+          vector<float> avg_sensor_durations2=avg_sensor_durations_per_pattern[i];
+          vector<int> active_sensors2 = active_sensors_per_pattern[i];
+          int time_index2 = most_time_index_per_pattern[i];
+
+
+          similarityMeasure_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
+          similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
+          similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
+
+          total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
+
+          proximity_matrix[i][host_pattern_index]=total_sim;
+
+        }
+    }
+
+  vector<float> host_row = proximity_matrix[host_pattern_index];
+
+  for(int i =0;i<host_row.size();i++)
+    {
+      float duration_sim=0.0;
+      float sensor_structure_sim = 0.0;
+      float time_sim= 0.0;
+      float total_sim= 0.0;
+
+
+      if(i != host_pattern_index)
+        {
+
+          //          logging::INFO("#row:"+std::to_string(host_pattern_index)+
+          //                        "\t"+
+          //                        "col:"+std::to_string(i));
+
+          vector<float> avg_sensor_durations2=avg_sensor_durations_per_pattern[i];
+          vector<int> active_sensors2 = active_sensors_per_pattern[i];
+          int time_index2 = most_time_index_per_pattern[i];
+
+          similarityMeasure_->computeDurationSimilarity(avg_sensor_durations1,avg_sensor_durations2,duration_sim);
+          similarityMeasure_->computeJaccardSimilarity(active_sensors1,active_sensors2,sensor_structure_sim);
+          similarityMeasure_->computeTimeSimilarity(time_index1,time_index2,time_sim);
+
+          total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
+
+        }
+
+      host_row[i] = total_sim;
+    }
+
+  proximity_matrix[host_pattern_index]=host_row;
+
+}
+
+/**
  * @brief HierarchalAgglomerativeClustering::updateProximityMatrixWithGuestPattern_
  * @param guest_pattern_index
  * @param proximity_matrix
@@ -730,10 +879,10 @@ void HierarchalAgglomerativeClustering::mergePatterns_(FeatureContainer *feature
 }
 
 /**
- * @brief HierarchalAgglomerativeClustering::preparePatternToMerge_
+ * @brief HierarchalAgglomerativeClustering::updatePatterns_
  * @param featureContainer
+ * @param host_pattern_index
  * @param guest_pattern_index
- * @param guest_feature_container
  */
 void HierarchalAgglomerativeClustering::updatePatterns_(FeatureContainer *featureContainer,int host_pattern_index, int guest_pattern_index)
 {
@@ -752,8 +901,86 @@ void HierarchalAgglomerativeClustering::updatePatterns_(FeatureContainer *featur
         }
     }
 
+
   //marked guest pattern as invalid (-1) since it is merge with host pattern index
   discovered_patterns[guest_pattern_index] = -1;
+  //set updated discovered pattern back
+  featureContainer->setDiscoveredPatterns(discovered_patterns);
+  //set updated sequence patterns back
+  featureContainer->setSequencePatterns(sequence_patterns);
+}
+
+/**
+ * @brief HierarchalAgglomerativeClustering::optimizedUpdatePatterns_
+ * @param featureContainer
+ * @param proximity_matrix
+ * @param host_pattern_index
+ * @param guest_pattern_index
+ */
+void HierarchalAgglomerativeClustering::optimizedUpdatePatterns_(FeatureContainer *featureContainer,vector<vector<float> >& proximity_matrix,int& host_pattern_index, int& guest_pattern_index)
+{
+  logging::INFO("optimizedUpdatePatterns_");
+
+  //prepare host pattern info
+  vector<int> discovered_patterns = featureContainer->getDiscoveredPatterns();
+  vector<int> sequence_patterns = featureContainer->getSequencePatterns();
+
+  stringstream message;
+  message<<"before erase->discovered_pattern_size:"<<discovered_patterns.size()<<"\t"<<"proximity_matrix_size:"<<proximity_matrix.size()<<endl;
+  logging::INFO(message.str());
+
+  //update guest sequence pattern index to host sequence pattern index
+  for(int i =0; i<sequence_patterns.size(); i++)
+    {
+      if(sequence_patterns[i] == discovered_patterns[guest_pattern_index])
+        {
+          sequence_patterns[i] = discovered_patterns[host_pattern_index];
+        }
+    }
+
+  //update host pattern index if needed
+  if(guest_pattern_index<host_pattern_index)
+    {
+      --host_pattern_index;
+    }
+
+  //delete guest discovered pattern
+  discovered_patterns.erase(discovered_patterns.begin()+guest_pattern_index);
+
+  //delete row from matrix
+  proximity_matrix.erase(proximity_matrix.begin()+guest_pattern_index);
+
+  for(int i =0; i<proximity_matrix.size();i++)
+    {
+      vector<float> row = proximity_matrix[i];
+      //delete colum from row
+      row.erase(row.begin()+guest_pattern_index);
+      //assign updated row to the matrix
+      proximity_matrix[i] =row;
+    }
+
+  message.clear();
+  message<<"after erase->discovered_pattern_size:"<<discovered_patterns.size()<<"\t"<<"proximity_matrix_size:"<<proximity_matrix.size()<<endl;
+  logging::INFO(message.str());
+
+  //save discovered pattern of the host pattern index
+  int host_discovered_pattern = discovered_patterns[host_pattern_index];
+  //sort discovered patterns and proximity matrix
+  sorterProcessor_->radixSortForProximityMatrix(discovered_patterns,proximity_matrix);
+  //retrive index of the host discovered pattern using the saved discovered pattern
+  host_pattern_index =  find(discovered_patterns.begin(), discovered_patterns.end(), host_discovered_pattern) - discovered_patterns.begin();
+
+  message.clear();
+  message<<"after s->discovered_pattern_size:"<<discovered_patterns.size()<<"\t"<<"proximity_matrix_size:"<<proximity_matrix.size()<<endl;
+  logging::INFO(message.str());
+
+  if(discovered_patterns.size()!=proximity_matrix.size())
+    {
+      stringstream message;
+      message<<"proximity_matrix is not equal to discovered pattern size"<<endl;
+      logging::ERROR(message.str());
+      std::exit(0);
+    }
   //set updated discovered pattern back
   featureContainer->setDiscoveredPatterns(discovered_patterns);
   //set updated sequence patterns back

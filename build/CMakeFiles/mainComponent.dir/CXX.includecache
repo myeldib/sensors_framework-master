@@ -243,6 +243,8 @@ feature-writer.h
 -
 utilities.h
 -
+sorter-processor.h
+-
 python-runner.h
 -
 boost/thread.hpp

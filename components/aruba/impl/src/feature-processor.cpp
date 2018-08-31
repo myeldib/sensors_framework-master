@@ -130,7 +130,7 @@ void FeatureProcessor::computeOptimizedAverageSensorDurationPerPattern(FeatureCo
   COUT<<"computeOptimizedAverageSensorDurationPerPattern"<<endl;
   logging::INFO("computeOptimizedAverageSensorDurationPerPattern");
 
-  sorterProcesser_->radixSort(featureContainer);
+
 
   vector<int>  sequence_patterns=featureContainer->getSequencePatterns();
   vector<vector<float> > all_sensor_durations=featureContainer->getSensorDurations();
@@ -316,7 +316,7 @@ void FeatureProcessor::computeOptimizedMostCommonActivityLabelPerPattern(Feature
   COUT<<"computeOptimizedMostCommonActivityLabelPerPattern"<<endl;
   logging::INFO("computeOptimizedMostCommonActivityLabelPerPattern");
 
-  sorterProcesser_->radixSort(featureContainer);
+
 
   vector<string> activity_labels=featureContainer->getActivityLabel();
   vector<int>  discovered_patterns=featureContainer->getDiscoveredPatterns();
@@ -657,7 +657,7 @@ void FeatureProcessor::computeOptimizedMostAssignedTimeIndex(FeatureContainer *f
   COUT<<"computeOptimizedMostAssignedTimeIndex"<<endl;
   logging::INFO("computeOptimizedMostAssignedTimeIndex");
 
-  sorterProcesser_->radixSort(featureContainer);
+
 
   vector<int> sequence_patterns = featureContainer->getSequencePatterns();
   vector<int> discovered_patterns = featureContainer->getDiscoveredPatterns();
