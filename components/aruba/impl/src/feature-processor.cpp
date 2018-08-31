@@ -22,6 +22,8 @@ FeatureProcessor::FeatureProcessor(Home* home)
   this->home_ = home;
 
   home_->readHomeSetup();
+
+  sorterProcesser_ = new SorterProcessor();
 }
 
 /**
@@ -35,6 +37,11 @@ FeatureProcessor::~FeatureProcessor()
   if(home_)
     {
       delete home_;
+    }
+
+  if(sorterProcesser_)
+    {
+      delete sorterProcesser_;
     }
 
 }
@@ -115,6 +122,109 @@ void FeatureProcessor::computeAverageSensorDurationPerPattern(FeatureContainer* 
 }
 
 /**
+ * @brief FeatureProcessor::computeOptimizedAverageSensorDurationPerPattern
+ * @param featureContainer
+ */
+void FeatureProcessor::computeOptimizedAverageSensorDurationPerPattern(FeatureContainer* featureContainer)
+{
+  COUT<<"computeOptimizedAverageSensorDurationPerPattern"<<endl;
+  logging::INFO("computeOptimizedAverageSensorDurationPerPattern");
+
+  sorterProcesser_->radixSort(featureContainer);
+
+  vector<int>  sequence_patterns=featureContainer->getSequencePatterns();
+  vector<vector<float> > all_sensor_durations=featureContainer->getSensorDurations();
+
+  vector<vector<float> > average_sensor_durations_per_pattern;
+  //tmp holders, to be reset after each iterations
+  int pattern_length_counter=0;
+  vector<float> tmp_avg_sensor_duration_per_pattern(all_sensor_durations[0].size(),0);
+  //pattern state holders
+  vector<int> inside_pattern_state;
+  vector<int> outside_pattern_state;
+
+  int tmp_sequence_pattern = sequence_patterns[0];
+  for(int i=0;i<sequence_patterns.size();i++)
+    {
+      if(tmp_sequence_pattern==sequence_patterns[i])
+        {
+          vector<float> sensor_durations=all_sensor_durations[i];
+
+          //we exclude patten state from the calculations
+          // size()-2 = inside pattern state
+          // size()-1 = outside pattern state
+          for(int c=0;c<sensor_durations.size()-2;c++)
+            tmp_avg_sensor_duration_per_pattern[c]+=(1.0*sensor_durations[c]);
+
+          inside_pattern_state.push_back(sensor_durations[sensor_durations.size()-2]);
+          outside_pattern_state.push_back(sensor_durations[sensor_durations.size()-1]);
+
+          pattern_length_counter++;
+        }
+      else
+        {
+          //get most repeated pattern state
+          int max_repeated_inside_pattern_state =0;
+          Common::getMostCommonElementInVector(inside_pattern_state,max_repeated_inside_pattern_state);
+
+          int max_repeated_outside_pattern_state = 0;
+          Common::getMostCommonElementInVector(outside_pattern_state,max_repeated_outside_pattern_state);
+
+          //we exclude patten state from the calculations
+          // size()-2 = inside pattern state
+          // size()-1 = outside pattern state
+          for(int c=0;c<tmp_avg_sensor_duration_per_pattern.size()-2;c++)
+            tmp_avg_sensor_duration_per_pattern[c]= (tmp_avg_sensor_duration_per_pattern[c]*1.0)/(pattern_length_counter*1.0);
+
+          //set most repeat pattern state
+          tmp_avg_sensor_duration_per_pattern[tmp_avg_sensor_duration_per_pattern.size()-2] = max_repeated_inside_pattern_state;
+          tmp_avg_sensor_duration_per_pattern[tmp_avg_sensor_duration_per_pattern.size()-1] = max_repeated_outside_pattern_state;
+
+          average_sensor_durations_per_pattern.push_back(tmp_avg_sensor_duration_per_pattern);
+
+          //reset tmp holders
+          pattern_length_counter = 0;
+          inside_pattern_state.clear();
+          outside_pattern_state.clear();
+          std::vector<float>(all_sensor_durations[0].size()).swap(tmp_avg_sensor_duration_per_pattern);
+
+          //update sequence pattern
+          tmp_sequence_pattern = sequence_patterns[i];
+
+          //redo computation for different sequence pattern
+          vector<float> sensor_durations=all_sensor_durations[i];
+
+          for(int c=0;c<sensor_durations.size()-2;c++)
+            tmp_avg_sensor_duration_per_pattern[c]+=(1.0*sensor_durations[c]);
+
+          inside_pattern_state.push_back(sensor_durations[sensor_durations.size()-2]);
+          outside_pattern_state.push_back(sensor_durations[sensor_durations.size()-1]);
+
+          pattern_length_counter++;
+
+        }
+
+    }
+
+  //redo computation for last pattern
+  int max_repeated_inside_pattern_state =0;
+  Common::getMostCommonElementInVector(inside_pattern_state,max_repeated_inside_pattern_state);
+
+  int max_repeated_outside_pattern_state = 0;
+  Common::getMostCommonElementInVector(outside_pattern_state,max_repeated_outside_pattern_state);
+
+
+  for(int c=0;c<tmp_avg_sensor_duration_per_pattern.size()-2;c++)
+    tmp_avg_sensor_duration_per_pattern[c]= (tmp_avg_sensor_duration_per_pattern[c]*1.0)/(pattern_length_counter*1.0);
+
+  tmp_avg_sensor_duration_per_pattern[tmp_avg_sensor_duration_per_pattern.size()-2] = max_repeated_inside_pattern_state;
+  tmp_avg_sensor_duration_per_pattern[tmp_avg_sensor_duration_per_pattern.size()-1] = max_repeated_outside_pattern_state;
+
+  average_sensor_durations_per_pattern.push_back(tmp_avg_sensor_duration_per_pattern);
+
+  featureContainer->setAverageSensorDurationsPerPattern(average_sensor_durations_per_pattern);
+}
+/**
  * @brief FeatureProcessor::computePatternsLength
  * @param featureContainer
  */
@@ -192,6 +302,80 @@ void FeatureProcessor::computeMostCommonActivityLabelPerPattern(FeatureContainer
       activity_labels_per_pattern.push_back(tmp_activity_label);
 
     }
+
+  featureContainer->setActivityLabelsPerPattern(activity_labels_per_pattern);
+  featureContainer->setMostCommonActivityLabelPerPattern(most_common_activity_label);
+}
+
+/**
+ * @brief FeatureProcessor::computeOptimizedMostCommonActivityLabelPerPattern
+ * @param featureContainer
+ */
+void FeatureProcessor::computeOptimizedMostCommonActivityLabelPerPattern(FeatureContainer *featureContainer)
+{
+  COUT<<"computeOptimizedMostCommonActivityLabelPerPattern"<<endl;
+  logging::INFO("computeOptimizedMostCommonActivityLabelPerPattern");
+
+  sorterProcesser_->radixSort(featureContainer);
+
+  vector<string> activity_labels=featureContainer->getActivityLabel();
+  vector<int>  discovered_patterns=featureContainer->getDiscoveredPatterns();
+  vector<int>  sequence_patterns=featureContainer->getSequencePatterns();
+
+  //default is "-", no activity assigned or labeled
+  vector<int> most_common_activity_label(discovered_patterns.size(),11);
+  vector<vector<int> > activity_labels_per_pattern;
+
+  //tmp holder, needs to be reset after each iteration
+  vector<int> tmp_activity_label(home_->getActivityLabelIntStringMap().size(),0);
+  int most_common_activity_index = 0;
+
+  int tmp_sequence_pattern = sequence_patterns[0];
+  for(int i=0; i<sequence_patterns.size();i++)
+    {
+      if(tmp_sequence_pattern==sequence_patterns[i])
+        {
+          string activity = "";
+
+          if(activity_labels[i] !="-")
+            activity= activity_labels[i];
+
+
+          tmp_activity_label[home_->getActivityLabelStringIntMap().at(activity)]++;
+        }
+      else
+        {
+          auto mostCommonActivityLabelPerPattern = std::max_element(std::begin(tmp_activity_label), std::end(tmp_activity_label));
+          int mostCommonActivityLabelPerPatternIndex=std::distance(std::begin(tmp_activity_label), mostCommonActivityLabelPerPattern);
+          most_common_activity_label[most_common_activity_index]=mostCommonActivityLabelPerPatternIndex;
+
+          activity_labels_per_pattern.push_back(tmp_activity_label);
+
+          //reset
+          std::vector<int>(home_->getActivityLabelIntStringMap().size()).swap(tmp_activity_label);
+
+          //update sequence pattern
+          tmp_sequence_pattern = sequence_patterns[i];
+          most_common_activity_index++;
+
+          //redo computation for different sequence pattern
+          string activity = "";
+
+          if(activity_labels[i] !="-")
+            activity= activity_labels[i];
+
+          tmp_activity_label[home_->getActivityLabelStringIntMap().at(activity)]++;
+
+        }
+    }
+
+  //redo computation for last pattern
+  auto mostCommonActivityLabelPerPattern = std::max_element(std::begin(tmp_activity_label), std::end(tmp_activity_label));
+  int mostCommonActivityLabelPerPatternIndex=std::distance(std::begin(tmp_activity_label), mostCommonActivityLabelPerPattern);
+  most_common_activity_label[most_common_activity_index]=mostCommonActivityLabelPerPatternIndex;
+
+  activity_labels_per_pattern.push_back(tmp_activity_label);
+
 
   featureContainer->setActivityLabelsPerPattern(activity_labels_per_pattern);
   featureContainer->setMostCommonActivityLabelPerPattern(most_common_activity_label);
@@ -465,6 +649,65 @@ void FeatureProcessor::computeMostAssignedTimeIndex(FeatureContainer *featureCon
 }
 
 /**
+ * @brief FeatureProcessor::computeOptimizedMostAssignedTimeIndex
+ * @param featureContainer
+ */
+void FeatureProcessor::computeOptimizedMostAssignedTimeIndex(FeatureContainer *featureContainer)
+{
+  COUT<<"computeOptimizedMostAssignedTimeIndex"<<endl;
+  logging::INFO("computeOptimizedMostAssignedTimeIndex");
+
+  sorterProcesser_->radixSort(featureContainer);
+
+  vector<int> sequence_patterns = featureContainer->getSequencePatterns();
+  vector<int> discovered_patterns = featureContainer->getDiscoveredPatterns();
+  vector<float> time_index_per_pattern = featureContainer->getTimeIndexPerPattern();
+
+  vector<int> most_assigned_time_index(discovered_patterns.size(),0);
+
+  int tmp_sequence_pattern = sequence_patterns[0];
+  //tmp holders to be reset after each iterations
+  vector<int> assigned_time_index;
+  for(int i=0;i<sequence_patterns.size();i++)
+    {
+
+      if(tmp_sequence_pattern==sequence_patterns[i])
+        {
+          assigned_time_index.push_back(time_index_per_pattern[i]);
+        }
+      else
+        {
+
+          if(assigned_time_index.size()>0)
+            {
+              auto mostAssignedTimeIndexPerPattern = std::max_element(std::begin(assigned_time_index), std::end(assigned_time_index));
+              int mostAssignedTimeIndexPerPatternInex=std::distance(std::begin(assigned_time_index), mostAssignedTimeIndexPerPattern);
+
+              most_assigned_time_index.push_back(assigned_time_index[mostAssignedTimeIndexPerPatternInex]);
+            }
+
+          //reset
+          assigned_time_index.clear();
+          //update sequence pattern
+          tmp_sequence_pattern = sequence_patterns[i];
+
+          assigned_time_index.push_back(time_index_per_pattern[i]);
+        }
+    }
+
+  //redo computations for the last pattern
+  if(assigned_time_index.size()>0)
+    {
+      auto mostAssignedTimeIndexPerPattern = std::max_element(std::begin(assigned_time_index), std::end(assigned_time_index));
+      int mostAssignedTimeIndexPerPatternInex=std::distance(std::begin(assigned_time_index), mostAssignedTimeIndexPerPattern);
+
+      most_assigned_time_index.push_back(assigned_time_index[mostAssignedTimeIndexPerPatternInex]);
+    }
+
+  featureContainer->setMostAssginedTimeIndexPerPatternInHourIndex(most_assigned_time_index);
+}
+
+/**
  * @brief FeatureProcessor::mergePatterns
  * @param day_index
  * @param new_initial_pattern_index
@@ -502,11 +745,9 @@ void FeatureProcessor::mergePatterns(int day_index,int new_initial_pattern_index
                       new_activity_labels);
 
   vector<vector<int> >guest_patterns_to_merge_indexes = merged_fc->getSortedPatternsToMerge();
-  vector<int> host_discovered_patterns = merged_fc->getSortedDiscoveredPatterns();
 
   updateGuestPatterns_(fc,
                        guest_patterns_to_merge_indexes,
-                       host_discovered_patterns,
                        new_sequence_patterns,
                        new_discovered_patterns,
                        new_sensors_duration,
@@ -595,10 +836,83 @@ void FeatureProcessor::updateHostPatterns_(int new_pattern_index,
 }
 
 /**
+ * @brief FeatureProcessor::updateOptimizedHostPatterns_
+ * @param new_pattern_index
+ * @param merged_fc
+ * @param new_sequence_patterns
+ * @param new_discovered_patterns
+ * @param new_sensor_durations
+ * @param new_time_index_per_pattern
+ * @param new_activity_labels
+ */
+void FeatureProcessor::updateOptimizedHostPatterns_(int new_pattern_index,
+                                                    FeatureContainer *merged_fc,
+                                                    vector<int>& new_sequence_patterns,
+                                                    vector<int>& new_discovered_patterns,
+                                                    vector<vector<float> >& new_sensor_durations,
+                                                    vector<float>& new_time_index_per_pattern,
+                                                    vector<string>& new_day_name_per_pattern,
+                                                    vector<string>& new_activity_labels)
+{
+
+  COUT<<"updateOptimizedHostPatterns_"<<endl;
+
+  logging::INFO("updateOptimizedHostPatterns_");
+
+  sorterProcesser_->radixSort(merged_fc);
+
+  vector<int> sequence_patterns = merged_fc->getSequencePatterns();
+  vector<vector<float> > sensor_durations = merged_fc->getSensorDurations();
+  vector<float> time_index_per_pattern = merged_fc->getTimeIndexPerPattern();
+  vector<string> day_name_per_pattern = merged_fc->getDayNamePerPattern();
+  vector<string> activitly_label = merged_fc->getActivityLabel();
+
+
+  int tmp_sequence_pattern = sequence_patterns[0];
+
+  for(int i = 0; i<sequence_patterns.size();i++)
+    {
+      if(tmp_sequence_pattern==sequence_patterns[i])
+        {
+
+          //add new pattern index to each sequence pattern
+          new_sequence_patterns.push_back(new_pattern_index);
+          //assign sequence pattern information to new holders
+          new_sensor_durations.push_back(sensor_durations[i]);
+          new_time_index_per_pattern.push_back(time_index_per_pattern[i]);
+          new_day_name_per_pattern.push_back(day_name_per_pattern[i]);
+          new_activity_labels.push_back(activitly_label[i]);
+        }
+      else
+        {
+          //add new pattern index to discovered pattern
+          new_discovered_patterns.push_back(new_pattern_index);
+          ++new_pattern_index;
+
+          //update sequence pattern
+          tmp_sequence_pattern = sequence_patterns[i];
+
+          //add new pattern index to each sequence pattern
+          new_sequence_patterns.push_back(new_pattern_index);
+          //assign sequence pattern information to new holders
+          new_sensor_durations.push_back(sensor_durations[i]);
+          new_time_index_per_pattern.push_back(time_index_per_pattern[i]);
+          new_day_name_per_pattern.push_back(day_name_per_pattern[i]);
+          new_activity_labels.push_back(activitly_label[i]);
+
+        }
+    }
+
+  //redo computations for the last pattern
+  new_discovered_patterns.push_back(new_pattern_index);
+  ++new_pattern_index;
+
+}
+
+/**
  * @brief FeatureProcessor::updateGuestPatterns_
  * @param fc
  * @param sorted_patterns_to_merge
- * @param sorted_discovered_patterns
  * @param new_sequence_patterns
  * @param new_discovered_patterns
  * @param new_sensors_duration
@@ -607,7 +921,6 @@ void FeatureProcessor::updateHostPatterns_(int new_pattern_index,
  */
 void FeatureProcessor::updateGuestPatterns_(FeatureContainer *fc,
                                             vector<vector<int> > sorted_patterns_to_merge,
-                                            vector<int> sorted_discovered_patterns,
                                             vector<int> &new_sequence_patterns,
                                             vector<int> &new_discovered_patterns,
                                             vector<vector<float> > &new_sensor_durations,

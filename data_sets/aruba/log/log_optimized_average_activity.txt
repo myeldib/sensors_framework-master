@@ -1,0 +1,1136 @@
+2018/08/30 14:17:32.255984 [INFO] BetweenDayClustering
+2018/08/30 14:17:32.256039 [INFO] init
+2018/08/30 14:17:32.256046 [INFO] Home
+2018/08/30 14:17:32.256050 [INFO] readHomeSetup
+2018/08/30 14:17:32.256168 [INFO] createDistinctLocationIndex
+2018/08/30 14:17:32.256188 [INFO] readConfig
+2018/08/30 14:17:32.256241 [INFO] checkTimeWindowParameters
+2018/08/30 14:17:32.256250 [INFO] FeatureReader
+2018/08/30 14:17:32.256255 [INFO] readHomeSetup
+2018/08/30 14:17:32.256259 [INFO] FeatureWriter
+2018/08/30 14:17:32.256263 [INFO] ../data_sets/aruba/between_day_cluster_result/_0/
+2018/08/30 14:17:32.256300 [INFO] PatternsStatistics
+2018/08/30 14:17:32.256306 [INFO] init
+2018/08/30 14:17:32.256310 [INFO] readHomeSetup
+2018/08/30 14:17:32.256314 [INFO] FeatureWriter
+2018/08/30 14:17:32.256318 [INFO] ../data_sets/aruba/patterns_statistics_result/_0/
+2018/08/30 14:17:32.256363 [INFO] FeatureProcessor
+2018/08/30 14:17:32.256369 [INFO] readHomeSetup
+2018/08/30 14:17:32.256373 [INFO] SorterProcessor
+2018/08/30 14:17:32.256377 [INFO] SimilarityMeasure
+2018/08/30 14:17:32.256381 [INFO] Home
+2018/08/30 14:17:32.256385 [INFO] readHomeSetup
+2018/08/30 14:17:32.256489 [INFO] createDistinctLocationIndex
+2018/08/30 14:17:32.256506 [INFO] readConfig
+2018/08/30 14:17:32.256553 [INFO] checkTimeWindowParameters
+2018/08/30 14:17:32.256560 [INFO] run
+2018/08/30 14:17:32.256565 [INFO] processFeatures_
+2018/08/30 14:17:32.256569 [INFO] readFeatures
+2018/08/30 14:17:32.256573 [INFO] readWithinDayClusterFeatures_
+2018/08/30 14:17:32.256658 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-04/
+2018/08/30 14:17:32.256683 [INFO] readActivityFile_
+2018/08/30 14:17:32.263593 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.263930 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.334196 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.340804 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.340911 [INFO] assignDayName_
+2018/08/30 14:17:32.341410 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-05/
+2018/08/30 14:17:32.341415 [INFO] readActivityFile_
+2018/08/30 14:17:32.348050 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.348432 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.419933 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.426950 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.427055 [INFO] assignDayName_
+2018/08/30 14:17:32.427545 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-06/
+2018/08/30 14:17:32.427550 [INFO] readActivityFile_
+2018/08/30 14:17:32.434215 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.434499 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.503275 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.509927 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.510032 [INFO] assignDayName_
+2018/08/30 14:17:32.510560 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-07/
+2018/08/30 14:17:32.510567 [INFO] readActivityFile_
+2018/08/30 14:17:32.517096 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.517489 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.584174 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.591220 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.591328 [INFO] assignDayName_
+2018/08/30 14:17:32.591816 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-08/
+2018/08/30 14:17:32.591822 [INFO] readActivityFile_
+2018/08/30 14:17:32.598534 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.598823 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.665972 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.672538 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.672642 [INFO] assignDayName_
+2018/08/30 14:17:32.673166 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-09/
+2018/08/30 14:17:32.673171 [INFO] readActivityFile_
+2018/08/30 14:17:32.679792 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.680142 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.747508 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.754065 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.754205 [INFO] assignDayName_
+2018/08/30 14:17:32.754705 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-10/
+2018/08/30 14:17:32.754711 [INFO] readActivityFile_
+2018/08/30 14:17:32.761616 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.761850 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.829426 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.836216 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.836319 [INFO] assignDayName_
+2018/08/30 14:17:32.836807 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-11/
+2018/08/30 14:17:32.836813 [INFO] readActivityFile_
+2018/08/30 14:17:32.843891 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.844175 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:32.916331 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:32.923375 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:32.923504 [INFO] assignDayName_
+2018/08/30 14:17:32.924022 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-12/
+2018/08/30 14:17:32.924027 [INFO] readActivityFile_
+2018/08/30 14:17:32.930910 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:32.931205 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.000756 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.007495 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.007599 [INFO] assignDayName_
+2018/08/30 14:17:33.008122 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-13/
+2018/08/30 14:17:33.008128 [INFO] readActivityFile_
+2018/08/30 14:17:33.015118 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.015510 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.082983 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.089905 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.090026 [INFO] assignDayName_
+2018/08/30 14:17:33.090595 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-14/
+2018/08/30 14:17:33.090603 [INFO] readActivityFile_
+2018/08/30 14:17:33.096952 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.097169 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.164940 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.171702 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.171807 [INFO] assignDayName_
+2018/08/30 14:17:33.172319 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-15/
+2018/08/30 14:17:33.172325 [INFO] readActivityFile_
+2018/08/30 14:17:33.179100 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.179361 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.247862 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.254903 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.255010 [INFO] assignDayName_
+2018/08/30 14:17:33.255503 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-16/
+2018/08/30 14:17:33.255508 [INFO] readActivityFile_
+2018/08/30 14:17:33.262538 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.262892 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.330475 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.337750 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.337865 [INFO] assignDayName_
+2018/08/30 14:17:33.338394 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-17/
+2018/08/30 14:17:33.338401 [INFO] readActivityFile_
+2018/08/30 14:17:33.345398 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.345585 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.414787 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.421666 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.421773 [INFO] assignDayName_
+2018/08/30 14:17:33.422302 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-18/
+2018/08/30 14:17:33.422309 [INFO] readActivityFile_
+2018/08/30 14:17:33.429205 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.429435 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.498029 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.505088 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.505218 [INFO] assignDayName_
+2018/08/30 14:17:33.505789 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-19/
+2018/08/30 14:17:33.505796 [INFO] readActivityFile_
+2018/08/30 14:17:33.512496 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.512690 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.580549 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.587156 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.587261 [INFO] assignDayName_
+2018/08/30 14:17:33.587773 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-20/
+2018/08/30 14:17:33.587782 [INFO] readActivityFile_
+2018/08/30 14:17:33.594021 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.594460 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.661890 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.668485 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.668590 [INFO] assignDayName_
+2018/08/30 14:17:33.669079 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-21/
+2018/08/30 14:17:33.669084 [INFO] readActivityFile_
+2018/08/30 14:17:33.676089 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.676335 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.745352 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.752288 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.752395 [INFO] assignDayName_
+2018/08/30 14:17:33.752885 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-22/
+2018/08/30 14:17:33.752890 [INFO] readActivityFile_
+2018/08/30 14:17:33.759438 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.759709 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.825553 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.832112 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.832216 [INFO] assignDayName_
+2018/08/30 14:17:33.832706 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-23/
+2018/08/30 14:17:33.832711 [INFO] readActivityFile_
+2018/08/30 14:17:33.839287 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.839543 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.909727 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.916823 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.916940 [INFO] assignDayName_
+2018/08/30 14:17:33.917456 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-24/
+2018/08/30 14:17:33.917461 [INFO] readActivityFile_
+2018/08/30 14:17:33.924166 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:33.924432 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:33.993168 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:33.999794 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:33.999900 [INFO] assignDayName_
+2018/08/30 14:17:34.000388 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-25/
+2018/08/30 14:17:34.000394 [INFO] readActivityFile_
+2018/08/30 14:17:34.007026 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:34.007362 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:34.073499 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:34.080061 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:34.080166 [INFO] assignDayName_
+2018/08/30 14:17:34.080655 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-26/
+2018/08/30 14:17:34.080660 [INFO] readActivityFile_
+2018/08/30 14:17:34.087291 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:34.087550 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:34.153736 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:34.160310 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:34.160414 [INFO] assignDayName_
+2018/08/30 14:17:34.160902 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-27/
+2018/08/30 14:17:34.160908 [INFO] readActivityFile_
+2018/08/30 14:17:34.167285 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:34.167495 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:34.233542 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:34.240080 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:34.240184 [INFO] assignDayName_
+2018/08/30 14:17:34.240672 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-28/
+2018/08/30 14:17:34.240678 [INFO] readActivityFile_
+2018/08/30 14:17:34.247080 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:34.247338 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:34.313728 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:34.320275 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:34.320380 [INFO] assignDayName_
+2018/08/30 14:17:34.320868 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-29/
+2018/08/30 14:17:34.320874 [INFO] readActivityFile_
+2018/08/30 14:17:34.327369 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:34.327633 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:34.396178 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:34.402853 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:34.402972 [INFO] assignDayName_
+2018/08/30 14:17:34.403460 [INFO] ../data_sets/aruba/within_day_cluster_result/_1_3/2010-11-30/
+2018/08/30 14:17:34.403466 [INFO] readActivityFile_
+2018/08/30 14:17:34.410299 [INFO] readDiscoveredPatternsFile_
+2018/08/30 14:17:34.410662 [INFO] readSensorDurationsFile_
+2018/08/30 14:17:34.476793 [INFO] readSequencePatternsFile_
+2018/08/30 14:17:34.483538 [INFO] AssignTimeIndexPerPattern_
+2018/08/30 14:17:34.483644 [INFO] assignDayName_
+2018/08/30 14:17:34.484291 [INFO] 2010-11-04
+2018/08/30 14:17:34.484321 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.484325 [INFO] radixSort
+2018/08/30 14:17:34.485349 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.485354 [INFO] radixSort_
+2018/08/30 14:17:34.501730 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.501746 [INFO] radixSort
+2018/08/30 14:17:34.502762 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.502768 [INFO] radixSort_
+2018/08/30 14:17:34.524362 [INFO] 2010-11-05
+2018/08/30 14:17:34.524401 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.524406 [INFO] radixSort
+2018/08/30 14:17:34.525413 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.525419 [INFO] radixSort_
+2018/08/30 14:17:34.541829 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.541844 [INFO] radixSort
+2018/08/30 14:17:34.542853 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.542859 [INFO] radixSort_
+2018/08/30 14:17:34.564594 [INFO] 2010-11-06
+2018/08/30 14:17:34.564630 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.564634 [INFO] radixSort
+2018/08/30 14:17:34.565642 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.565648 [INFO] radixSort_
+2018/08/30 14:17:34.581812 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.581822 [INFO] radixSort
+2018/08/30 14:17:34.582831 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.582837 [INFO] radixSort_
+2018/08/30 14:17:34.604390 [INFO] 2010-11-07
+2018/08/30 14:17:34.604427 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.604432 [INFO] radixSort
+2018/08/30 14:17:34.605452 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.605457 [INFO] radixSort_
+2018/08/30 14:17:34.621878 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.621892 [INFO] radixSort
+2018/08/30 14:17:34.622909 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.622915 [INFO] radixSort_
+2018/08/30 14:17:34.644724 [INFO] 2010-11-08
+2018/08/30 14:17:34.644759 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.644763 [INFO] radixSort
+2018/08/30 14:17:34.645773 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.645778 [INFO] radixSort_
+2018/08/30 14:17:34.661990 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.662000 [INFO] radixSort
+2018/08/30 14:17:34.663011 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.663018 [INFO] radixSort_
+2018/08/30 14:17:34.684606 [INFO] 2010-11-09
+2018/08/30 14:17:34.684642 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.684647 [INFO] radixSort
+2018/08/30 14:17:34.685660 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.685672 [INFO] radixSort_
+2018/08/30 14:17:34.702213 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.702226 [INFO] radixSort
+2018/08/30 14:17:34.703237 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.703243 [INFO] radixSort_
+2018/08/30 14:17:34.725072 [INFO] 2010-11-10
+2018/08/30 14:17:34.725112 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.725117 [INFO] radixSort
+2018/08/30 14:17:34.726132 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.726138 [INFO] radixSort_
+2018/08/30 14:17:34.742499 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.742518 [INFO] radixSort
+2018/08/30 14:17:34.743528 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.743534 [INFO] radixSort_
+2018/08/30 14:17:34.764880 [INFO] 2010-11-11
+2018/08/30 14:17:34.764914 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.764918 [INFO] radixSort
+2018/08/30 14:17:34.765929 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.765935 [INFO] radixSort_
+2018/08/30 14:17:34.782017 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.782027 [INFO] radixSort
+2018/08/30 14:17:34.783039 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.783045 [INFO] radixSort_
+2018/08/30 14:17:34.805804 [INFO] 2010-11-12
+2018/08/30 14:17:34.805852 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.805858 [INFO] radixSort
+2018/08/30 14:17:34.806990 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.806998 [INFO] radixSort_
+2018/08/30 14:17:34.824937 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.824960 [INFO] radixSort
+2018/08/30 14:17:34.826030 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.826036 [INFO] radixSort_
+2018/08/30 14:17:34.847647 [INFO] 2010-11-13
+2018/08/30 14:17:34.847683 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.847688 [INFO] radixSort
+2018/08/30 14:17:34.848697 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.848702 [INFO] radixSort_
+2018/08/30 14:17:34.864931 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.864948 [INFO] radixSort
+2018/08/30 14:17:34.865956 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.865961 [INFO] radixSort_
+2018/08/30 14:17:34.887339 [INFO] 2010-11-14
+2018/08/30 14:17:34.887376 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.887381 [INFO] radixSort
+2018/08/30 14:17:34.888426 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.888432 [INFO] radixSort_
+2018/08/30 14:17:34.904768 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.904801 [INFO] radixSort
+2018/08/30 14:17:34.905888 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.905894 [INFO] radixSort_
+2018/08/30 14:17:34.927332 [INFO] 2010-11-15
+2018/08/30 14:17:34.927371 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.927376 [INFO] radixSort
+2018/08/30 14:17:34.928423 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.928428 [INFO] radixSort_
+2018/08/30 14:17:34.944676 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.944690 [INFO] radixSort
+2018/08/30 14:17:34.945738 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.945743 [INFO] radixSort_
+2018/08/30 14:17:34.967225 [INFO] 2010-11-16
+2018/08/30 14:17:34.967260 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:34.967264 [INFO] radixSort
+2018/08/30 14:17:34.968275 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.968281 [INFO] radixSort_
+2018/08/30 14:17:34.984530 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:34.984540 [INFO] radixSort
+2018/08/30 14:17:34.985551 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:34.985564 [INFO] radixSort_
+2018/08/30 14:17:35.007210 [INFO] 2010-11-17
+2018/08/30 14:17:35.007249 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.007254 [INFO] radixSort
+2018/08/30 14:17:35.008267 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.008272 [INFO] radixSort_
+2018/08/30 14:17:35.024487 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.024501 [INFO] radixSort
+2018/08/30 14:17:35.025511 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.025516 [INFO] radixSort_
+2018/08/30 14:17:35.046742 [INFO] 2010-11-18
+2018/08/30 14:17:35.046775 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.046780 [INFO] radixSort
+2018/08/30 14:17:35.047788 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.047793 [INFO] radixSort_
+2018/08/30 14:17:35.063893 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.063904 [INFO] radixSort
+2018/08/30 14:17:35.064909 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.064914 [INFO] radixSort_
+2018/08/30 14:17:35.086699 [INFO] 2010-11-19
+2018/08/30 14:17:35.086740 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.086745 [INFO] radixSort
+2018/08/30 14:17:35.087778 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.087784 [INFO] radixSort_
+2018/08/30 14:17:35.104332 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.104349 [INFO] radixSort
+2018/08/30 14:17:35.105569 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.105576 [INFO] radixSort_
+2018/08/30 14:17:35.128018 [INFO] 2010-11-20
+2018/08/30 14:17:35.128064 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.128069 [INFO] radixSort
+2018/08/30 14:17:35.129236 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.129244 [INFO] radixSort_
+2018/08/30 14:17:35.146859 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.146878 [INFO] radixSort
+2018/08/30 14:17:35.147885 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.147891 [INFO] radixSort_
+2018/08/30 14:17:35.170183 [INFO] 2010-11-21
+2018/08/30 14:17:35.170235 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.170240 [INFO] radixSort
+2018/08/30 14:17:35.171249 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.171254 [INFO] radixSort_
+2018/08/30 14:17:35.187725 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.187743 [INFO] radixSort
+2018/08/30 14:17:35.188809 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.188815 [INFO] radixSort_
+2018/08/30 14:17:35.211664 [INFO] 2010-11-22
+2018/08/30 14:17:35.211708 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.211712 [INFO] radixSort
+2018/08/30 14:17:35.212725 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.212731 [INFO] radixSort_
+2018/08/30 14:17:35.229573 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.229594 [INFO] radixSort
+2018/08/30 14:17:35.230605 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.230612 [INFO] radixSort_
+2018/08/30 14:17:35.252808 [INFO] 2010-11-23
+2018/08/30 14:17:35.252850 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.252854 [INFO] radixSort
+2018/08/30 14:17:35.253899 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.253905 [INFO] radixSort_
+2018/08/30 14:17:35.270620 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.270637 [INFO] radixSort
+2018/08/30 14:17:35.271646 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.271651 [INFO] radixSort_
+2018/08/30 14:17:35.293982 [INFO] 2010-11-24
+2018/08/30 14:17:35.294026 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.294038 [INFO] radixSort
+2018/08/30 14:17:35.295050 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.295057 [INFO] radixSort_
+2018/08/30 14:17:35.315700 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.315727 [INFO] radixSort
+2018/08/30 14:17:35.316808 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.316815 [INFO] radixSort_
+2018/08/30 14:17:35.339628 [INFO] 2010-11-25
+2018/08/30 14:17:35.339675 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.339680 [INFO] radixSort
+2018/08/30 14:17:35.340702 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.340708 [INFO] radixSort_
+2018/08/30 14:17:35.357394 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.357410 [INFO] radixSort
+2018/08/30 14:17:35.358429 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.358436 [INFO] radixSort_
+2018/08/30 14:17:35.380654 [INFO] 2010-11-26
+2018/08/30 14:17:35.380696 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.380701 [INFO] radixSort
+2018/08/30 14:17:35.381782 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.381788 [INFO] radixSort_
+2018/08/30 14:17:35.398120 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.398135 [INFO] radixSort
+2018/08/30 14:17:35.399404 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.399418 [INFO] radixSort_
+2018/08/30 14:17:35.422062 [INFO] 2010-11-27
+2018/08/30 14:17:35.422142 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.422147 [INFO] radixSort
+2018/08/30 14:17:35.423171 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.423176 [INFO] radixSort_
+2018/08/30 14:17:35.439648 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.439668 [INFO] radixSort
+2018/08/30 14:17:35.440679 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.440685 [INFO] radixSort_
+2018/08/30 14:17:35.462179 [INFO] 2010-11-28
+2018/08/30 14:17:35.462217 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.462221 [INFO] radixSort
+2018/08/30 14:17:35.463234 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.463240 [INFO] radixSort_
+2018/08/30 14:17:35.479413 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.479426 [INFO] radixSort
+2018/08/30 14:17:35.480437 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.480443 [INFO] radixSort_
+2018/08/30 14:17:35.502025 [INFO] 2010-11-29
+2018/08/30 14:17:35.502064 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.502068 [INFO] radixSort
+2018/08/30 14:17:35.503083 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.503089 [INFO] radixSort_
+2018/08/30 14:17:35.519709 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.519728 [INFO] radixSort
+2018/08/30 14:17:35.520747 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.520753 [INFO] radixSort_
+2018/08/30 14:17:35.542521 [INFO] 2010-11-30
+2018/08/30 14:17:35.542560 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.542565 [INFO] radixSort
+2018/08/30 14:17:35.543577 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.543582 [INFO] radixSort_
+2018/08/30 14:17:35.559840 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.559852 [INFO] radixSort
+2018/08/30 14:17:35.560860 [INFO] featureContainer sizes:5760,5760,5760,5760,5760
+
+2018/08/30 14:17:35.560866 [INFO] radixSort_
+2018/08/30 14:17:35.582352 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:35.582758 [INFO] 2010-11-05
+2018/08/30 14:17:35.582789 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:35.582794 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:35.589336 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:35.589425 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:35.589478 [INFO] sortPatterns_
+2018/08/30 14:17:35.589961 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:35.590360 [INFO] mergePatterns
+2018/08/30 14:17:35.590366 [INFO] updateHostPatterns_
+2018/08/30 14:17:35.601551 [INFO] updateGuestPatterns_
+2018/08/30 14:17:35.602603 [INFO] 0	1
+2018/08/30 14:17:35.602712 [INFO] mapped:2
+2018/08/30 14:17:35.602717 [INFO] 1	3
+2018/08/30 14:17:35.602821 [INFO] mapped:4
+2018/08/30 14:17:35.602826 [INFO] 2	8
+2018/08/30 14:17:35.602930 [INFO] mapped:9
+2018/08/30 14:17:35.602935 [INFO] 3	40
+2018/08/30 14:17:35.602993 [INFO] mapped:41
+2018/08/30 14:17:35.602998 [INFO] 0	6
+2018/08/30 14:17:35.603053 [INFO] mapped:7
+2018/08/30 14:17:35.614309 [INFO] 558	11520	11520	11520	11520	11520	
+2018/08/30 14:17:35.620151 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.620166 [INFO] radixSort
+2018/08/30 14:17:35.622188 [INFO] featureContainer sizes:11520,11520,11520,11520,11520
+
+2018/08/30 14:17:35.622197 [INFO] radixSort_
+2018/08/30 14:17:35.665774 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.665795 [INFO] radixSort
+2018/08/30 14:17:35.667806 [INFO] featureContainer sizes:11520,11520,11520,11520,11520
+
+2018/08/30 14:17:35.667814 [INFO] radixSort_
+2018/08/30 14:17:35.722010 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:35.722427 [INFO] 2010-11-06
+2018/08/30 14:17:35.722461 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:35.722485 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:35.723926 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:35.724117 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:35.724217 [INFO] sortPatterns_
+2018/08/30 14:17:35.724224 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:35.725732 [INFO] mergePatterns
+2018/08/30 14:17:35.725737 [INFO] updateHostPatterns_
+2018/08/30 14:17:35.768932 [INFO] updateGuestPatterns_
+2018/08/30 14:17:35.781695 [INFO] 798	17280	17280	17280	17280	17280	
+2018/08/30 14:17:35.791906 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:35.791927 [INFO] radixSort
+2018/08/30 14:17:35.795110 [INFO] featureContainer sizes:17280,17280,17280,17280,17280
+
+2018/08/30 14:17:35.795119 [INFO] radixSort_
+2018/08/30 14:17:35.865228 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:35.865251 [INFO] radixSort
+2018/08/30 14:17:35.868496 [INFO] featureContainer sizes:17280,17280,17280,17280,17280
+
+2018/08/30 14:17:35.868506 [INFO] radixSort_
+2018/08/30 14:17:35.954737 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:35.955149 [INFO] 2010-11-07
+2018/08/30 14:17:35.955187 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:35.955194 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:35.957178 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:35.957418 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:35.957557 [INFO] sortPatterns_
+2018/08/30 14:17:35.957565 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:35.960346 [INFO] mergePatterns
+2018/08/30 14:17:35.960353 [INFO] updateHostPatterns_
+2018/08/30 14:17:36.041964 [INFO] updateGuestPatterns_
+2018/08/30 14:17:36.054250 [INFO] 1128	23040	23040	23040	23040	23040	
+2018/08/30 14:17:36.066986 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:36.067007 [INFO] radixSort
+2018/08/30 14:17:36.071010 [INFO] featureContainer sizes:23040,23040,23040,23040,23040
+
+2018/08/30 14:17:36.071020 [INFO] radixSort_
+2018/08/30 14:17:36.160605 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:36.160632 [INFO] radixSort
+2018/08/30 14:17:36.164641 [INFO] featureContainer sizes:23040,23040,23040,23040,23040
+
+2018/08/30 14:17:36.164650 [INFO] radixSort_
+2018/08/30 14:17:36.274189 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:36.274612 [INFO] 2010-11-08
+2018/08/30 14:17:36.274644 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:36.274649 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:36.277308 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:36.277640 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:36.277833 [INFO] sortPatterns_
+2018/08/30 14:17:36.277843 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:36.283360 [INFO] mergePatterns
+2018/08/30 14:17:36.283371 [INFO] updateHostPatterns_
+2018/08/30 14:17:36.429221 [INFO] updateGuestPatterns_
+2018/08/30 14:17:36.438910 [INFO] 1371	28800	28800	28800	28800	28800	
+2018/08/30 14:17:36.454747 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:36.454768 [INFO] radixSort
+2018/08/30 14:17:36.459838 [INFO] featureContainer sizes:28800,28800,28800,28800,28800
+
+2018/08/30 14:17:36.459848 [INFO] radixSort_
+2018/08/30 14:17:36.570978 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:36.571003 [INFO] radixSort
+2018/08/30 14:17:36.576008 [INFO] featureContainer sizes:28800,28800,28800,28800,28800
+
+2018/08/30 14:17:36.576017 [INFO] radixSort_
+2018/08/30 14:17:36.713331 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:36.713757 [INFO] 2010-11-09
+2018/08/30 14:17:36.713796 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:36.713804 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:36.716817 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:36.717184 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:36.717427 [INFO] sortPatterns_
+2018/08/30 14:17:36.717438 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:36.725126 [INFO] mergePatterns
+2018/08/30 14:17:36.725142 [INFO] updateHostPatterns_
+2018/08/30 14:17:36.939837 [INFO] updateGuestPatterns_
+2018/08/30 14:17:36.955409 [INFO] 1657	34560	34560	34560	34560	34560	
+2018/08/30 14:17:36.974713 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:36.974735 [INFO] radixSort
+2018/08/30 14:17:36.980738 [INFO] featureContainer sizes:34560,34560,34560,34560,34560
+
+2018/08/30 14:17:36.980747 [INFO] radixSort_
+2018/08/30 14:17:37.114912 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:37.114936 [INFO] radixSort
+2018/08/30 14:17:37.121028 [INFO] featureContainer sizes:34560,34560,34560,34560,34560
+
+2018/08/30 14:17:37.121039 [INFO] radixSort_
+2018/08/30 14:17:37.285671 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:37.286124 [INFO] 2010-11-10
+2018/08/30 14:17:37.286172 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:37.286178 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:37.290115 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:37.290628 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:37.290979 [INFO] sortPatterns_
+2018/08/30 14:17:37.290991 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:37.302287 [INFO] mergePatterns
+2018/08/30 14:17:37.302300 [INFO] updateHostPatterns_
+2018/08/30 14:17:37.615112 [INFO] updateGuestPatterns_
+2018/08/30 14:17:37.623337 [INFO] 1843	40320	40320	40320	40320	40320	
+2018/08/30 14:17:37.644682 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:37.644703 [INFO] radixSort
+2018/08/30 14:17:37.651737 [INFO] featureContainer sizes:40320,40320,40320,40320,40320
+
+2018/08/30 14:17:37.651748 [INFO] radixSort_
+2018/08/30 14:17:37.806976 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:37.806999 [INFO] radixSort
+2018/08/30 14:17:37.814030 [INFO] featureContainer sizes:40320,40320,40320,40320,40320
+
+2018/08/30 14:17:37.814041 [INFO] radixSort_
+2018/08/30 14:17:38.005667 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:38.006122 [INFO] 2010-11-11
+2018/08/30 14:17:38.006175 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:38.006182 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:38.010360 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:38.010904 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:38.011305 [INFO] sortPatterns_
+2018/08/30 14:17:38.011329 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:38.024679 [INFO] mergePatterns
+2018/08/30 14:17:38.024692 [INFO] updateHostPatterns_
+2018/08/30 14:17:38.422638 [INFO] updateGuestPatterns_
+2018/08/30 14:17:38.432470 [INFO] 2076	46080	46080	46080	46080	46080	
+2018/08/30 14:17:38.457643 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:38.457665 [INFO] radixSort
+2018/08/30 14:17:38.465668 [INFO] featureContainer sizes:46080,46080,46080,46080,46080
+
+2018/08/30 14:17:38.465678 [INFO] radixSort_
+2018/08/30 14:17:38.643627 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:38.643652 [INFO] radixSort
+2018/08/30 14:17:38.651783 [INFO] featureContainer sizes:46080,46080,46080,46080,46080
+
+2018/08/30 14:17:38.651794 [INFO] radixSort_
+2018/08/30 14:17:38.870845 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:38.871287 [INFO] 2010-11-12
+2018/08/30 14:17:38.871337 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:38.871343 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:38.875930 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:38.876449 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:38.876776 [INFO] sortPatterns_
+2018/08/30 14:17:38.876789 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:38.893222 [INFO] mergePatterns
+2018/08/30 14:17:38.893235 [INFO] updateHostPatterns_
+2018/08/30 14:17:39.400526 [INFO] updateGuestPatterns_
+2018/08/30 14:17:39.410190 [INFO] 2308	51840	51840	51840	51840	51840	
+2018/08/30 14:17:39.438262 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:39.438282 [INFO] radixSort
+2018/08/30 14:17:39.447392 [INFO] featureContainer sizes:51840,51840,51840,51840,51840
+
+2018/08/30 14:17:39.447404 [INFO] radixSort_
+2018/08/30 14:17:39.647729 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:39.647752 [INFO] radixSort
+2018/08/30 14:17:39.656765 [INFO] featureContainer sizes:51840,51840,51840,51840,51840
+
+2018/08/30 14:17:39.656776 [INFO] radixSort_
+2018/08/30 14:17:39.903068 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:39.903515 [INFO] 2010-11-13
+2018/08/30 14:17:39.903565 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:39.903571 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:39.908820 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:39.909429 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:39.909811 [INFO] sortPatterns_
+2018/08/30 14:17:39.909826 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:39.930818 [INFO] mergePatterns
+2018/08/30 14:17:39.930833 [INFO] updateHostPatterns_
+2018/08/30 14:17:40.581692 [INFO] updateGuestPatterns_
+2018/08/30 14:17:40.590247 [INFO] 2504	57600	57600	57600	57600	57600	
+2018/08/30 14:17:40.622335 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:40.622374 [INFO] radixSort
+2018/08/30 14:17:40.632975 [INFO] featureContainer sizes:57600,57600,57600,57600,57600
+
+2018/08/30 14:17:40.632995 [INFO] radixSort_
+2018/08/30 14:17:40.863547 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:40.863573 [INFO] radixSort
+2018/08/30 14:17:40.873901 [INFO] featureContainer sizes:57600,57600,57600,57600,57600
+
+2018/08/30 14:17:40.873917 [INFO] radixSort_
+2018/08/30 14:17:41.152015 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:41.152464 [INFO] 2010-11-14
+2018/08/30 14:17:41.152495 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:41.152518 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:41.157798 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:41.158453 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:41.158847 [INFO] sortPatterns_
+2018/08/30 14:17:41.158862 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:41.182372 [INFO] mergePatterns
+2018/08/30 14:17:41.182386 [INFO] updateHostPatterns_
+2018/08/30 14:17:41.939407 [INFO] updateGuestPatterns_
+2018/08/30 14:17:41.947273 [INFO] 2676	63360	63360	63360	63360	63360	
+2018/08/30 14:17:41.981211 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:41.981233 [INFO] radixSort
+2018/08/30 14:17:41.992737 [INFO] featureContainer sizes:63360,63360,63360,63360,63360
+
+2018/08/30 14:17:41.992751 [INFO] radixSort_
+2018/08/30 14:17:42.269385 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:42.269415 [INFO] radixSort
+2018/08/30 14:17:42.280487 [INFO] featureContainer sizes:63360,63360,63360,63360,63360
+
+2018/08/30 14:17:42.280497 [INFO] radixSort_
+2018/08/30 14:17:42.619271 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:42.619718 [INFO] 2010-11-15
+2018/08/30 14:17:42.619769 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:42.619775 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:42.625420 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:42.626103 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:42.626537 [INFO] sortPatterns_
+2018/08/30 14:17:42.626553 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:42.653220 [INFO] mergePatterns
+2018/08/30 14:17:42.653234 [INFO] updateHostPatterns_
+2018/08/30 14:17:43.540413 [INFO] updateGuestPatterns_
+2018/08/30 14:17:43.557723 [INFO] 2873	69120	69120	69120	69120	69120	
+2018/08/30 14:17:43.595282 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:43.595303 [INFO] radixSort
+2018/08/30 14:17:43.607398 [INFO] featureContainer sizes:69120,69120,69120,69120,69120
+
+2018/08/30 14:17:43.607410 [INFO] radixSort_
+2018/08/30 14:17:43.907341 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:43.907364 [INFO] radixSort
+2018/08/30 14:17:43.919405 [INFO] featureContainer sizes:69120,69120,69120,69120,69120
+
+2018/08/30 14:17:43.919416 [INFO] radixSort_
+2018/08/30 14:17:44.280840 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:44.281295 [INFO] 2010-11-16
+2018/08/30 14:17:44.281346 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:44.281352 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:44.287378 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:44.288124 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:44.288573 [INFO] sortPatterns_
+2018/08/30 14:17:44.288590 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:44.319222 [INFO] mergePatterns
+2018/08/30 14:17:44.319239 [INFO] updateHostPatterns_
+2018/08/30 14:17:45.448310 [INFO] updateGuestPatterns_
+2018/08/30 14:17:45.459835 [INFO] 3096	74880	74880	74880	74880	74880	
+2018/08/30 14:17:45.505372 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:45.505397 [INFO] radixSort
+2018/08/30 14:17:45.521047 [INFO] featureContainer sizes:74880,74880,74880,74880,74880
+
+2018/08/30 14:17:45.521071 [INFO] radixSort_
+2018/08/30 14:17:45.874869 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:45.874915 [INFO] radixSort
+2018/08/30 14:17:45.888213 [INFO] featureContainer sizes:74880,74880,74880,74880,74880
+
+2018/08/30 14:17:45.888242 [INFO] radixSort_
+2018/08/30 14:17:46.283445 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:46.283905 [INFO] 2010-11-17
+2018/08/30 14:17:46.283957 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:46.283962 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:46.290455 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:46.291216 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:46.291699 [INFO] sortPatterns_
+2018/08/30 14:17:46.291717 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:46.330434 [INFO] mergePatterns
+2018/08/30 14:17:46.330456 [INFO] updateHostPatterns_
+2018/08/30 14:17:47.668693 [INFO] updateGuestPatterns_
+2018/08/30 14:17:47.675678 [INFO] 3237	80640	80640	80640	80640	80640	
+2018/08/30 14:17:47.719637 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:47.719660 [INFO] radixSort
+2018/08/30 14:17:47.733843 [INFO] featureContainer sizes:80640,80640,80640,80640,80640
+
+2018/08/30 14:17:47.733854 [INFO] radixSort_
+2018/08/30 14:17:48.114783 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:48.114809 [INFO] radixSort
+2018/08/30 14:17:48.131115 [INFO] featureContainer sizes:80640,80640,80640,80640,80640
+
+2018/08/30 14:17:48.131140 [INFO] radixSort_
+2018/08/30 14:17:48.607748 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:48.608229 [INFO] 2010-11-18
+2018/08/30 14:17:48.608292 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:48.608298 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:48.616469 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:48.617329 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:48.617878 [INFO] sortPatterns_
+2018/08/30 14:17:48.617898 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:48.660484 [INFO] mergePatterns
+2018/08/30 14:17:48.660508 [INFO] updateHostPatterns_
+2018/08/30 14:17:50.137134 [INFO] updateGuestPatterns_
+2018/08/30 14:17:50.146752 [INFO] 3418	86400	86400	86400	86400	86400	
+2018/08/30 14:17:50.198940 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:50.198970 [INFO] radixSort
+2018/08/30 14:17:50.217614 [INFO] featureContainer sizes:86400,86400,86400,86400,86400
+
+2018/08/30 14:17:50.217635 [INFO] radixSort_
+2018/08/30 14:17:50.600614 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:50.600638 [INFO] radixSort
+2018/08/30 14:17:50.615678 [INFO] featureContainer sizes:86400,86400,86400,86400,86400
+
+2018/08/30 14:17:50.615690 [INFO] radixSort_
+2018/08/30 14:17:51.099155 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:51.099618 [INFO] 2010-11-19
+2018/08/30 14:17:51.104508 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:51.104529 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:51.111184 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:51.112058 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:51.112678 [INFO] sortPatterns_
+2018/08/30 14:17:51.112700 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:51.160951 [INFO] mergePatterns
+2018/08/30 14:17:51.160978 [INFO] updateHostPatterns_
+2018/08/30 14:17:52.879354 [INFO] updateGuestPatterns_
+2018/08/30 14:17:52.887806 [INFO] 3561	92160	92160	92160	92160	92160	
+2018/08/30 14:17:52.943752 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:52.943777 [INFO] radixSort
+2018/08/30 14:17:52.962090 [INFO] featureContainer sizes:92160,92160,92160,92160,92160
+
+2018/08/30 14:17:52.962114 [INFO] radixSort_
+2018/08/30 14:17:53.405053 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:53.405077 [INFO] radixSort
+2018/08/30 14:17:53.421956 [INFO] featureContainer sizes:92160,92160,92160,92160,92160
+
+2018/08/30 14:17:53.421972 [INFO] radixSort_
+2018/08/30 14:17:53.931124 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:53.931618 [INFO] 2010-11-20
+2018/08/30 14:17:53.931671 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:53.931676 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:53.940214 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:53.941136 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:53.941722 [INFO] sortPatterns_
+2018/08/30 14:17:53.941743 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:53.993433 [INFO] mergePatterns
+2018/08/30 14:17:53.993471 [INFO] updateHostPatterns_
+2018/08/30 14:17:55.919147 [INFO] updateGuestPatterns_
+2018/08/30 14:17:55.933123 [INFO] 3899	97920	97920	97920	97920	97920	
+2018/08/30 14:17:55.993437 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:55.993463 [INFO] radixSort
+2018/08/30 14:17:56.012071 [INFO] featureContainer sizes:97920,97920,97920,97920,97920
+
+2018/08/30 14:17:56.012094 [INFO] radixSort_
+2018/08/30 14:17:56.474628 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:56.474673 [INFO] radixSort
+2018/08/30 14:17:56.492823 [INFO] featureContainer sizes:97920,97920,97920,97920,97920
+
+2018/08/30 14:17:56.492838 [INFO] radixSort_
+2018/08/30 14:17:57.042053 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:17:57.042589 [INFO] 2010-11-21
+2018/08/30 14:17:57.042624 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:17:57.042630 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:17:57.051107 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:17:57.052589 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:17:57.053231 [INFO] sortPatterns_
+2018/08/30 14:17:57.053254 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:17:57.114670 [INFO] mergePatterns
+2018/08/30 14:17:57.114694 [INFO] updateHostPatterns_
+2018/08/30 14:17:59.302990 [INFO] updateGuestPatterns_
+2018/08/30 14:17:59.312294 [INFO] 4092	103680	103680	103680	103680	103680	
+2018/08/30 14:17:59.370073 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:17:59.370098 [INFO] radixSort
+2018/08/30 14:17:59.389008 [INFO] featureContainer sizes:103680,103680,103680,103680,103680
+
+2018/08/30 14:17:59.389025 [INFO] radixSort_
+2018/08/30 14:17:59.860872 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:17:59.860898 [INFO] radixSort
+2018/08/30 14:17:59.879913 [INFO] featureContainer sizes:103680,103680,103680,103680,103680
+
+2018/08/30 14:17:59.879927 [INFO] radixSort_
+2018/08/30 14:18:00.584639 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:00.585330 [INFO] 2010-11-22
+2018/08/30 14:18:00.585390 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:00.585398 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:00.595764 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:00.597116 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:00.597977 [INFO] sortPatterns_
+2018/08/30 14:18:00.598007 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:00.679621 [INFO] mergePatterns
+2018/08/30 14:18:00.679649 [INFO] updateHostPatterns_
+2018/08/30 14:18:03.651602 [INFO] updateGuestPatterns_
+2018/08/30 14:18:03.664543 [INFO] 4318	109440	109440	109440	109440	109440	
+2018/08/30 14:18:03.742320 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:03.742346 [INFO] radixSort
+2018/08/30 14:18:03.768700 [INFO] featureContainer sizes:109440,109440,109440,109440,109440
+
+2018/08/30 14:18:03.768727 [INFO] radixSort_
+2018/08/30 14:18:04.314659 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:04.314683 [INFO] radixSort
+2018/08/30 14:18:04.334625 [INFO] featureContainer sizes:109440,109440,109440,109440,109440
+
+2018/08/30 14:18:04.334644 [INFO] radixSort_
+2018/08/30 14:18:04.927121 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:04.927666 [INFO] 2010-11-23
+2018/08/30 14:18:04.927719 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:04.927725 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:04.937516 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:04.938689 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:04.939398 [INFO] sortPatterns_
+2018/08/30 14:18:04.939422 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:05.012256 [INFO] mergePatterns
+2018/08/30 14:18:05.012279 [INFO] updateHostPatterns_
+2018/08/30 14:18:07.632758 [INFO] updateGuestPatterns_
+2018/08/30 14:18:07.642455 [INFO] 4529	115200	115200	115200	115200	115200	
+2018/08/30 14:18:07.705779 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:07.705800 [INFO] radixSort
+2018/08/30 14:18:07.726501 [INFO] featureContainer sizes:115200,115200,115200,115200,115200
+
+2018/08/30 14:18:07.726512 [INFO] radixSort_
+2018/08/30 14:18:08.311534 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:08.311559 [INFO] radixSort
+2018/08/30 14:18:08.338631 [INFO] featureContainer sizes:115200,115200,115200,115200,115200
+
+2018/08/30 14:18:08.338644 [INFO] radixSort_
+2018/08/30 14:18:09.145225 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:09.145844 [INFO] 2010-11-24
+2018/08/30 14:18:09.145886 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:09.145892 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:09.166126 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:09.167613 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:09.168566 [INFO] sortPatterns_
+2018/08/30 14:18:09.168778 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:09.266524 [INFO] mergePatterns
+2018/08/30 14:18:09.266545 [INFO] updateHostPatterns_
+2018/08/30 14:18:12.725757 [INFO] updateGuestPatterns_
+2018/08/30 14:18:12.727504 [INFO] 0	6
+2018/08/30 14:18:12.727573 [INFO] mapped:7
+2018/08/30 14:18:12.727578 [INFO] 1	13
+2018/08/30 14:18:12.727645 [INFO] mapped:14
+2018/08/30 14:18:12.727649 [INFO] 2	22
+2018/08/30 14:18:12.727710 [INFO] mapped:23
+2018/08/30 14:18:12.727714 [INFO] 3	73
+2018/08/30 14:18:12.727770 [INFO] mapped:74
+2018/08/30 14:18:12.727775 [INFO] 0	99
+2018/08/30 14:18:12.727835 [INFO] mapped:100
+2018/08/30 14:18:12.735790 [INFO] 4728	120960	120960	120960	120960	120960	
+2018/08/30 14:18:12.805512 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:12.805537 [INFO] radixSort
+2018/08/30 14:18:12.827699 [INFO] featureContainer sizes:120960,120960,120960,120960,120960
+
+2018/08/30 14:18:12.827711 [INFO] radixSort_
+2018/08/30 14:18:13.381980 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:13.382007 [INFO] radixSort
+2018/08/30 14:18:13.404450 [INFO] featureContainer sizes:120960,120960,120960,120960,120960
+
+2018/08/30 14:18:13.404488 [INFO] radixSort_
+2018/08/30 14:18:14.062808 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:14.063318 [INFO] 2010-11-25
+2018/08/30 14:18:14.063353 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:14.063358 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:14.078765 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:14.080001 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:14.080768 [INFO] sortPatterns_
+2018/08/30 14:18:14.080793 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:14.164735 [INFO] mergePatterns
+2018/08/30 14:18:14.164747 [INFO] updateHostPatterns_
+2018/08/30 14:18:17.898712 [INFO] updateGuestPatterns_
+2018/08/30 14:18:17.913453 [INFO] 4998	126720	126720	126720	126720	126720	
+2018/08/30 14:18:18.003286 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:18.003310 [INFO] radixSort
+2018/08/30 14:18:18.033078 [INFO] featureContainer sizes:126720,126720,126720,126720,126720
+
+2018/08/30 14:18:18.033093 [INFO] radixSort_
+2018/08/30 14:18:18.786775 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:18.786805 [INFO] radixSort
+2018/08/30 14:18:18.816619 [INFO] featureContainer sizes:126720,126720,126720,126720,126720
+
+2018/08/30 14:18:18.816638 [INFO] radixSort_
+2018/08/30 14:18:19.567430 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:19.567934 [INFO] 2010-11-26
+2018/08/30 14:18:19.567987 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:19.567992 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:19.584177 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:19.585385 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:19.586211 [INFO] sortPatterns_
+2018/08/30 14:18:19.586382 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:19.679565 [INFO] mergePatterns
+2018/08/30 14:18:19.679578 [INFO] updateHostPatterns_
+2018/08/30 14:18:23.197574 [INFO] updateGuestPatterns_
+2018/08/30 14:18:23.199669 [INFO] 0	66
+2018/08/30 14:18:23.199750 [INFO] mapped:67
+2018/08/30 14:18:23.234906 [INFO] 5211	132480	132480	132480	132480	132480	
+2018/08/30 14:18:23.327867 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:23.327897 [INFO] radixSort
+2018/08/30 14:18:23.358965 [INFO] featureContainer sizes:132480,132480,132480,132480,132480
+
+2018/08/30 14:18:23.358980 [INFO] radixSort_
+2018/08/30 14:18:24.134725 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:24.134756 [INFO] radixSort
+2018/08/30 14:18:24.167118 [INFO] featureContainer sizes:132480,132480,132480,132480,132480
+
+2018/08/30 14:18:24.167146 [INFO] radixSort_
+2018/08/30 14:18:25.097183 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:25.097820 [INFO] 2010-11-27
+2018/08/30 14:18:25.097863 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:25.097870 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:25.118969 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:25.120673 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:25.121765 [INFO] sortPatterns_
+2018/08/30 14:18:25.121802 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:25.250012 [INFO] mergePatterns
+2018/08/30 14:18:25.250028 [INFO] updateHostPatterns_
+2018/08/30 14:18:29.423107 [INFO] updateGuestPatterns_
+2018/08/30 14:18:29.431429 [INFO] 5375	138240	138240	138240	138240	138240	
+2018/08/30 14:18:29.506707 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:29.506729 [INFO] radixSort
+2018/08/30 14:18:29.531715 [INFO] featureContainer sizes:138240,138240,138240,138240,138240
+
+2018/08/30 14:18:29.531737 [INFO] radixSort_
+2018/08/30 14:18:30.179965 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:30.179997 [INFO] radixSort
+2018/08/30 14:18:30.212470 [INFO] featureContainer sizes:138240,138240,138240,138240,138240
+
+2018/08/30 14:18:30.212491 [INFO] radixSort_
+2018/08/30 14:18:31.179241 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:31.179877 [INFO] 2010-11-28
+2018/08/30 14:18:31.179921 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:31.179928 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:31.201417 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:31.203179 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:31.204308 [INFO] sortPatterns_
+2018/08/30 14:18:31.204669 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:31.341037 [INFO] mergePatterns
+2018/08/30 14:18:31.341065 [INFO] updateHostPatterns_
+2018/08/30 14:18:35.979699 [INFO] updateGuestPatterns_
+2018/08/30 14:18:35.981357 [INFO] 0	65
+2018/08/30 14:18:35.985042 [INFO] mapped:66
+2018/08/30 14:18:35.992862 [INFO] 5586	144000	144000	144000	144000	144000	
+2018/08/30 14:18:36.068969 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:36.068996 [INFO] radixSort
+2018/08/30 14:18:36.094247 [INFO] featureContainer sizes:144000,144000,144000,144000,144000
+
+2018/08/30 14:18:36.094262 [INFO] radixSort_
+2018/08/30 14:18:36.746155 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:36.746186 [INFO] radixSort
+2018/08/30 14:18:36.775295 [INFO] featureContainer sizes:144000,144000,144000,144000,144000
+
+2018/08/30 14:18:36.775319 [INFO] radixSort_
+2018/08/30 14:18:37.543836 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:37.544341 [INFO] 2010-11-29
+2018/08/30 14:18:37.544393 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:37.544398 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:37.561593 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:37.562984 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:37.563850 [INFO] sortPatterns_
+2018/08/30 14:18:37.563879 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:37.673130 [INFO] mergePatterns
+2018/08/30 14:18:37.673144 [INFO] updateHostPatterns_
+2018/08/30 14:18:42.481907 [INFO] updateGuestPatterns_
+2018/08/30 14:18:42.494880 [INFO] 5806	149760	149760	149760	149760	149760	
+2018/08/30 14:18:42.600848 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:42.600876 [INFO] radixSort
+2018/08/30 14:18:42.636086 [INFO] featureContainer sizes:149760,149760,149760,149760,149760
+
+2018/08/30 14:18:42.636107 [INFO] radixSort_
+2018/08/30 14:18:43.509453 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:43.509483 [INFO] radixSort
+2018/08/30 14:18:43.544571 [INFO] featureContainer sizes:149760,149760,149760,149760,149760
+
+2018/08/30 14:18:43.544589 [INFO] radixSort_
+2018/08/30 14:18:44.479717 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:44.480226 [INFO] 2010-11-30
+2018/08/30 14:18:44.480277 [INFO] clusterDiscoveredPatterns_
+2018/08/30 14:18:44.480283 [INFO] computeSimilarityBetweenPatterns_
+2018/08/30 14:18:44.496622 [INFO] sortPatternsUsingSimilarityScores
+2018/08/30 14:18:44.498116 [INFO] computeAverageSimilarityScorePerPattern_
+2018/08/30 14:18:44.499063 [INFO] sortPatterns_
+2018/08/30 14:18:44.499093 [INFO] removeDuplicatePatternsToMerge_
+2018/08/30 14:18:44.623121 [INFO] mergePatterns
+2018/08/30 14:18:44.623145 [INFO] updateHostPatterns_
+2018/08/30 14:18:49.218438 [INFO] updateGuestPatterns_
+2018/08/30 14:18:49.230824 [INFO] 6100	155520	155520	155520	155520	155520	
+2018/08/30 14:18:49.314157 [INFO] computeOptimizedAverageSensorDurationPerPattern
+2018/08/30 14:18:49.314187 [INFO] radixSort
+2018/08/30 14:18:49.342880 [INFO] featureContainer sizes:155520,155520,155520,155520,155520
+
+2018/08/30 14:18:49.342919 [INFO] radixSort_
+2018/08/30 14:18:50.033126 [INFO] computeOptimizedMostCommonActivityLabelPerPattern
+2018/08/30 14:18:50.033152 [INFO] radixSort
+2018/08/30 14:18:50.061775 [INFO] featureContainer sizes:155520,155520,155520,155520,155520
+
+2018/08/30 14:18:50.061788 [INFO] radixSort_
+2018/08/30 14:18:50.895595 [INFO] computeBetweenDayPatternStatistics
+2018/08/30 14:18:50.895737 [INFO] writeFeatures
+2018/08/30 14:18:50.895742 [INFO] writeBetweenDayPatterns
+2018/08/30 14:18:50.895746 [INFO] writeSensorDurations
+2018/08/30 14:18:58.449159 [INFO] writeDiscoveredPatterns
+2018/08/30 14:18:58.456907 [INFO] writeSequencePatterns
+2018/08/30 14:19:04.140123 [INFO] writeDayNames
+2018/08/30 14:19:09.912885 [INFO] writeTimeIndex
+2018/08/30 14:19:15.886923 [INFO] writeActivityLabels
+2018/08/30 14:19:21.264633 [INFO] destroy
+2018/08/30 14:19:21.264653 [INFO] ~BetweenDayClustering
+2018/08/30 14:19:21.264659 [INFO] ~FeatureReader
+2018/08/30 14:19:21.264665 [INFO] ~FeatureProcessor
+2018/08/30 14:19:21.264670 [INFO] ~Home
+2018/08/30 14:19:21.264684 [INFO] ~SorterProcessor
+2018/08/30 14:19:21.264690 [INFO] ~SimilarityMeasure
+2018/08/30 14:19:21.264695 [INFO] ~Home
+2018/08/30 14:19:21.264706 [INFO] ~PatternsStatistics
+2018/08/30 14:19:21.264721 [INFO] writePatternsStatistics
+2018/08/30 14:19:21.264727 [INFO] writePatternStatistics_
+2018/08/30 14:19:21.264818 [INFO] writePatternStatistics_
+2018/08/30 14:19:21.264881 [INFO] writePatternStatistics_
+2018/08/30 14:19:21.264941 [INFO] ~FeatureWriter
+2018/08/30 14:19:21.289857 [INFO] time: 108988.946000
+

@@ -12,6 +12,7 @@ components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o
 components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/impl/include/patterns-statistics.h
 components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/impl/include/sensor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/impl/include/similarity-measure.h
+components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/impl/include/utilities.h
 components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/BetweenDayClusteringTester.cpp.o: ../components/aruba/tests/src/BetweenDayClusteringTester.cpp
@@ -23,6 +24,7 @@ components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ..
 components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/impl/include/home.h
 components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/impl/include/logger.h
 components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/impl/include/sensor.h
+components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/impl/include/utilities.h
 components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/FeatureProcessorTester.cpp.o: ../components/aruba/tests/src/FeatureProcessorTester.cpp
@@ -56,6 +58,7 @@ components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusterin
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/logger.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/sensor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/similarity-measure.h
+components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/impl/include/utilities.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/tests/inc/test-constants.h
 components/aruba/tests/CMakeFiles/tests.dir/src/HierarchalAgglomerativeClusteringTester.cpp.o: ../components/aruba/tests/src/HierarchalAgglomerativeClusteringTester.cpp

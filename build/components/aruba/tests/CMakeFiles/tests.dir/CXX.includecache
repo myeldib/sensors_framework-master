@@ -33,6 +33,8 @@ utilities.h
 ../components/aruba/impl/include/feature-processor.h
 feature-container.h
 -
+sorter-processor.h
+-
 home.h
 -
 logger.h
@@ -92,6 +94,8 @@ math.h
 feature-container.h
 -
 feature-processor.h
+-
+sorter-processor.h
 -
 feature-reader.h
 -

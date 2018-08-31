@@ -7,6 +7,7 @@
 #include <math.h>
 #include <feature-container.h>
 #include <feature-processor.h>
+#include <sorter-processor.h>
 #include <feature-reader.h>
 #include <feature-writer.h>
 #include <utilities.h>
@@ -47,6 +48,7 @@ private:
     SimilarityMeasure* similarityMeasure_;
     boost::thread_group g;
     Home* home_;
+    SorterProcessor* sorterProcessor_;
 
 
     string hierarchal_clustering_path_;

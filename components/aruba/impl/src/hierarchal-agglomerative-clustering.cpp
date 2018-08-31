@@ -45,7 +45,7 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
   hierarchal_clustering_path_=hierarchal_clustering_path;
   //set clustering threshold
   hierarchal_threshold= home_->getHierarchalClusteringThreshold();
-  num_threads= boost::thread::hardware_concurrency();
+  num_threads= 1;//boost::thread::hardware_concurrency();
   last_discovered_patterns = 0;
 
   logging::INFO("num_threads:"+std::to_string(num_threads));
@@ -73,7 +73,7 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
   //the results are expected to be in a single feature container
   mergedSubFeatureContainers_ = featureReader_->readFeatures(feature_reader_path,Constants::between_day_cluster)[0];
 
-
+  sorterProcessor_ = new SorterProcessor();
 }
 
 
@@ -125,7 +125,7 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
 
   if(num_threads==0)
     {
-      computeContainerClusters_(mergedFeatureContainers);
+      //computeContainerClusters_(mergedFeatureContainers);
       return;
     }
 
@@ -136,6 +136,8 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
       FeatureContainer* fc = new FeatureContainer();
       subFeatureContainers.push_back(fc);
     }
+
+  sorterProcessor_->radixSort(mergedFeatureContainers);
 
   //divide problem to small problems
   divideContainerToSubContainers_(mergedFeatureContainers,subFeatureContainers,num_threads);
@@ -397,6 +399,8 @@ void HierarchalAgglomerativeClustering::computeContainerClusters_(FeatureContain
   int guest_pattern_index=-1;
   bool is_first_to_compute = true;
 
+  vector<int> discovered_pattern = featureContainer->getDiscoveredPatterns();
+
 
   do
     {
@@ -414,7 +418,7 @@ void HierarchalAgglomerativeClustering::computeContainerClusters_(FeatureContain
 
       if(sim >= hierarchal_threshold)
         {
-          checkFeatures(featureContainer,host_pattern_index,guest_pattern_index,proximity_matrix);
+          //checkFeatures(featureContainer,host_pattern_index,guest_pattern_index,proximity_matrix);
           mergePatterns_(featureContainer,host_pattern_index,guest_pattern_index);
         }
 

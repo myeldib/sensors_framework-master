@@ -90,7 +90,7 @@ void WithinDayClustering::run()
     }
 
   //create duration windows
-  //time_window->run();
+  time_window->run();
 
   //cluster windows within a single day instance
   hist_clust->run();

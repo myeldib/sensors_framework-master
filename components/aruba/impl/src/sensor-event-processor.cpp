@@ -55,7 +55,7 @@ void SensorEventProcessor::destroy()
  */
 void SensorEventProcessor::checkPatternState(vector<string>& sensor_events,int window_size,vector<int>& sensor_durations)
 {
-  logging::INFO("checkPatternState");
+  //logging::INFO("checkPatternState");
 
   float door_ratio=0.0;
   float motion_ratio=0.0;
@@ -72,7 +72,7 @@ void SensorEventProcessor::checkPatternState(vector<string>& sensor_events,int w
  */
 void SensorEventProcessor::computeMotionToDoorSensorRatio_(vector<string> &sensor_events, float &door_ratio, float &motion_ratio)
 {
-  logging::INFO("computeMotionToDoorSensorRatio_");
+  //logging::INFO("computeMotionToDoorSensorRatio_");
   float tmp_motion_ratio=0.0;
   float tmp_door_ratio=0.0;
   for(int i =0;i <sensor_events.size();i++)
@@ -101,7 +101,7 @@ void SensorEventProcessor::computeMotionToDoorSensorRatio_(vector<string> &senso
  */
 void SensorEventProcessor::determinePatternState_(float door_ratio, float motion_ratio,int window_size,vector<int> &sensor_durations)
 {
-  logging::INFO("determinePatternState_");
+  //logging::INFO("determinePatternState_");
 
   //reset flags
   is_entered_pattern_state_ = false;
@@ -111,7 +111,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
       (window_pattern_state_[0] == DEFAULT_PATTERN_STATE) &&
       (window_pattern_state_[1] == DEFAULT_PATTERN_STATE) )
     {
-      logging::INFO("case 1");
+      //logging::INFO("case 1");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = DEFAULT_PATTERN_STATE;
       sensor_durations[sensor_durations.size()-1] = window_size*FACTOR_WINDOW_MULTIPLIER;
@@ -126,7 +126,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
           ( window_pattern_state_[0] == (window_size*FACTOR_WINDOW_MULTIPLIER)) &&
           ( window_pattern_state_[1] == DEFAULT_PATTERN_STATE) )
     {
-      logging::INFO("case 2");
+      //logging::INFO("case 2");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = DEFAULT_PATTERN_STATE;
       sensor_durations[sensor_durations.size()-1] = window_size*FACTOR_WINDOW_MULTIPLIER;
@@ -141,7 +141,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
           ( window_pattern_state_[0] == DEFAULT_PATTERN_STATE) &&
           ( window_pattern_state_[1] == (window_size*FACTOR_WINDOW_MULTIPLIER)) )
     {
-      logging::INFO("case 3");
+      //logging::INFO("case 3");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = DEFAULT_PATTERN_STATE;
       sensor_durations[sensor_durations.size()-1] = window_size*FACTOR_WINDOW_MULTIPLIER;
@@ -156,7 +156,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
           ( window_pattern_state_[0] == DEFAULT_PATTERN_STATE) &&
           ( window_pattern_state_[1] == DEFAULT_PATTERN_STATE) )
     {
-      logging::INFO("case 4");
+      //logging::INFO("case 4");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = DEFAULT_PATTERN_STATE;
       sensor_durations[sensor_durations.size()-1] = DEFAULT_PATTERN_STATE;
@@ -171,7 +171,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
           ( window_pattern_state_[0] == DEFAULT_PATTERN_STATE) &&
           ( window_pattern_state_[1] == (window_size*FACTOR_WINDOW_MULTIPLIER)) )
     {
-      logging::INFO("case 5");
+      //logging::INFO("case 5");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = window_size*FACTOR_WINDOW_MULTIPLIER;
       sensor_durations[sensor_durations.size()-1] = DEFAULT_PATTERN_STATE;
@@ -190,7 +190,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
           ( window_pattern_state_[0] == (window_size*FACTOR_WINDOW_MULTIPLIER)) &&
           ( window_pattern_state_[1] == DEFAULT_PATTERN_STATE) )
     {
-      logging::INFO("case 6");
+      //logging::INFO("case 6");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = DEFAULT_PATTERN_STATE;
       sensor_durations[sensor_durations.size()-1] = DEFAULT_PATTERN_STATE;
@@ -208,7 +208,7 @@ void SensorEventProcessor::determinePatternState_(float door_ratio, float motion
           ( window_pattern_state_[1] == (window_size*FACTOR_WINDOW_MULTIPLIER)) &&
           ( window_pattern_state_[0] == DEFAULT_PATTERN_STATE) )
     {
-      logging::INFO("case 7");
+      //logging::INFO("case 7");
       //update current pattern state
       sensor_durations[sensor_durations.size()-2] = DEFAULT_PATTERN_STATE;
       sensor_durations[sensor_durations.size()-1] = DEFAULT_PATTERN_STATE;

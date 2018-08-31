@@ -208,8 +208,8 @@ void BetweenDayClustering::clusterDiscoveredPatterns_(int day_index, FeatureCont
 
     featureProcessor->mergePatterns(day_index,this->new_initial_pattern_index,merged_fc,fc);
 
-    featureProcessor->computeAverageSensorDurationPerPattern(merged_fc);
-    featureProcessor->computeMostCommonActivityLabelPerPattern(merged_fc);
+    featureProcessor->computeOptimizedAverageSensorDurationPerPattern(merged_fc);
+    featureProcessor->computeOptimizedMostCommonActivityLabelPerPattern(merged_fc);
 }
 
 /**
@@ -261,8 +261,8 @@ void BetweenDayClustering::processFeatures_()
     for(int i = 0 ; i<featuresContainer.size();i++)
     {
         logging::INFO(featuresContainer[i]->getDayNamePerPattern()[0]);
-        featureProcessor->computeAverageSensorDurationPerPattern(featuresContainer[i]);
-        featureProcessor->computeMostCommonActivityLabelPerPattern(featuresContainer[i]);
+        featureProcessor->computeOptimizedAverageSensorDurationPerPattern(featuresContainer[i]);
+        featureProcessor->computeOptimizedMostCommonActivityLabelPerPattern(featuresContainer[i]);
     }
 }
 
