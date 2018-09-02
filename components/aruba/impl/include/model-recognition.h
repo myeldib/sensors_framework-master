@@ -12,6 +12,7 @@
 #include <feature-writer.h>
 #include <utilities.h>
 #include<evaluation.h>
+#include<sorter-processor.h>
 #include <python-runner.h>
 #include <boost/thread.hpp>
 
@@ -48,6 +49,7 @@ private:
   SimilarityMeasure* similarityMeasure_;
   FeatureReader* featureReader_;
   PythonRunner* pythonRunner_;
+  SorterProcessor* sorterProcessor_;
   FeatureWriter* featureWriter_;
   Home* home_;
   int num_threads_;

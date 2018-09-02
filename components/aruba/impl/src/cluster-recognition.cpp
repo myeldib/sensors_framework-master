@@ -1,5 +1,6 @@
 #include "cluster-recognition.h"
 
+const float MAX_SIM = 1.0;
 /**
  * @brief ClusterRecognition::ClusterRecognition
  * @param hierarchal_clustering_path
@@ -378,8 +379,8 @@ void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContain
   int sum_clusters=  std::accumulate(most_common_activity_count_cluster.begin(), most_common_activity_count_cluster.end(), 0);
 
   logging::INFO("activity_labels_per_pattern_size:"+std::to_string(activity_labels_per_pattern.size())+"\t"+
-                 "sequence_patterns_size:"+std::to_string(sequence_patterns.size())+"\t"+
-                 "discovered_patterns_size:"+std::to_string(discovered_patterns.size()));
+                "sequence_patterns_size:"+std::to_string(sequence_patterns.size())+"\t"+
+                "discovered_patterns_size:"+std::to_string(discovered_patterns.size()));
 
   purity=(sum_clusters*1.0)/(sum_labels*1.0);
   logging::INFO("purity:"+std::to_string(purity));
@@ -540,15 +541,19 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
   vector<int> train_time_index = train_sensor_data->getMostAssignedTimeIndexPerPatternInHourIndex();
   vector<vector<int> > train_activity_label_per_pattern=train_sensor_data->getActivityLabelsPerPattern();
 
+
   for(int i =0; i<test_sensor_duration.size(); i++)
     {
 
+      bool is_loop_break = false;
       vector<float> sim_results;
 
 
       vector<float> sensor_duration1 = test_sensor_duration[i];
       vector<int> active_sensors1 = test_active_sensors[i];
       float time_index1=test_time_index[i];
+
+      int max_similarity_index = 0;
 
       for(int j =0;j<train_sensor_avg_duration.size();j++)
         {
@@ -568,11 +573,21 @@ void ClusterRecognition::recognize_(FeatureContainer *test_sensor_data,
           total_sim= (duration_sim+sensor_structure_sim+time_sim)/3;
 
           sim_results.push_back(total_sim);
+
+          if(total_sim == MAX_SIM)
+            {
+              max_similarity_index = j;
+              is_loop_break = true;
+              break;
+            }
         }
 
-      //find max similarity value in col (host pattern)
-      auto max_host_similarity_value = std::max_element(std::begin(sim_results), std::end(sim_results));
-      int max_similarity_index=std::distance(std::begin(sim_results), max_host_similarity_value);
+      if(!is_loop_break)
+        {
+          //find max similarity value in col (host pattern)
+          auto max_host_similarity_value = std::max_element(std::begin(sim_results), std::end(sim_results));
+          max_similarity_index=std::distance(std::begin(sim_results), max_host_similarity_value);
+        }
 
       int predicted_sequence_pattern = train_discovered_patterns[max_similarity_index];
       int predicted_activity_label_index =train_most_select_activity_label[max_similarity_index];

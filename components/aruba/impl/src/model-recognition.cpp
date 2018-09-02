@@ -80,6 +80,8 @@ void ModelRecognition::init_(string hierarchal_clustering_path,string config_pat
   sensor_data = featureReader_->readFeatures(within_day_cluster_path,Constants::within_day_cluster);
   merged_sub_containers = new FeatureContainer();
 
+  sorterProcessor_ = new SorterProcessor();
+
   script_name_="train_model";
   function_name1_ ="train_and_predict";
   function_name2_ ="compute_accuracy";
@@ -158,6 +160,11 @@ ModelRecognition::~ModelRecognition()
   if(pythonRunner_)
     {
       delete pythonRunner_;
+    }
+
+  if(sorterProcessor_)
+    {
+      delete sorterProcessor_;
     }
 
 }
@@ -455,9 +462,11 @@ void ModelRecognition::computeFeatures_(FeatureContainer *featureContainer)
 {
   logging::INFO("computeFeatures_");
 
-  featureProcessor_->computeAverageSensorDurationPerPattern(featureContainer);
-  featureProcessor_->computeMostCommonActivityLabelPerPattern(featureContainer);
+  sorterProcessor_->radixSort(featureContainer);
+
+  featureProcessor_->computeOptimizedAverageSensorDurationPerPattern(featureContainer);
+  featureProcessor_->computeOptimizedMostCommonActivityLabelPerPattern(featureContainer);
   featureProcessor_->computeActiveSensors(featureContainer,true);
-  featureProcessor_->computeMostAssignedTimeIndex(featureContainer);
-  featureProcessor_->computePatternsLength(featureContainer);
+  featureProcessor_->computeOptimizedMostAssignedTimeIndex(featureContainer);
+
 }

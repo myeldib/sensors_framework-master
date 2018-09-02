@@ -184,71 +184,9 @@ int main(int argc, char ** argv)
   //runWithinDayPattern();
   //runBetweenDayPattern();
   //runHierachalCluster();
-  runClusterRecognition();
+  //runClusterRecognition();
   //runModelRecognition();
   //runEvaluation();
-
-//  vector<vector<int > > proximity_matrix;
-//  vector<int> discovered_patterns;
-
-//  for(int i = 0 ; i <1000; i++)
-//    {
-//      discovered_patterns.push_back(1000+i);
-//    }
-
-//  for(int i =0 ; i <1000; i++)
-//    {
-//      vector<int> row;
-//      for(int j =0 ; j<1000;j++)
-//        {
-//          row.push_back(j);
-//        }
-//      proximity_matrix.push_back(row);
-//    }
-
-//  //host = 100, guest 350
-//  //remove guest : 350, and remove every colum 350
-//  int host_pattern_index = 0;
-//  int guest_pattern_index = 0;
-
-//  host_pattern_index = 360;
-//  guest_pattern_index = 350;
-
-//  cout<<"host_discovered_pattern:"<<discovered_patterns[host_pattern_index]<<endl;
-//  cout<<"guest_discovered_pattern:"<<discovered_patterns[guest_pattern_index]<<endl;
-
-
-//  if(guest_pattern_index<host_pattern_index)
-//    {
-//      --host_pattern_index;
-//    }
-
-//  //delete guest discovered pattern
-//  discovered_patterns.erase(discovered_patterns.begin()+guest_pattern_index);
-
-//  //delete row from matrix
-//  proximity_matrix.erase(proximity_matrix.begin()+guest_pattern_index);
-
-//  for(int i =0; i<proximity_matrix.size();i++)
-//    {
-//      vector<int> row = proximity_matrix[i];
-//      //delete colum from row
-//      row.erase(row.begin()+guest_pattern_index);
-//      //assign updated row to the matrix
-//      proximity_matrix[i] =row;
-//    }
-
-//  cout<<"host_discovered_pattern:"<<discovered_patterns[host_pattern_index]<<endl;
-//  cout<<"guest_discovered_pattern:"<<discovered_patterns[guest_pattern_index]<<endl;
-
-//  cout<<proximity_matrix[host_pattern_index][guest_pattern_index]<<endl;
-
-//  cout<<proximity_matrix[guest_pattern_index][guest_pattern_index]<<endl;
-
-//  //save discovered pattern of the host pattern index
-//  int host_discovered_pattern = discovered_patterns[host_pattern_index];
-//  //sort discovered patterns and proximity matrix
-//  //retrive index of the host discovered pattern using the saved discovered pattern
 
   int stop_s=clock();
   stringstream message;
