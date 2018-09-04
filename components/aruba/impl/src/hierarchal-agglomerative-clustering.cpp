@@ -141,22 +141,35 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
   divideContainerToSubContainers_(mergedFeatureContainers,subFeatureContainers,num_threads);
 
   //threading to computeContainerClusters
+  vector<boost::thread*> threads;
   for(int i =0;i<num_threads;i++)
     {
       FeatureContainer* fc = subFeatureContainers[i];
 
       //g.add_thread(new boost::thread([fc, this] { computeContainerClusters_(fc); }));
-      g.add_thread(new boost::thread([fc, this] { optimizedComputeContainerClusters_(fc); }));
+      boost::thread* t = new boost::thread([fc, this] { optimizedComputeContainerClusters_(fc); });
+      g.add_thread(t);
+      threads.push_back(t);
 
     }
 
   g.join_all();
+
+
 
   //merge solutions to one solution
   mergeSubContainersToContainer_(subFeatureContainers,mergedFeatureContainers);
 
 
   last_discovered_patterns = mergedFeatureContainers->getDiscoveredPatterns().size();
+
+  //free subcontainers
+
+  for(int i = 0; i<num_threads;i++)
+    {
+      delete subFeatureContainers[i];
+      delete threads[i];
+    }
 
   //recursion
   computeSubContainersClusters_(mergedFeatureContainers,--num_threads);
@@ -375,12 +388,12 @@ void HierarchalAgglomerativeClustering::checkFeatures(FeatureContainer *featureC
                     "\t"+
                     "discovered_guest_index:"+std::to_string(featureContainer->getDiscoveredPatterns()[guest_pattern_index]));
 
-//      int host_pattern_length = featureContainer->getPatternsLength()[host_pattern_index];
-//      int guest_pattern_length = featureContainer->getPatternsLength()[guest_pattern_index];
+      //      int host_pattern_length = featureContainer->getPatternsLength()[host_pattern_index];
+      //      int guest_pattern_length = featureContainer->getPatternsLength()[guest_pattern_index];
 
-//      logging::INFO("host_pattern_length:"+std::to_string(host_pattern_length)+
-//                    "\t"+
-//                    "guest_pattern_length:"+std::to_string(guest_pattern_length));
+      //      logging::INFO("host_pattern_length:"+std::to_string(host_pattern_length)+
+      //                    "\t"+
+      //                    "guest_pattern_length:"+std::to_string(guest_pattern_length));
 
       vector<vector<float> > avg_sensor_durations_per_pattern= featureContainer->getAverageSensorDurationsPerPattern();
       vector<vector<int> > active_sensors_per_pattern = featureContainer->getActiveSensorsPerPattern();
@@ -867,12 +880,12 @@ void HierarchalAgglomerativeClustering::mergePatterns_(FeatureContainer *feature
       exit(0);
     }
 
-//  int host_pattern_length = featureContainer->getPatternsLength()[host_pattern_index];
-//  int guest_pattern_length = featureContainer->getPatternsLength()[guest_pattern_index];
+  //  int host_pattern_length = featureContainer->getPatternsLength()[host_pattern_index];
+  //  int guest_pattern_length = featureContainer->getPatternsLength()[guest_pattern_index];
 
-//  logging::INFO("host_pattern_length:"+std::to_string(host_pattern_length)+
-//                "\t"+
-//                "guest_pattern_length:"+std::to_string(guest_pattern_length));
+  //  logging::INFO("host_pattern_length:"+std::to_string(host_pattern_length)+
+  //                "\t"+
+  //                "guest_pattern_length:"+std::to_string(guest_pattern_length));
 
 
   updatePatterns_(featureContainer,host_pattern_index,guest_pattern_index);

@@ -5,6 +5,7 @@
 #include<utilities.h>
 #include<home.h>
 #include <iostream>
+#include<sorter-processor.h>
 #include <string>
 #include<logger.h>
 
@@ -36,6 +37,7 @@ private:
 private:
   string folder_path;
   Home* home_;
+  SorterProcessor* sorterProcessor_;
 };
 
 #endif // FEATUREWRITER_H

@@ -736,7 +736,7 @@ void FeatureProcessor::mergePatterns(int day_index,int new_initial_pattern_index
   vector<string> new_day_name_per_pattern;
   vector<string> new_activity_labels;
 
-  updateHostPatterns_(new_pattern_index,merged_fc,
+  updateOptimizedHostPatterns_(new_pattern_index,merged_fc,
                       new_sequence_patterns,
                       new_discovered_patterns,
                       new_sensors_duration,

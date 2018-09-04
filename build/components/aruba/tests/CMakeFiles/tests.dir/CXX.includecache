@@ -17,6 +17,8 @@ similarity-measure.h
 -
 logger.h
 -
+sorter-processor.h
+-
 patterns-statistics.h
 -
 home.h
@@ -60,6 +62,8 @@ utilities.h
 home.h
 -
 iostream
+-
+sorter-processor.h
 -
 string
 -

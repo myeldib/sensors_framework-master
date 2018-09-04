@@ -21,6 +21,7 @@ TimeWindow::TimeWindow(Home* home,string folder_path)
   home->readHomeSetup();
   this->folder_path=folder_path;
   this->sensor_data_files=Common::getFolderFileNames(folder_path,"");
+  //TODO: bug in multithreading
   this->num_threads = 1;//boost::thread::hardware_concurrency();
 
 }

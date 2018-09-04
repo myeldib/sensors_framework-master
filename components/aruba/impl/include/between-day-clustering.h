@@ -5,6 +5,7 @@
 #include<feature-processor.h>
 #include<similarity-measure.h>
 #include<logger.h>
+#include<sorter-processor.h>
 #include<patterns-statistics.h>
 #include<home.h>
 
@@ -28,6 +29,7 @@ private:
     FeatureProcessor* featureProcessor;
     SimilarityMeasure* similarityMeasure;
     Home* home;
+    SorterProcessor* sorterProcessor_;
     PatternsStatistics* patternStatistics;
 
     FeatureReader* featureReader;

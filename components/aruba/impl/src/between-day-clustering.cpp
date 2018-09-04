@@ -65,6 +65,7 @@ void BetweenDayClustering::init(string reader_folder_path,string feature_writer_
 
     featureProcessor = new FeatureProcessor(home);
     similarityMeasure = new SimilarityMeasure(home_setup_file,time_window_config);
+    sorterProcessor_ = new SorterProcessor();
 
 
     //similarity threshold for emd between (1.0 - 0.0 )
@@ -117,6 +118,10 @@ BetweenDayClustering::~BetweenDayClustering()
         }
     }
 
+    if(sorterProcessor_)
+      {
+        delete sorterProcessor_;
+      }
 }
 
 /**
@@ -208,6 +213,7 @@ void BetweenDayClustering::clusterDiscoveredPatterns_(int day_index, FeatureCont
 
     featureProcessor->mergePatterns(day_index,this->new_initial_pattern_index,merged_fc,fc);
 
+    sorterProcessor_->radixSort(merged_fc);
     featureProcessor->computeOptimizedAverageSensorDurationPerPattern(merged_fc);
     featureProcessor->computeOptimizedMostCommonActivityLabelPerPattern(merged_fc);
 }
@@ -261,6 +267,7 @@ void BetweenDayClustering::processFeatures_()
     for(int i = 0 ; i<featuresContainer.size();i++)
     {
         logging::INFO(featuresContainer[i]->getDayNamePerPattern()[0]);
+        sorterProcessor_->radixSort(featuresContainer[i]);
         featureProcessor->computeOptimizedAverageSensorDurationPerPattern(featuresContainer[i]);
         featureProcessor->computeOptimizedMostCommonActivityLabelPerPattern(featuresContainer[i]);
     }

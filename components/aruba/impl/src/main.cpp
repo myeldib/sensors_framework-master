@@ -184,7 +184,7 @@ int main(int argc, char ** argv)
   //runWithinDayPattern();
   //runBetweenDayPattern();
   //runHierachalCluster();
-  //runClusterRecognition();
+  runClusterRecognition();
   //runModelRecognition();
   //runEvaluation();
 

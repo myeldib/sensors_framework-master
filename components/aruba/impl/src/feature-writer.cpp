@@ -29,6 +29,8 @@ FeatureWriter::FeatureWriter(string folder_path,string extension,Home* home,bool
         }
     }
 
+  sorterProcessor_ = new SorterProcessor();
+
   this->home_=home;
 }
 
@@ -38,6 +40,11 @@ FeatureWriter::FeatureWriter(string folder_path,string extension,Home* home,bool
 FeatureWriter::~FeatureWriter()
 {
   logging::INFO("~FeatureWriter");
+
+  if(sorterProcessor_)
+    {
+      delete sorterProcessor_;
+    }
 
 }
 
@@ -100,6 +107,8 @@ void FeatureWriter::writeBetweenDayPatterns_(FeatureContainer *featureContainer)
 void FeatureWriter::writeFeatures(FeatureContainer* featureContainer, Constants::Cluster_Type type)
 {
   logging::INFO("writeFeatures");
+
+  sorterProcessor_->radixSort(featureContainer);
 
   if(type == Constants::Cluster_Type::between_day_cluster)
     {
@@ -400,26 +409,40 @@ void FeatureWriter::writeSensorDurations(FeatureContainer *fc)
   fstream output_file(file_name.c_str(),std::fstream::out);
 
   vector<vector<float> > sensor_durations_per_pattern = fc->getSensorDurations();
-  vector<int> discovered_patterns = fc->getDiscoveredPatterns();
   vector<int> sequence_patterns = fc->getSequencePatterns();
 
-  for(int i =0 ; i <discovered_patterns.size();i++)
+  int tmp_sequence_pattern = sequence_patterns[0];
+
+  for(int j = 0; j< sequence_patterns.size();j++)
     {
-      for(int j = 0; j< sequence_patterns.size();j++)
+      if(tmp_sequence_pattern == sequence_patterns[j])
         {
-          if(discovered_patterns[i] == sequence_patterns[j])
+          vector<float> sensor_durations = sensor_durations_per_pattern[j];
+
+          for(int k = 0; k<sensor_durations.size();k++)
             {
-              vector<float> sensor_durations = sensor_durations_per_pattern[j];
-
-              for(int k = 0; k<sensor_durations.size();k++)
-                {
-                  output_file<<sensor_durations[k]<<",";
-                }
-
-              output_file<<endl;
+              output_file<<sensor_durations[k]<<",";
             }
+
+          output_file<<endl;
+        }
+      else
+        {
+          //update tmp sequence pattern when it is different
+          tmp_sequence_pattern = sequence_patterns[j];
+
+          //redo computations for new tmp sequence pattern
+          vector<float> sensor_durations = sensor_durations_per_pattern[j];
+
+          for(int k = 0; k<sensor_durations.size();k++)
+            {
+              output_file<<sensor_durations[k]<<",";
+            }
+
+          output_file<<endl;
         }
     }
+
 
   output_file.close();
 }
@@ -456,19 +479,26 @@ void FeatureWriter::writeSequencePatterns(FeatureContainer *fc)
   string file_name = this->folder_path+"sequence_patterns.txt";
   fstream output_file(file_name.c_str(),std::fstream::out);
 
-  vector<int> discovered_patterns = fc->getDiscoveredPatterns();
   vector<int> sequence_patterns = fc->getSequencePatterns();
 
-  for(int i =0 ; i <discovered_patterns.size();i++)
+  int tmp_sequence_pattern = sequence_patterns[0];
+
+  for(int j = 0; j< sequence_patterns.size();j++)
     {
-      for(int j = 0; j< sequence_patterns.size();j++)
+      if(tmp_sequence_pattern == sequence_patterns[j])
         {
-          if(discovered_patterns[i] == sequence_patterns[j])
-            {
-              output_file<<sequence_patterns[j]<<endl;
-            }
+          output_file<<sequence_patterns[j]<<endl;
+        }
+      else
+        {
+          //update tmp sequence pattern when it is different
+          tmp_sequence_pattern = sequence_patterns[j];
+
+          //redo computations for new tmp sequence pattern
+          output_file<<sequence_patterns[j]<<endl;
         }
     }
+
 
   output_file.close();
 }
@@ -484,20 +514,27 @@ void FeatureWriter::writeActivityLabels(FeatureContainer *fc)
   string file_name = this->folder_path+"activity_per_window.txt";
   fstream output_file(file_name.c_str(),std::fstream::out);
 
-  vector<int> discovered_patterns = fc->getDiscoveredPatterns();
   vector<int> sequence_patterns = fc->getSequencePatterns();
   vector<string> activity_labels = fc->getActivityLabel();
 
-  for(int i =0 ; i <discovered_patterns.size();i++)
+  int tmp_sequence_pattern = sequence_patterns[0];
+  for(int j = 0; j< sequence_patterns.size();j++)
     {
-      for(int j = 0; j< sequence_patterns.size();j++)
+      if(tmp_sequence_pattern == sequence_patterns[j])
         {
-          if(discovered_patterns[i] == sequence_patterns[j])
-            {
-              output_file<<activity_labels[j]<<endl;
-            }
+          output_file<<activity_labels[j]<<endl;
+        }
+      else
+        {
+          //update sequence pattern when it is different
+          tmp_sequence_pattern = sequence_patterns[j];
+
+          //redo computations for new tmp sequence pattern
+          output_file<<activity_labels[j]<<endl;
+
         }
     }
+
 
   output_file.close();
 }
@@ -513,20 +550,27 @@ void FeatureWriter::writeDayNames(FeatureContainer *fc)
   string file_name = this->folder_path+"day_names.txt";
   fstream output_file(file_name.c_str(),std::fstream::out);
 
-  vector<int> discovered_patterns = fc->getDiscoveredPatterns();
   vector<int> sequence_patterns = fc->getSequencePatterns();
   vector<string> day_names = fc->getDayNamePerPattern();
 
-  for(int i =0 ; i <discovered_patterns.size();i++)
+  int tmp_sequence_pattern = sequence_patterns[0];
+
+  for(int j = 0; j< sequence_patterns.size();j++)
     {
-      for(int j = 0; j< sequence_patterns.size();j++)
+      if(tmp_sequence_pattern == sequence_patterns[j])
         {
-          if(discovered_patterns[i] == sequence_patterns[j])
-            {
-              output_file<<day_names[j]<<endl;
-            }
+          output_file<<day_names[j]<<endl;
+        }
+      else
+        {
+          //update tmp sequence pattern when it is different
+          tmp_sequence_pattern = sequence_patterns[j];
+
+          //redo computation for new tmp sequence pattern
+          output_file<<day_names[j]<<endl;
         }
     }
+
 
   output_file.close();
 }
@@ -542,20 +586,28 @@ void FeatureWriter::writeTimeIndex(FeatureContainer *fc)
   string file_name = this->folder_path+"time_index.txt";
   fstream output_file(file_name.c_str(),std::fstream::out);
 
-  vector<int> discovered_patterns = fc->getDiscoveredPatterns();
+
   vector<int> sequence_patterns = fc->getSequencePatterns();
   vector<float> time_index_per_pattern = fc->getTimeIndexPerPattern();
 
-  for(int i =0 ; i <discovered_patterns.size();i++)
+  int tmp_sequence_pattern = sequence_patterns[0];
+
+  for(int j = 0; j< sequence_patterns.size();j++)
     {
-      for(int j = 0; j< sequence_patterns.size();j++)
+      if(tmp_sequence_pattern == sequence_patterns[j])
         {
-          if(discovered_patterns[i] == sequence_patterns[j])
-            {
-              output_file<<time_index_per_pattern[j]<<endl;
-            }
+          output_file<<time_index_per_pattern[j]<<endl;
+        }
+      else
+        {
+          //update tmp sequence pattern when it is different
+          tmp_sequence_pattern = sequence_patterns[j];
+
+          //redo computation for new tmp sequence pattern
+          output_file<<time_index_per_pattern[j]<<endl;
         }
     }
+
 
   output_file.close();
 }

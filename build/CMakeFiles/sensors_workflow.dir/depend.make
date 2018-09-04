@@ -2223,6 +2223,7 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../c
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/python-runner.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/src/evaluation.cpp
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o: /usr/include/python2.7/Python.h
@@ -2802,6 +2803,7 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: 
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/src/feature-writer.cpp
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o: /usr/local/include/opencv2/calib3d.hpp
@@ -4018,6 +4020,7 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cp
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/patterns-statistics.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/src/patterns-statistics.cpp
 CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cpp.o: /usr/local/include/opencv2/calib3d.hpp

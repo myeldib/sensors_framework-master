@@ -395,6 +395,7 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../comp
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/python-runner.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: ../components/aruba/impl/src/evaluation.cpp
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/evaluation.cpp.o: /usr/include/python2.7/Python.h
@@ -506,6 +507,7 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/home.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/feature-writer.cpp.o: ../components/aruba/impl/src/feature-writer.cpp
 
@@ -756,6 +758,7 @@ CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/logger.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/patterns-statistics.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/sensor.h
+CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/sorter-processor.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/include/utilities.h
 CMakeFiles/mainComponent.dir/components/aruba/impl/src/patterns-statistics.cpp.o: ../components/aruba/impl/src/patterns-statistics.cpp
 

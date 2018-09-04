@@ -2224,6 +2224,7 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/evaluation.cpp.o
  ../components/aruba/impl/include/logger.h
  ../components/aruba/impl/include/python-runner.h
  ../components/aruba/impl/include/sensor.h
+ ../components/aruba/impl/include/sorter-processor.h
  ../components/aruba/impl/include/utilities.h
  /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/evaluation.cpp
  /usr/include/python2.7/Python.h
@@ -2803,6 +2804,7 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/feature-writer.cpp.o
  ../components/aruba/impl/include/home.h
  ../components/aruba/impl/include/logger.h
  ../components/aruba/impl/include/sensor.h
+ ../components/aruba/impl/include/sorter-processor.h
  ../components/aruba/impl/include/utilities.h
  /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/feature-writer.cpp
  /usr/local/include/opencv2/calib3d.hpp
@@ -4019,6 +4021,7 @@ CMakeFiles/sensors_workflow.dir/components/aruba/impl/src/patterns-statistics.cp
  ../components/aruba/impl/include/logger.h
  ../components/aruba/impl/include/patterns-statistics.h
  ../components/aruba/impl/include/sensor.h
+ ../components/aruba/impl/include/sorter-processor.h
  ../components/aruba/impl/include/utilities.h
  /home/meldib/work_space/sensors_workflow/components/aruba/impl/src/patterns-statistics.cpp
  /usr/local/include/opencv2/calib3d.hpp
