@@ -13,7 +13,7 @@ def train_and_predict_thread(train_data,test_data,result):
     test_features = test_data[:,1:]
     test_labels = test_data[:,0:1]
 	
-    model =  LogisticRegression(solver='sag',n_jobs=6)
+    model =  LogisticRegression(solver='sag',n_jobs=7)
     
     print "fitting mode..."
     model.fit(train_features, train_labels.ravel())
@@ -42,7 +42,7 @@ def train_and_predict(train_data,test_data):
     test_features = test_data[:,1:]
     test_labels = test_data[:,0:1]
 	
-    model = LogisticRegression(solver='sag',n_jobs=6)
+    model = LogisticRegression(solver='sag',n_jobs=7)
     
     print "fitting mode..."
     model.fit(train_features, train_labels.ravel())

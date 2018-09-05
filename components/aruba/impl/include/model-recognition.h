@@ -43,7 +43,6 @@ private:
   vector<FeatureContainer*> copy_clustered_sensor_data;
   vector<FeatureContainer*> sensor_data;
   FeatureContainer* merged_sub_containers;
-  boost::thread_group thread_group_;
 
   FeatureProcessor* featureProcessor_;
   SimilarityMeasure* similarityMeasure_;

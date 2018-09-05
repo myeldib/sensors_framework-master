@@ -45,7 +45,7 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
   hierarchal_clustering_path_=hierarchal_clustering_path;
   //set clustering threshold
   hierarchal_threshold= home_->getHierarchalClusteringThreshold();
-  num_threads= 3;//boost::thread::hardware_concurrency();
+  num_threads= boost::thread::hardware_concurrency();
   last_discovered_patterns = 0;
 
   logging::INFO("num_threads:"+std::to_string(num_threads));

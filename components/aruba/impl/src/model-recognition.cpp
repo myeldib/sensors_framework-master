@@ -191,6 +191,7 @@ void ModelRecognition::computeSubContainersClusters_(vector<FeatureContainer *> 
 {
   logging::INFO("computeSubContainersClusters_");
 
+  boost::thread_group thread_group_;
   //initialize sub containers
   vector<vector<FeatureContainer*> > subFeatureContainers;
 
