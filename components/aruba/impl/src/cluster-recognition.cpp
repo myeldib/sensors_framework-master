@@ -62,12 +62,16 @@ void ClusterRecognition::init_(string hierarchal_clustering_path, string config_
       tmp_ext+
       "/";
 
-  //after processing all days using between day clustering,
-  //the results are expected to be in a single feature container
+
   for(int i =0; i<num_threads_;i++)
     {
-      copy_clustered_sensor_data.push_back(featureReader_->readFeatures(hierarchal_clustering_path,Constants::between_day_cluster)[0]);
+      FeatureContainer* result_container = new FeatureContainer();
+      results_container_.push_back(result_container);
     }
+
+  //after processing all days using between day clustering,
+  //the results are expected to be in a single feature container
+  cluster_data_ = featureReader_->readFeatures(hierarchal_clustering_path,Constants::between_day_cluster)[0];
 
   within_day_cluster_path.append("_").append(std::to_string(home_->getShortDurationLambda())).append("_").append(std::to_string(home_->getLongDurationLambda())).append("/");
   within_day_cluster_path_=within_day_cluster_path;
@@ -83,7 +87,7 @@ void ClusterRecognition::init_(string hierarchal_clustering_path, string config_
   function_num_param_= 2;
 
 
-  logging::INFO("features_discovered_patterns:"+std::to_string(copy_clustered_sensor_data[0]->getDiscoveredPatterns().size()));
+  logging::INFO("features_discovered_patterns:"+std::to_string(cluster_data_->getDiscoveredPatterns().size()));
   logging::INFO("sensor_data_size:"+std::to_string(sensor_data.size()));
 
 }
@@ -104,11 +108,11 @@ ClusterRecognition::~ClusterRecognition()
   logging::INFO("~ClusterRecognition");
 
 
-  for(int i =0; i<copy_clustered_sensor_data.size(); i++)
+  for(int i =0; i<results_container_.size(); i++)
     {
-      if(copy_clustered_sensor_data[i])
+      if(results_container_[i])
         {
-          delete copy_clustered_sensor_data[i];
+          delete results_container_[i];
         }
     }
 
@@ -160,7 +164,7 @@ void ClusterRecognition::run()
 {
   logging::INFO("run");
 
-  computeSubContainersClusters_(sensor_data,copy_clustered_sensor_data, merged_sub_containers,num_threads_);
+  computeSubContainersClusters_(sensor_data,cluster_data_,results_container_, merged_sub_containers,num_threads_);
   evaluate_(merged_sub_containers);
   writePredictions_(merged_sub_containers);
 }
@@ -168,13 +172,16 @@ void ClusterRecognition::run()
 /**
  * @brief ClusterRecognition::computeSubContainersClusters_
  * @param sensor_data
- * @param clustered_sensor_data
+ * @param cluster_data
+ * @param results_container
+ * @param merged_sub_containers
  * @param num_threads
  */
-void ClusterRecognition::computeSubContainersClusters_(vector<FeatureContainer *> &sensor_data, vector<FeatureContainer*>& clustered_sensor_data, FeatureContainer* merged_sub_containers,int &num_threads)
+void ClusterRecognition::computeSubContainersClusters_(vector<FeatureContainer *> &sensor_data, FeatureContainer* cluster_data, vector<FeatureContainer*>& results_container, FeatureContainer* merged_sub_containers,int &num_threads)
 {
   logging::INFO("computeSubContainersClusters_");
 
+ boost::thread_group thread_group;
   //initialize sub containers
   vector<vector<FeatureContainer*> > subFeatureContainers;
 
@@ -192,14 +199,14 @@ void ClusterRecognition::computeSubContainersClusters_(vector<FeatureContainer *
   for(int i =0;i<num_threads;i++)
     {
       vector<FeatureContainer*> testSubFeatureContainers = subFeatureContainers[i];
-      FeatureContainer* copy_clustered_sensor_data= clustered_sensor_data[i];
+      FeatureContainer* result_container= results_container[i];
 
-      thread_group_.add_thread(new boost::thread([testSubFeatureContainers,copy_clustered_sensor_data, this] { leaveOneDayOutStrategy_(testSubFeatureContainers,copy_clustered_sensor_data); }));
+      thread_group.add_thread(new boost::thread([testSubFeatureContainers,cluster_data,result_container, this] { leaveOneDayOutStrategy_(testSubFeatureContainers,cluster_data,result_container); }));
     }
 
-  thread_group_.join_all();
+  thread_group.join_all();
 
-  mergeSubContainersToContainer_(clustered_sensor_data,merged_sub_containers);
+  mergeSubContainersToContainer_(results_container,merged_sub_containers);
 
 }
 
@@ -208,7 +215,7 @@ void ClusterRecognition::computeSubContainersClusters_(vector<FeatureContainer *
  * @param copy_clustered_sensor_data
  * @param mergedSubFeatureContainer
  */
-void ClusterRecognition::mergeSubContainersToContainer_(vector<FeatureContainer *> &copy_clustered_sensor_data, FeatureContainer *mergedSubFeatureContainer)
+void ClusterRecognition::mergeSubContainersToContainer_(vector<FeatureContainer *> &results_container, FeatureContainer *mergedSubFeatureContainer)
 {
   logging::INFO("mergeSubContainersToContainer_");
 
@@ -216,9 +223,9 @@ void ClusterRecognition::mergeSubContainersToContainer_(vector<FeatureContainer 
   vector<int> actual_activity_labels;
   vector<int> predicted_discovered_patterns;
 
-  for(int i =0 ; i<copy_clustered_sensor_data.size();i++)
+  for(int i =0 ; i<results_container.size();i++)
     {
-      FeatureContainer* fc = copy_clustered_sensor_data[i];
+      FeatureContainer* fc = results_container[i];
 
       for(int j =0; j<fc->getPredictedActivityLabels().size();j++)
         {
@@ -360,6 +367,9 @@ void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContain
 
   logging::INFO("computeClustersPurity_");
 
+  sorterProcessor_->radixSort(featureContainers);
+  featureProcessor_->computeMostCommonActivityLabelPerPattern(featureContainers);
+
   vector<int> discovered_patterns = featureContainers->getDiscoveredPatterns();
   vector<int> sequence_patterns = featureContainers->getSequencePatterns();
   vector<vector<int> > activity_labels_per_pattern = featureContainers->getActivityLabelsPerPattern();
@@ -383,6 +393,7 @@ void ClusterRecognition::computeClustersPurity_(FeatureContainer *featureContain
                 "discovered_patterns_size:"+std::to_string(discovered_patterns.size()));
 
   purity=(sum_clusters*1.0)/(sum_labels*1.0);
+  cout<<purity<<endl;
   logging::INFO("purity:"+std::to_string(purity));
 
 }
@@ -399,7 +410,6 @@ void ClusterRecognition::prepareTrainingData_(string test_day, FeatureContainer 
 
   vector<string> clustered_day_names = clustered_sensor_data->getDayNamePerPattern();
   vector<int> clustered_sequence_patterns = clustered_sensor_data->getSequencePatterns();
-  vector<int> clustered_discovered_patterns = clustered_sensor_data->getDiscoveredPatterns();
   vector<vector<float> > clustered_sensor_duration = clustered_sensor_data->getSensorDurations();
   vector<float> clustered_time_index = clustered_sensor_data->getTimeIndexPerPattern();
   vector<string> clustered_activity_labels = clustered_sensor_data->getActivityLabel();
@@ -500,7 +510,7 @@ void ClusterRecognition::evaluate_(FeatureContainer *fc)
   float purity = 0.0;
 
 
-  computeClustersPurity_(copy_clustered_sensor_data[0],purity);
+  computeClustersPurity_(cluster_data_,purity);
 
   logging::INFO("purity:"+std::to_string(purity));
   accuracy_info.append("Cluster Purity:"+std::to_string(purity));
@@ -632,10 +642,11 @@ void ClusterRecognition::writePredictions_(FeatureContainer *clustered_sensor_da
 
 /**
  * @brief ClusterRecognition::leaveOneDayOutStrategy_
- * @param sensor_data
+ * @param sensors_data
  * @param clustered_sensor_data
+ * @param result_container
  */
-void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensors_data, FeatureContainer *clustered_sensor_data)
+void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sensors_data, FeatureContainer *clustered_sensor_data,FeatureContainer* result_container)
 {
   logging::INFO("leaveOneDayOutStrategy_");
 
@@ -663,9 +674,9 @@ void ClusterRecognition::leaveOneDayOutStrategy_(vector<FeatureContainer *> sens
 
     }
 
-  clustered_sensor_data->setPredictedActivityLabels(predicted_activity_label);
-  clustered_sensor_data->setActualActivityLabels(actual_activity_label);
-  clustered_sensor_data->setPredictedDiscoveredPatterns(predicted_discovered_patterns);
+  result_container->setPredictedActivityLabels(predicted_activity_label);
+  result_container->setActualActivityLabels(actual_activity_label);
+  result_container->setPredictedDiscoveredPatterns(predicted_discovered_patterns);
 
 }
 /**

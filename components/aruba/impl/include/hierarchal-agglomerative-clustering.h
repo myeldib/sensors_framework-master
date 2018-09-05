@@ -52,7 +52,6 @@ private:
     FeatureReader* featureReader_;
     FeatureWriter* featureWriter_;
     SimilarityMeasure* similarityMeasure_;
-    boost::thread_group g;
     Home* home_;
     SorterProcessor* sorterProcessor_;
 

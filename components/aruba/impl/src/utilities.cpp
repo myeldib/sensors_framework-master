@@ -356,6 +356,7 @@ vector<vector<string> > Common::readFile(string &folder_path, char separator)
       fileConntents.push_back(elem);
     }
 
+  input_stream.close();
   return fileConntents;
 
 }

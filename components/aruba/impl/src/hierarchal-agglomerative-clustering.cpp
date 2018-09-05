@@ -45,7 +45,7 @@ void HierarchalAgglomerativeClustering::init_(string feature_reader_path,string 
   hierarchal_clustering_path_=hierarchal_clustering_path;
   //set clustering threshold
   hierarchal_threshold= home_->getHierarchalClusteringThreshold();
-  num_threads= boost::thread::hardware_concurrency();
+  num_threads= 3;//boost::thread::hardware_concurrency();
   last_discovered_patterns = 0;
 
   logging::INFO("num_threads:"+std::to_string(num_threads));
@@ -122,10 +122,10 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
 
   cout<<"last_discovered_patterns:"<<last_discovered_patterns<<"\t"<<"merged_discovered_patterns:"<<mergedFeatureContainers->getDiscoveredPatterns().size()<<endl;
 
+  boost::thread_group g;
 
   if(num_threads==0)
     {
-      //computeContainerClusters_(mergedFeatureContainers);
       return;
     }
 
@@ -141,35 +141,28 @@ void HierarchalAgglomerativeClustering::computeSubContainersClusters_(FeatureCon
   divideContainerToSubContainers_(mergedFeatureContainers,subFeatureContainers,num_threads);
 
   //threading to computeContainerClusters
-  vector<boost::thread*> threads;
   for(int i =0;i<num_threads;i++)
     {
       FeatureContainer* fc = subFeatureContainers[i];
-
-      //g.add_thread(new boost::thread([fc, this] { computeContainerClusters_(fc); }));
       boost::thread* t = new boost::thread([fc, this] { optimizedComputeContainerClusters_(fc); });
       g.add_thread(t);
-      threads.push_back(t);
 
     }
 
   g.join_all();
 
 
-
   //merge solutions to one solution
   mergeSubContainersToContainer_(subFeatureContainers,mergedFeatureContainers);
 
-
-  last_discovered_patterns = mergedFeatureContainers->getDiscoveredPatterns().size();
-
   //free subcontainers
-
   for(int i = 0; i<num_threads;i++)
     {
       delete subFeatureContainers[i];
-      delete threads[i];
+
     }
+
+  last_discovered_patterns = mergedFeatureContainers->getDiscoveredPatterns().size();
 
   //recursion
   computeSubContainersClusters_(mergedFeatureContainers,--num_threads);

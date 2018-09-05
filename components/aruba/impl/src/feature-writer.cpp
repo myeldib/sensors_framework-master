@@ -108,14 +108,15 @@ void FeatureWriter::writeFeatures(FeatureContainer* featureContainer, Constants:
 {
   logging::INFO("writeFeatures");
 
-  sorterProcessor_->radixSort(featureContainer);
 
   if(type == Constants::Cluster_Type::between_day_cluster)
     {
+      sorterProcessor_->radixSort(featureContainer);
       writeBetweenDayPatterns_(featureContainer);
     }
   else if (type == Constants::Cluster_Type::hierarchal_cluster)
     {
+      sorterProcessor_->radixSort(featureContainer);
       writeBetweenDayPatterns_(featureContainer);
     }
   else if( type == Constants::Cluster_Type::cluster_recognition)
