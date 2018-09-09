@@ -1,7 +1,10 @@
 #!/usr/bin/python
 import threading
 import Queue
-from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.decomposition import LatentDirichletAllocation
+from sklearn.linear_model import LogisticRegression,Perceptron,PassiveAggressiveClassifier,SGDClassifier
+from sklearn.ensemble import RandomForestClassifier,ExtraTreesClassifier,BaggingClassifier,BaggingRegressor,RandomForestRegressor
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score, classification_report, confusion_matrix
 import numpy as np
 import sklearn
@@ -13,7 +16,8 @@ def train_and_predict_thread(train_data,test_data,result):
     test_features = test_data[:,1:]
     test_labels = test_data[:,0:1]
 	
-    model =  LogisticRegression(solver='sag',n_jobs=7)
+    model =  LogisticRegression(solver='sag',n_jobs=-1)
+    #model = Perceptron(n_jobs=-1,penalty='l2')
     
     print "fitting mode..."
     model.fit(train_features, train_labels.ravel())
@@ -42,7 +46,8 @@ def train_and_predict(train_data,test_data):
     test_features = test_data[:,1:]
     test_labels = test_data[:,0:1]
 	
-    model = LogisticRegression(solver='sag',n_jobs=7)
+    model =  LogisticRegression(solver='sag',n_jobs=-1)
+    #model = Perceptron(n_jobs=-1,penalty='l2',alpha=0.00001)
     
     print "fitting mode..."
     model.fit(train_features, train_labels.ravel())
